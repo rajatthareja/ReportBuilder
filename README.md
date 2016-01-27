@@ -57,7 +57,7 @@ gem install report_builder
 
 We're open to any contribution. It has to be tested properly though.
 
-## Maintainers
+## Maintainer
 
 [Rajat Thareja](http://www.rajatthareja.com)
 
