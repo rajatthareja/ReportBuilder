@@ -51,7 +51,8 @@ gem install report_builder
 
 ```ruby
    # Add in Rakefile
-      require 'report_builder.rake'
+      require 'report_builder'
+      load 'report_builder.rake'
    # Then run rake task report_builder
 ```
 
