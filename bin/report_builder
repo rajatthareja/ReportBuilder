@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'report_builder'
+
+ARGV[1] ||= 'test_report'
+
+ReportBuilder.build_report(ARGV[0], ARGV[1])
