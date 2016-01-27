@@ -21,7 +21,11 @@ gem install report_builder
     ReportBuilder.build_report('path/of/json/file.json', my_test_report)
 
    # 3
-    ReportBuilder.build_report(['path/of/json/file1.json','path/of/json/file2.json','path/of/json/files/dir/'])
+    ReportBuilder.build_report([
+            'path/of/json/file1.json',
+            'path/of/json/file2.json',
+            'path/of/json/files/dir/'
+            ])
 
    # 4
     ReportBuilder.build_report()
@@ -48,3 +52,15 @@ gem install report_builder
 ```bash
    rake report_builder ['path/of/json/files/dir','report_file']
 ```
+
+## Contributing
+
+We're open to any contribution. It has to be tested properly though.
+
+## Maintainers
+
+[Rajat Thareja](http://www.rajatthareja.com)
+
+## License
+
+Copyright (c) 2016 rajatthareja [MIT LICENSE](LICENSE)
