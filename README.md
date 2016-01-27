@@ -63,4 +63,4 @@ We're open to any contribution. It has to be tested properly though.
 
 ## License
 
-Copyright (c) 2016 rajatthareja [MIT LICENSE](LICENSE)
+Copyright (c) 2016 [MIT LICENSE](LICENSE)
