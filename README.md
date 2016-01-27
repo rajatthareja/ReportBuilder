@@ -30,7 +30,7 @@ Command Example:
 Rake Example:
 
         #In Rakefile
-        require 'rake_task/report_builder'
+        require 'report_builder.rake'
         #Run task using
-        report_builder ['path/of/json/files/dir','report_file']
+        rake report_builder ['path/of/json/files/dir','report_file']
         
