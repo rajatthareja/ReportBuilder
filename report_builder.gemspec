@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'report_builder'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.bindir      = 'bin'
   s.executables << 'report_builder'
   s.date        = '2016-01-27'
@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.description = 'Merge Cucumber JSON reports and build single HTML Test Report'
   s.authors     = ['Rajat Thareja']
   s.email       = 'rajat.thareja.1990@gmail.com'
-  s.files       = Dir['lib/*.rb','lib/*.rake','vendor/assets/stylesheets/*.css','vendor/assets/javascripts/*.js']
+  s.files       = Dir['lib/*.rb','lib/*.rake','vendor/assets/stylesheets/*.css','vendor/assets/javascripts/*.js','README.md']
   s.homepage    = 'https://github.com/rajatthareja/ReportBuilder'
   s.license     = 'MIT'
   s.add_runtime_dependency 'builder', '~>3.2', '>= 3.2.2'
