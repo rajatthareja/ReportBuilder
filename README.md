@@ -18,12 +18,12 @@ gem install report_builder
     ReportBuilder.build_report('path/of/json/files/dir')
 
    # 2
-    ReportBuilder.build_report('path/of/json/file.json', my_test_report)
+    ReportBuilder.build_report('path/of/json/cucumber.json', my_test_report)
 
    # 3
     ReportBuilder.build_report([
-            'path/of/json/file1.json',
-            'path/of/json/file2.json',
+            'path/of/json/cucumber1.json',
+            'path/of/json/cucumber2.json',
             'path/of/json/files/dir/'
             ])
 
