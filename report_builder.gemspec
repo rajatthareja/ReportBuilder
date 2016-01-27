@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'report_builder'
-  s.version     = '0.0.5'
+  s.version     = '0.0.6'
   s.bindir      = 'bin'
   s.executables << 'report_builder'
   s.date        = '2016-01-27'
@@ -13,4 +13,5 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.add_runtime_dependency 'builder', '~>3.2', '>= 3.2.2'
   s.add_runtime_dependency 'json', '~>1.8', '>= 1.8.1'
+  s.requirements << 'Cucumber >= 2.1.0 test results in JSON format'
 end

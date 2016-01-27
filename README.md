@@ -15,6 +15,8 @@ gem install report_builder
 
 ## Usage
 
+**Note:** Works with cucumber(>= 2.1.0) test results in JSON format.
+
 ### Code Examples:
 
 ```ruby
