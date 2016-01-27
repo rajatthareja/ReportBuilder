@@ -7,6 +7,11 @@ Ruby gem to merge Cucumber JSON reports and build single HTML Test Report
 gem install report_builder
 ```
 
+## Information
+
+* RDoc documentation [available on RubyDoc.info](http://www.rubydoc.info/gems/report_builder)
+* Source code [available on GitHub](http://github.com/rajatthareja/ReportBuilder)
+
 ## Usage
 
 ### Code Examples:
