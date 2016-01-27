@@ -1,36 +1,50 @@
 # ReportBuilder
 Ruby gem to merge Cucumber JSON reports and build single HTML Test Report
 
-# Installation
+## Installation
 
+```bash
 gem install report_builder
+```
 
+## Usage
 
-# Usage
+### Code Examples:
 
-Code Examples:
-
+```ruby
     require 'report_builder'
-    #1
+
+   # 1
     ReportBuilder.build_report('path/of/json/files/dir')
-    #2
+
+   # 2
     ReportBuilder.build_report('path/of/json/file.json', my_test_report)
-    #3
+
+   # 3
     ReportBuilder.build_report(['path/of/json/file1.json','path/of/json/file2.json','path/of/json/files/dir/'])
-    #4
+
+   # 4
     ReportBuilder.build_report()
-    #5
+
+   # 5
     ReportBuilder::COLOR[:passed] = '#ffffff'
     ReportBuilder.build_report()
+```
 
-Command Example:
+### Command Example:
 
-        report_builder 'path/of/json/files/dir' 'report_file'
-        
-Rake Example:
+```bash
+     report_builder 'path/of/json/files/dir' 'report_file'
+```
 
-        #In Rakefile
-        require 'report_builder.rake'
-        #Run task using
-        rake report_builder ['path/of/json/files/dir','report_file']
-        
+### Rake Example:
+
+```ruby
+   # Add in Rakefile
+      require 'report_builder.rake'
+   # Then run rake task report_builder
+```
+
+```bash
+   rake report_builder ['path/of/json/files/dir','report_file']
+```
