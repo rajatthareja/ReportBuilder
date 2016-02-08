@@ -243,6 +243,7 @@ class ReportBuilder
     file.close
 
     puts "Test report generated: '#{output_file_name}.html'"
+    [total_time, feature_data, scenario_data, step_data]
   end
 
   def self.features(files)
