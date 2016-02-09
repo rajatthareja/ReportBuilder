@@ -152,12 +152,27 @@ class ReportBuilder
                     end
                   end
                   builder.div do
+                    scenario['before'].each do |before|
+                      if before['status'] == 'failed'
+                        builder << "<strong style=color:#{COLOR[:failed]}>Error: </strong>"
+                        error = before['result']['error_message'].split("\n")
+                        builder.span(:style => "color:#{COLOR[:failed]}") do
+                          error[0..-2].each do |line|
+                            builder << line + '<br/>'
+                          end
+                        end
+                        builder << "<strong>Hook: </strong>#{error[-1]} <br/>"
+                      end
+                    end
                     scenario['steps'].each do |step|
                       builder.span(:class => step['status']) do
                         builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{step['status']})  #{duration(step['duration'])}"
                       end
+                      step['output'].each do |output|
+                        builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
+                      end if step['output'] && step['output'].is_a?(Array)
                       if step['status'] == 'failed'
-                        builder << "<br><strong style=color:#{COLOR[:failed]}>Error: </strong>"
+                        builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
                         error = step['result']['error_message'].split("\n")
                         builder.span(:style => "color:#{COLOR[:failed]}") do
                           error[0..-3].each do |line|
@@ -168,6 +183,21 @@ class ReportBuilder
                         builder << "<strong>FF: </strong>#{error[-1]}"
                       end
                       builder << '<br/>'
+                    end
+                    scenario['after'].each do |after|
+                      after['output'].each do |output|
+                        builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
+                      end if after['output'] && after['output'].is_a?(Array)
+                      if after['status'] == 'failed'
+                        builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
+                        error = after['result']['error_message'].split("\n")
+                        builder.span(:style => "color:#{COLOR[:failed]}") do
+                          error[0..-2].each do |line|
+                            builder << line + '<br/>'
+                          end
+                        end
+                        builder << "<strong>Hook: </strong>#{error[-1]}"
+                      end
                     end
                   end
                 end
@@ -195,12 +225,27 @@ class ReportBuilder
                     end
                   end
                   builder.div do
+                    scenario['before'].each do |before|
+                      if before['status'] == 'failed'
+                        builder << "<strong style=color:#{COLOR[:failed]}>Error: </strong>"
+                        error = before['result']['error_message'].split("\n")
+                        builder.span(:style => "color:#{COLOR[:failed]}") do
+                          error[0..-2].each do |line|
+                            builder << line + '<br/>'
+                          end
+                        end
+                        builder << "<strong>Hook: </strong>#{error[-1]} <br/>"
+                      end
+                    end
                     scenario['steps'].each do |step|
                       builder.span(:class => step['status']) do
                         builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{step['status']}) #{duration(step['duration'])}"
                       end
+                      step['output'].each do |output|
+                        builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
+                      end if step['output'] && step['output'].is_a?(Array)
                       if step['status'] == 'failed'
-                        builder << "<br><strong style=color:#{COLOR[:failed]}>Error: </strong>"
+                        builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
                         error = step['result']['error_message'].split("\n")
                         builder.span(:style => "color:#{COLOR[:failed]}") do
                           error[0..-3].each do |line|
@@ -211,6 +256,21 @@ class ReportBuilder
                         builder << "<strong>FF: </strong>#{error[-1]}"
                       end
                       builder << '<br>'
+                    end
+                    scenario['after'].each do |after|
+                      after['output'].each do |output|
+                        builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
+                      end if after['output'] && after['output'].is_a?(Array)
+                      if after['status'] == 'failed'
+                        builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
+                        error = after['result']['error_message'].split("\n")
+                        builder.span(:style => "color:#{COLOR[:failed]}") do
+                          error[0..-2].each do |line|
+                            builder << line + '<br/>'
+                          end
+                        end
+                        builder << "<strong>Hook: </strong>#{error[-1]}"
+                      end
                     end
                   end
                 end
@@ -223,17 +283,45 @@ class ReportBuilder
 
       builder.div(:id => 'errorsTab') do
         builder.ol do
-          all_steps.each do |step|
-            next unless step['status'] == 'failed'
-            builder.li do
-              error = step['result']['error_message'].split("\n")
-              builder.span(:style => "color:#{COLOR[:failed]}") do
-                error[0..-3].each do |line|
-                  builder << line + '<br/>'
+          all_scenarios.each do |scenario|
+            scenario['before'].each do |before|
+              next unless before['status'] == 'failed'
+              builder.li do
+                error = before['result']['error_message'].split("\n")
+                builder.span(:style => "color:#{COLOR[:failed]}") do
+                  error[0..-2].each do |line|
+                    builder << line + '<br/>'
+                  end
                 end
+                builder << "<strong>Hook: </strong>#{error[-1]} <br/>"
+                builder << "<strong>Scenario: </strong>#{scenario['name']}"
               end
-              builder << "<strong>SD: </strong>#{error[-2]} <br/>"
-              builder << "<strong>FF: </strong>#{error[-1]}"
+            end
+            scenario['steps'].each do |step|
+              next unless step['status'] == 'failed'
+              builder.li do
+                error = step['result']['error_message'].split("\n")
+                builder.span(:style => "color:#{COLOR[:failed]}") do
+                  error[0..-3].each do |line|
+                    builder << line + '<br/>'
+                  end
+                end
+                builder << "<strong>SD: </strong>#{error[-2]} <br/>"
+                builder << "<strong>FF: </strong>#{error[-1]}"
+              end
+            end
+            scenario['after'].each do |after|
+              next unless after['status'] == 'failed'
+              builder.li do
+                error = after['result']['error_message'].split("\n")
+                builder.span(:style => "color:#{COLOR[:failed]}") do
+                  error[0..-2].each do |line|
+                    builder << line + '<br/>'
+                  end
+                end
+                builder << "<strong>Hook: </strong>#{error[-1]} <br/>"
+                builder << "<strong>Scenario: </strong>#{scenario['name']}"
+              end
             end
           end
         end
@@ -265,11 +353,21 @@ class ReportBuilder
       features << group.first.except('elements').merge('elements' => group.map{|feature| feature['elements']}.flatten)
     }.each{|feature|
       feature['elements'].each { |scenario|
+        scenario['before'] ||= []
+        scenario['before'].each { |before|
+          before['result']['duration'] ||= 0
+          before.merge! 'status' => before['result']['status'], 'duration' => before['result']['duration']
+        }
         scenario['steps'].each { |step|
           step['result']['duration'] ||= 0
           step.merge! 'status' => step['result']['status'], 'duration' => step['result']['duration']
         }
-        scenario.merge! 'status' => scenario_status(scenario), 'duration' => total_time(scenario['steps'])
+        scenario['after'] ||= []
+        scenario['after'].each { |after|
+          after['result']['duration'] ||= 0
+          after.merge! 'status' => after['result']['status'], 'duration' => after['result']['duration']
+        }
+        scenario.merge! 'status' => scenario_status(scenario), 'duration' => total_time(scenario['before']) + total_time(scenario['steps']) + total_time(scenario['after'])
       }
       feature.merge! 'status' => feature_status(feature), 'duration' => total_time(feature['elements'])
     }
@@ -292,7 +390,7 @@ class ReportBuilder
   end
 
   def self.scenario_status(scenario)
-    scenario['steps'].each do |step|
+    (scenario['before'] + scenario['steps'] + scenario['after']).each do |step|
       status = step['status']
       return status unless status == 'passed'
     end
