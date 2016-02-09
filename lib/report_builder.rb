@@ -140,7 +140,7 @@ class ReportBuilder
           all_features.each_with_index do |feature, n|
             builder.h3 do
               builder.span(:class => feature['status']) do
-                builder << "<strong>#{feature['keyword']}</strong> #{feature['name']} (#{feature['status']}) #{duration(feature['duration'])}"
+                builder << "<strong>#{feature['keyword']}</strong> #{feature['name']} (#{duration(feature['duration'])})"
               end
             end
             builder.div do
@@ -148,7 +148,7 @@ class ReportBuilder
                 feature['elements'].each do |scenario|
                   builder.h3 do
                     builder.span(:class => scenario['status']) do
-                      builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} (#{scenario['status']})  #{duration(scenario['duration'])}"
+                      builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} (#{duration(scenario['duration'])})"
                     end
                   end
                   builder.div do
@@ -166,7 +166,7 @@ class ReportBuilder
                     end
                     scenario['steps'].each do |step|
                       builder.span(:class => step['status']) do
-                        builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{step['status']})  #{duration(step['duration'])}"
+                        builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{duration(step['duration'])})"
                       end
                       step['output'].each do |output|
                         builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
@@ -237,7 +237,7 @@ class ReportBuilder
                 data[1].each do |scenario|
                   builder.h3 do
                     builder.span(:class => data[0]) do
-                      builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} (#{data[0]}) #{duration(scenario['duration'])}"
+                      builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} (#{duration(scenario['duration'])})"
                     end
                   end
                   builder.div do
@@ -255,7 +255,7 @@ class ReportBuilder
                     end
                     scenario['steps'].each do |step|
                       builder.span(:class => step['status']) do
-                        builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{step['status']}) #{duration(step['duration'])}"
+                        builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{duration(step['duration'])})"
                       end
                       step['output'].each do |output|
                         builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
@@ -387,6 +387,7 @@ class ReportBuilder
     file.close
 
     puts "HTML test report generated: '#{output_file_name}.html'"
+    [total_time, feature_data, scenario_data, step_data]
   end
 
   def self.features(files)
@@ -474,9 +475,9 @@ class ReportBuilder
 
   def self.data(all_data)
     all_data.group_by{|db| db['status']}.map do |data|
-          {name: data[0],
-          count: data[1].size,
-          color: COLOR[data[0].to_sym]}
+      {name: data[0],
+       count: data[1].size,
+       color: COLOR[data[0].to_sym]}
     end
   end
 
