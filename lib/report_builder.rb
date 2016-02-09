@@ -171,7 +171,7 @@ class ReportBuilder
                       step['output'].each do |output|
                         builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
                       end if step['output'] && step['output'].is_a?(Array)
-                      if step['status'] == 'failed'
+                      if step['status'] == 'failed' && step['result']['error_message']
                         builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
                         error = step['result']['error_message'].split("\n")
                         builder.span(:style => "color:#{COLOR[:failed]}") do
@@ -182,6 +182,22 @@ class ReportBuilder
                         builder << "<strong>SD: </strong>#{error[-2]} <br/>"
                         builder << "<strong>FF: </strong>#{error[-1]}"
                       end
+                      step['after'].each do |after|
+                        after['output'].each do |output|
+                          builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
+                        end if after['output'] && after['output'].is_a?(Array)
+                        if after['result']['error_message']
+                          builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
+                          error = after['result']['error_message'].split("\n")
+                          builder.span(:style => "color:#{COLOR[:failed]}") do
+                            (scenario['keyword'] == 'Scenario Outline' ? error[0..-6] : error[0..-4]).each do |line|
+                              builder << line + '<br/>'
+                            end
+                          end
+                          builder << "<strong>Hook: </strong>#{scenario['keyword'] == 'Scenario Outline' ? error[-5] : error[-3]} <br/>"
+                          builder << "<strong>FF: </strong>#{error[-2]} <br/>"
+                        end
+                      end if step['after']
                       builder << '<br/>'
                     end
                     scenario['after'].each do |after|
@@ -244,7 +260,7 @@ class ReportBuilder
                       step['output'].each do |output|
                         builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
                       end if step['output'] && step['output'].is_a?(Array)
-                      if step['status'] == 'failed'
+                      if step['status'] == 'failed' && step['result']['error_message']
                         builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
                         error = step['result']['error_message'].split("\n")
                         builder.span(:style => "color:#{COLOR[:failed]}") do
@@ -255,6 +271,22 @@ class ReportBuilder
                         builder << "<strong>SD: </strong>#{error[-2]} <br/>"
                         builder << "<strong>FF: </strong>#{error[-1]}"
                       end
+                      step['after'].each do |after|
+                        after['output'].each do |output|
+                          builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
+                        end if after['output'] && after['output'].is_a?(Array)
+                        if after['result']['error_message']
+                          builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
+                          error = after['result']['error_message'].split("\n")
+                          builder.span(:style => "color:#{COLOR[:failed]}") do
+                            (scenario['keyword'] == 'Scenario Outline' ? error[0..-6] : error[0..-4]).each do |line|
+                              builder << line + '<br/>'
+                            end
+                          end
+                          builder << "<strong>Hook: </strong>#{scenario['keyword'] == 'Scenario Outline' ? error[-5] : error[-3]} <br/>"
+                          builder << "<strong>FF: </strong>#{error[-2]} <br/>"
+                        end
+                      end if step['after']
                       builder << '<br>'
                     end
                     scenario['after'].each do |after|
@@ -298,7 +330,20 @@ class ReportBuilder
               end
             end
             scenario['steps'].each do |step|
-              next unless step['status'] == 'failed'
+              step['after'].each do |after|
+                next unless after['status'] == 'failed'
+                builder.li do
+                  error = after['result']['error_message'].split("\n")
+                  builder.span(:style => "color:#{COLOR[:failed]}") do
+                    (scenario['keyword'] == 'Scenario Outline' ? error[0..-6] : error[0..-4]).each do |line|
+                      builder << line + '<br/>'
+                    end
+                  end
+                  builder << "<strong>Hook: </strong>#{scenario['keyword'] == 'Scenario Outline' ? error[-5] : error[-3]} <br/>"
+                  builder << "<strong>FF: </strong>#{error[-2]} <br/>"
+                end
+              end if step['after']
+              next unless step['status'] == 'failed' && step['result']['error_message']
               builder.li do
                 error = step['result']['error_message'].split("\n")
                 builder.span(:style => "color:#{COLOR[:failed]}") do
@@ -360,7 +405,15 @@ class ReportBuilder
         }
         scenario['steps'].each { |step|
           step['result']['duration'] ||= 0
-          step.merge! 'status' => step['result']['status'], 'duration' => step['result']['duration']
+          duration = step['result']['duration']
+          status = step['result']['status']
+          step['after'].each { |after|
+            after['result']['duration'] ||= 0
+            duration += after['result']['duration']
+            status = 'failed' if after['result']['status'] == 'failed'
+            after.merge! 'status' => after['result']['status'], 'duration' => after['result']['duration']
+          } if step['after']
+          step.merge! 'status' => status, 'duration' => duration
         }
         scenario['after'] ||= []
         scenario['after'].each { |after|
