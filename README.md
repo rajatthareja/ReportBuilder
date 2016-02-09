@@ -9,6 +9,7 @@ gem install report_builder
 
 ## Information
 
+* Ruby gem [![Gem Version](https://badge.fury.io/rb/report_builder.svg)](https://badge.fury.io/rb/report_builder)
 * RDoc documentation [available on RubyDoc.info](http://www.rubydoc.info/gems/report_builder)
 * Source code [available on GitHub](http://github.com/rajatthareja/ReportBuilder)
 * Sample report [available here](http://www.rajatthareja.com/reportbuilder/sample.html)
@@ -24,6 +25,9 @@ gem install report_builder
 
    # 1
     ReportBuilder.build_report('path/of/json/files/dir')
+    ReportBuilder.build_report('path/of/json/files/dir','my_test_report_name','json_html')
+    ReportBuilder.build_report('path/of/json/files/dir','my_test_report_name','json')
+    ReportBuilder.build_report('path/of/json/files/dir','my_test_report_name','html')
 
    # 2
     ReportBuilder.build_report('path/of/json/cucumber.json', 'my_test_report')
@@ -59,7 +63,7 @@ gem install report_builder
 ```
 
 ```bash
-   rake report_builder ['path/of/json/files/dir','report_file']
+   rake report_builder ['path/of/json/files/dir','report_file','json_html']
 ```
 
 ## Contributing
