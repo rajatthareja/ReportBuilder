@@ -3,5 +3,6 @@
 require 'report_builder'
 
 ARGV[1] ||= 'test_report'
+ARGV[2] ||= 'html'
 
-ReportBuilder.build_report(ARGV[0], ARGV[1])
+ReportBuilder.build_report(ARGV[0], ARGV[1], ARGV[2])

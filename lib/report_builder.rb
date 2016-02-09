@@ -43,10 +43,21 @@ class ReportBuilder
 
 # @param [Object] file_or_dir  json file, array of json files or path, json files path
 # @param [String] output_file_name Output file name, by default test_report
-  def self.build_report(file_or_dir = nil, output_file_name = 'test_report')
+# @param [String] output_file_type Output file type, by default html, other options json and json_html
+  def self.build_report(file_or_dir = nil, output_file_name = 'test_report', output_file_type = 'html')
 
     input = files file_or_dir
     all_features = features input rescue (raise 'ReportBuilderParsingError')
+
+    if output_file_type.include? 'json'
+      File.open(output_file_name + '.json', "w") do |file|
+        file.write JSON.pretty_generate all_features
+      end
+      puts "JSON test report generated: '#{output_file_name}.json'"
+    end
+
+    return unless output_file_type.include? 'html'
+
     all_scenarios = scenarios all_features
     all_steps = steps all_scenarios
     total_time = total_time all_features
@@ -242,7 +253,7 @@ class ReportBuilder
 
     file.close
 
-    puts "Test report generated: '#{output_file_name}.html'"
+    puts "HTML test report generated: '#{output_file_name}.html'"
   end
 
   def self.features(files)
