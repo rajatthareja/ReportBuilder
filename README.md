@@ -1,6 +1,7 @@
 # ReportBuilder
-Ruby gem to merge Cucumber JSON reports and build single HTML Test Report
 [![Gem Version](https://badge.fury.io/rb/report_builder.svg)](https://badge.fury.io/rb/report_builder)
+
+Ruby gem to merge Cucumber JSON reports and build single HTML Test Report
 
 ## Installation
 
@@ -42,6 +43,7 @@ gem install report_builder
 
    # 4
     ReportBuilder::COLOR[:passed] = '#ffffff'
+    ReportBuilder::COLOR[:failed] = '#000000'
     ReportBuilder.build_report()
 ```
 
