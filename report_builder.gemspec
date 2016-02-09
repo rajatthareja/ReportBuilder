@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.version     = '0.0.7'
   s.bindir      = 'bin'
   s.executables << 'report_builder'
-  s.date        = '2016-02-09'
+  s.date        = '2016-02-10'
   s.summary     = 'ReportBuilder'
   s.description = 'Merge Cucumber JSON reports and build single HTML Test Report'
   s.authors     = ['Rajat Thareja']
