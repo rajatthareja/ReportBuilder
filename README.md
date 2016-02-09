@@ -60,12 +60,12 @@ gem install report_builder
 
 ### Rake Example:
 
+  Add in Rakefile
 ```ruby
-   # Add in Rakefile
       require 'report_builder'
       load 'report_builder.rake'
-   # Then run rake task report_builder
 ```
+  Then run rake task report_builder
 
 ```bash
    rake report_builder
