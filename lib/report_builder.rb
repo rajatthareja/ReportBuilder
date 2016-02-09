@@ -195,7 +195,7 @@ class ReportBuilder
                             end
                           end
                           builder << "<strong>Hook: </strong>#{scenario['keyword'] == 'Scenario Outline' ? error[-5] : error[-3]} <br/>"
-                          builder << "<strong>FF: </strong>#{error[-2]} <br/>"
+                          builder << "<strong>FF: </strong>#{error[-2]}"
                         end
                       end if step['after']
                       builder << '<br/>'
@@ -284,7 +284,7 @@ class ReportBuilder
                             end
                           end
                           builder << "<strong>Hook: </strong>#{scenario['keyword'] == 'Scenario Outline' ? error[-5] : error[-3]} <br/>"
-                          builder << "<strong>FF: </strong>#{error[-2]} <br/>"
+                          builder << "<strong>FF: </strong>#{error[-2]}"
                         end
                       end if step['after']
                       builder << '<br>'
