@@ -129,7 +129,7 @@ class ReportBuilder
           all_features.each_with_index do |feature, n|
             builder.h3 do
               builder.span(:class => feature['status']) do
-                builder << "<strong>#{feature['keyword']}</strong> #{feature['name']} (#{feature['status']}) #{duration(feature['duration'])}"
+                builder << "<strong>#{feature['keyword']}</strong> #{feature['name']} #{duration(feature['duration'])}"
               end
             end
             builder.div do
@@ -137,13 +137,13 @@ class ReportBuilder
                 feature['elements'].each do |scenario|
                   builder.h3 do
                     builder.span(:class => scenario['status']) do
-                      builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} (#{scenario['status']})  #{duration(scenario['duration'])}"
+                      builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} #{duration(scenario['duration'])}"
                     end
                   end
                   builder.div do
                     scenario['steps'].each do |step|
                       builder.span(:class => step['status']) do
-                        builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{step['status']})  #{duration(step['duration'])}"
+                        builder << "<strong>#{step['keyword']}</strong> #{step['name']} #{duration(step['duration'])}"
                       end
                       if step['status'] == 'failed'
                         builder << "<br><strong style=color:#{COLOR[:failed]}>Error: </strong>"
@@ -157,6 +157,11 @@ class ReportBuilder
                         builder << "<strong>FF: </strong>#{error[-1]}"
                       end
                       builder << '<br/>'
+                    end
+                    builder.div(:id => 'scenarioOutput') do
+                      scenario['after'].each do |action|
+                        builder << "#{action['output'].to_s.gsub('\n', '<br/>')}"
+                      end
                     end
                   end
                 end
@@ -180,13 +185,13 @@ class ReportBuilder
                 data[1].each do |scenario|
                   builder.h3 do
                     builder.span(:class => data[0]) do
-                      builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} (#{data[0]}) #{duration(scenario['duration'])}"
+                      builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} #{duration(scenario['duration'])}"
                     end
                   end
                   builder.div do
                     scenario['steps'].each do |step|
                       builder.span(:class => step['status']) do
-                        builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{step['status']}) #{duration(step['duration'])}"
+                        builder << "<strong>#{step['keyword']}</strong> #{step['name']} #{duration(step['duration'])}"
                       end
                       if step['status'] == 'failed'
                         builder << "<br><strong style=color:#{COLOR[:failed]}>Error: </strong>"
@@ -200,6 +205,11 @@ class ReportBuilder
                         builder << "<strong>FF: </strong>#{error[-1]}"
                       end
                       builder << '<br>'
+                    end
+                    builder.div(:id => 'scenarioOutput') do
+                      scenario['after'].each do |action|
+                        builder << "#{action['output'].to_s}"
+                      end
                     end
                   end
                 end
@@ -313,9 +323,9 @@ class ReportBuilder
 
   def self.data(all_data)
     all_data.group_by{|db| db['status']}.map do |data|
-          {name: data[0],
-          count: data[1].size,
-          color: COLOR[data[0].to_sym]}
+      {name: data[0],
+       count: data[1].size,
+       color: COLOR[data[0].to_sym]}
     end
   end
 
