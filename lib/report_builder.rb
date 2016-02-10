@@ -1,6 +1,6 @@
 require 'json'
 require 'builder'
-require "base64"
+require 'base64'
 
 # Add except method to Hash
 class Hash
@@ -18,16 +18,27 @@ end
 class ReportBuilder
 
   # report_builder:
-  #    ReportBuilder.build_report('path/of/json/files/dir')
   #
-  #    ReportBuilder.build_report('path/of/json/file.json')
+  # ReportBuilder.build_report()
+  # ReportBuilder.build_report('path/of/json/files/dir')
+  # ReportBuilder.build_report('path/of/json/files/dir','my_test_report_name','json_html')
+  # ReportBuilder.build_report('path/of/json/files/dir','my_test_report_name','json')
+  # ReportBuilder.build_report('path/of/json/files/dir','my_test_report_name','html')
   #
-  #    ReportBuilder.build_report(['path/of/json/file1.json','path/of/json/file2.json','path/of/json/files/dir/'])
   #
-  #    ReportBuilder.build_report()
+  # ReportBuilder.build_report('path/of/json/cucumber.json')
   #
-  #    ReportBuilder::COLOR[:passed] = '#ffffff'
-  #    ReportBuilder.build_report()
+  #
+  # ReportBuilder.build_report([
+  #                                'path/of/json/cucumber1.json',
+  #                                'path/of/json/cucumber2.json',
+  #                                'path/of/json/files/dir/'
+  #                            ])
+  #
+  #
+  # ReportBuilder::COLOR[:passed] = '#ffffff'
+  # ReportBuilder::COLOR[:failed] = '#000000'
+  # ReportBuilder.build_report()
 
 
   # colors corresponding to status
@@ -51,7 +62,7 @@ class ReportBuilder
     input = files file_or_dir
     all_features = features input rescue (raise 'ReportBuilderParsingError')
 
-    File.open(output_file_name + '.json', "w") do |file|
+    File.open(output_file_name + '.json', 'w') do |file|
       file.write JSON.pretty_generate all_features
       puts "JSON test report generated: '#{output_file_name}.json'"
     end if output_file_type.to_s.upcase.include? 'JSON'
@@ -64,7 +75,6 @@ class ReportBuilder
     step_data = data all_steps
 
     File.open(output_file_name + '.html', 'w:UTF-8') do |file|
-
       @builder = Builder::XmlMarkup.new(:target => file, :indent => 0)
       @builder.declare!(:DOCTYPE, :html)
       @builder << '<html>'
@@ -82,8 +92,8 @@ class ReportBuilder
         end
 
         @builder.script(:type => 'text/javascript') do
-          %w(jquery-min jquery-ui.min highcharts highcharts-3d).each do |file|
-            @builder << File.read(File.dirname(__FILE__) + '/../vendor/assets/javascripts/' + file + '.js')
+          %w(jquery-min jquery-ui.min highcharts highcharts-3d).each do |js|
+            @builder << File.read(File.dirname(__FILE__) + '/../vendor/assets/javascripts/' + js + '.js')
           end
           @builder << '$(function(){$("#results").tabs();});'
           @builder << "$(function(){$('#features').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
@@ -203,12 +213,16 @@ class ReportBuilder
       end
     end
     @builder.div do
-      scenario['before'].each{|before| build_hook_error before}
-      scenario['steps'].each{|step| build_step step, scenario['keyword']}
+      scenario['before'].each do |before|
+        build_hook_error before
+      end
+      scenario['steps'].each do |step|
+        build_step step, scenario['keyword']
+      end
       scenario['after'].each do |after|
         build_output after['output']
         build_hook_error after
-        # build_embedding after['embeddings']
+        build_embedding after['embeddings']
       end
     end
   end
@@ -219,9 +233,11 @@ class ReportBuilder
     end
     build_output step['output']
     build_step_error step
+    build_embedding step['embeddings']
     step['after'].each do |after|
       build_output after['output']
       build_step_hook_error after, scenario_keyword
+      build_embedding after['embeddings']
     end if step['after']
     @builder << '<br/>'
   end
@@ -276,14 +292,18 @@ class ReportBuilder
   def self.build_embedding(embeddings)
     @img_count ||= 0
     embeddings.each do |embedding|
-      @img_count += 1
-      id = "img_#{@img_count}"
-      @builder.span(:class => 'embed') do
-      @builder << %{<br/>
-      <a href="" style='text-decoration: none;' onclick="img=document.getElementById('#{id}');img.style.display = (img.style.display == 'none' ? 'block' : 'none');return false">
-      <span style='color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};'>Screenshot</span>
-      </a><br/>&nbsp;<img id="#{id}" style="display: none; border: 1px solid #{COLOR[:output]};" src="#{Base64.decode64(embedding['data'])}"/>
-       }
+      if embedding['mime_type'] =~ /^image\/(png|gif|jpg|jpeg)/
+        src = Base64.decode64(embedding['data'])
+        src = 'data:' + embedding['mime_type'] + ';base64' + ',' + src unless src =~ /^data:image\/(png|gif|jpg|jpeg);base64,/
+        @img_count += 1
+        id = "img_#{@img_count}"
+        @builder.span(:class => 'image') do
+          @builder << %{<br/>
+          <a href="" style='text-decoration: none;' onclick="img=document.getElementById('#{id}');img.style.display = (img.style.display == 'none' ? 'block' : 'none');return false">
+          <span style='color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};'>Screenshot</span>
+          </a><br/><img id="#{id}" style="display: none; border: 1px solid #{COLOR[:output]};" src="#{src}"/>
+           }
+        end
       end
     end if embeddings.is_a?(Array)
   end
@@ -345,7 +365,9 @@ class ReportBuilder
 
   def self.features(files)
     files.each_with_object([]) { |file, features|
-      features << JSON.parse(File.read(file))
+      data = File.read(file)
+      next if data.empty?
+      features << JSON.parse(data)
     }.flatten.group_by { |feature|
       feature['uri']+feature['id']+feature['line'].to_s
     }.values.each_with_object([]) { |group, features|
@@ -414,7 +436,7 @@ class ReportBuilder
     files = if path.is_a? String
               (path =~ /\.json$/) ? [path] : Dir.glob("#{path}/*.json")
             elsif path.nil?
-              Dir.glob("*.json")
+              Dir.glob('*.json')
             elsif path.is_a? Array
               path.map do |file|
                 (file =~ /\.json$/) ? file : Dir.glob("#{file}/*.json")
@@ -484,5 +506,9 @@ class ReportBuilder
   private_class_method :donut_js, :pie_chart_js, :files,
                        :features, :feature_status,
                        :scenarios, :scenario_status, :steps,
-                       :data, :duration, :total_time
+                       :data, :duration, :total_time,
+                       :build_scenario, :build_step,
+                       :build_menu, :build_output, :build_embedding,
+                       :build_error_list, :build_step_error,
+                       :build_hook_error, :build_step_hook_error
 end
