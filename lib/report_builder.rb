@@ -1,5 +1,6 @@
 require 'json'
 require 'builder'
+require "base64"
 
 # Add except method to Hash
 class Hash
@@ -38,7 +39,8 @@ class ReportBuilder
       undefined: '#e4d354',
       unknown: '#e4d354',
       pending: '#f7a35c',
-      skipped: '#7cb5ec'
+      skipped: '#7cb5ec',
+      output: '#007fff'
   }
 
 # @param [Object] file_or_dir  json file, array of json files or path, json files path
@@ -49,14 +51,10 @@ class ReportBuilder
     input = files file_or_dir
     all_features = features input rescue (raise 'ReportBuilderParsingError')
 
-    if output_file_type.include? 'json'
-      File.open(output_file_name + '.json', "w") do |file|
-        file.write JSON.pretty_generate all_features
-      end
+    File.open(output_file_name + '.json', "w") do |file|
+      file.write JSON.pretty_generate all_features
       puts "JSON test report generated: '#{output_file_name}.json'"
-    end
-
-    return unless output_file_type.include? 'html'
+    end if output_file_type.to_s.upcase.include? 'JSON'
 
     all_scenarios = scenarios all_features
     all_steps = steps all_scenarios
@@ -65,329 +63,284 @@ class ReportBuilder
     scenario_data = data all_scenarios
     step_data = data all_steps
 
-    file = File.open(output_file_name + '.html', 'w:UTF-8')
+    File.open(output_file_name + '.html', 'w:UTF-8') do |file|
 
-    builder = Builder::XmlMarkup.new(:target => file, :indent => 0)
-    builder.declare!(:DOCTYPE, :html)
-    builder << '<html>'
+      @builder = Builder::XmlMarkup.new(:target => file, :indent => 0)
+      @builder.declare!(:DOCTYPE, :html)
+      @builder << '<html>'
 
-    builder.head do
-      builder.meta(charset: 'UTF-8')
-      builder.title 'Test Results'
+      @builder.head do
+        @builder.meta(charset: 'UTF-8')
+        @builder.title 'Test Results'
 
-      builder.style(:type => 'text/css') do
-        builder << File.read(File.dirname(__FILE__) + '/../vendor/assets/stylesheets/jquery-ui.min.css')
-        COLOR.each do |color|
-          builder << ".#{color[0].to_s}{background:#{color[1]};color:#434348;padding:2px}"
+        @builder.style(:type => 'text/css') do
+          @builder << File.read(File.dirname(__FILE__) + '/../vendor/assets/stylesheets/jquery-ui.min.css')
+          COLOR.each do |color|
+            @builder << ".#{color[0].to_s}{background:#{color[1]};color:#434348;padding:2px}"
+          end
+          @builder << '.summary{border: 1px solid #c5c5c5;border-radius:4px;text-align:right;background:#f1f1f1;color:#434348;padding:4px}'
         end
-        builder << '.summary{border: 1px solid #c5c5c5;border-radius:4px;text-align:right;background:#f1f1f1;color:#434348;padding:4px}'
+
+        @builder.script(:type => 'text/javascript') do
+          %w(jquery-min jquery-ui.min highcharts highcharts-3d).each do |file|
+            @builder << File.read(File.dirname(__FILE__) + '/../vendor/assets/javascripts/' + file + '.js')
+          end
+          @builder << '$(function(){$("#results").tabs();});'
+          @builder << "$(function(){$('#features').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
+          (0..all_scenarios.size).each do |n|
+            @builder << "$(function(){$('#scenario#{n}').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
+          end
+          @builder << "$(function(){$('#status').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
+          scenario_data.each do |data|
+            @builder << "$(function(){$('##{data[:name]}').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
+          end
+        end
       end
 
-      builder.script(:type => 'text/javascript') do
-        %w(jquery-min jquery-ui.min highcharts highcharts-3d).each do |file|
-          builder << File.read(File.dirname(__FILE__) + '/../vendor/assets/javascripts/' + file + '.js')
+      @builder << '<body>'
+
+      @builder.h4(:class => 'summary') do
+        @builder << all_features.size.to_s + ' feature ('
+        feature_data.each do |data|
+          @builder << ' ' + data[:count].to_s + ' ' + data[:name]
         end
-        builder << '$(function(){$("#results").tabs();});'
-        builder << "$(function(){$('#features').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
-        (0..all_scenarios.size).each do |n|
-          builder << "$(function(){$('#scenario#{n}').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
-        end
-        builder << "$(function(){$('#status').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
+        @builder << ') ~ ' + all_scenarios.size.to_s + ' scenario ('
         scenario_data.each do |data|
-          builder << "$(function(){$('##{data[:name]}').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
+          @builder << ' ' + data[:count].to_s + ' ' + data[:name]
         end
-      end
-    end
-
-    builder << '<body>'
-
-    builder.h4(:class => 'summary') do
-      builder << all_features.size.to_s + ' feature ('
-      feature_data.each do |data|
-        builder << ' ' + data[:count].to_s + ' ' + data[:name]
-      end
-      builder << ') ~ ' + all_scenarios.size.to_s + ' scenario ('
-      scenario_data.each do |data|
-        builder << ' ' + data[:count].to_s + ' ' + data[:name]
-      end
-      builder << ') ~ ' + all_steps.size.to_s + ' step ('
-      step_data.each do |data|
-        builder << ' ' + data[:count].to_s + ' ' + data[:name]
-      end
-      builder << ') ~ ' + duration(total_time).to_s
-    end
-
-    builder.div(:id => 'results') do
-
-      builder.ul do
-        %w(overview features scenarios errors).each do |tab|
-          builder.li do
-            builder.a(:href => "##{tab}Tab") do
-              builder << tab.capitalize
-            end
-          end
+        @builder << ') ~ ' + all_steps.size.to_s + ' step ('
+        step_data.each do |data|
+          @builder << ' ' + data[:count].to_s + ' ' + data[:name]
         end
+        @builder << ') ~ ' + duration(total_time).to_s
       end
 
-      builder.div(:id => 'overviewTab') do
-        builder << "<div id='featurePieChart'></div>"
-        builder << "<div id='scenarioPieChart'></div>"
-        builder << "<div id='stepPieChart'></div>"
-      end
+      @builder.div(:id => 'results') do
+        build_menu %w(overview features scenarios errors)
 
-      builder.div(:id => 'featuresTab') do
-        builder.div(:id => 'features') do
-          all_features.each_with_index do |feature, n|
-            builder.h3 do
-              builder.span(:class => feature['status']) do
-                builder << "<strong>#{feature['keyword']}</strong> #{feature['name']} (#{duration(feature['duration'])})"
+        @builder.div(:id => 'overviewTab') do
+          @builder << "<div id='featurePieChart'></div>"
+          @builder << "<div id='scenarioPieChart'></div>"
+          @builder << "<div id='stepPieChart'></div>"
+        end
+
+        @builder.div(:id => 'featuresTab') do
+          @builder.div(:id => 'features') do
+            all_features.each_with_index do |feature, n|
+              @builder.h3 do
+                @builder.span(:class => feature['status']) do
+                  @builder << "<strong>#{feature['keyword']}</strong> #{feature['name']} (#{duration(feature['duration'])})"
+                end
               end
-            end
-            builder.div do
-              builder.div(:id => "scenario#{n}") do
-                feature['elements'].each do |scenario|
-                  builder.h3 do
-                    builder.span(:class => scenario['status']) do
-                      builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} (#{duration(scenario['duration'])})"
-                    end
-                  end
-                  builder.div do
-                    scenario['before'].each do |before|
-                      if before['status'] == 'failed'
-                        builder << "<strong style=color:#{COLOR[:failed]}>Error: </strong>"
-                        error = before['result']['error_message'].split("\n")
-                        builder.span(:style => "color:#{COLOR[:failed]}") do
-                          error[0..-2].each do |line|
-                            builder << line + '<br/>'
-                          end
-                        end
-                        builder << "<strong>Hook: </strong>#{error[-1]} <br/>"
-                      end
-                    end
-                    scenario['steps'].each do |step|
-                      builder.span(:class => step['status']) do
-                        builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{duration(step['duration'])})"
-                      end
-                      step['output'].each do |output|
-                        builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
-                      end if step['output'] && step['output'].is_a?(Array)
-                      if step['status'] == 'failed' && step['result']['error_message']
-                        builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
-                        error = step['result']['error_message'].split("\n")
-                        builder.span(:style => "color:#{COLOR[:failed]}") do
-                          error[0..-3].each do |line|
-                            builder << line + '<br/>'
-                          end
-                        end
-                        builder << "<strong>SD: </strong>#{error[-2]} <br/>"
-                        builder << "<strong>FF: </strong>#{error[-1]}"
-                      end
-                      step['after'].each do |after|
-                        after['output'].each do |output|
-                          builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
-                        end if after['output'] && after['output'].is_a?(Array)
-                        if after['result']['error_message']
-                          builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
-                          error = after['result']['error_message'].split("\n")
-                          builder.span(:style => "color:#{COLOR[:failed]}") do
-                            (scenario['keyword'] == 'Scenario Outline' ? error[0..-6] : error[0..-4]).each do |line|
-                              builder << line + '<br/>'
-                            end
-                          end
-                          builder << "<strong>Hook: </strong>#{scenario['keyword'] == 'Scenario Outline' ? error[-5] : error[-3]} <br/>"
-                          builder << "<strong>FF: </strong>#{error[-2]}"
-                        end
-                      end if step['after']
-                      builder << '<br/>'
-                    end
-                    scenario['after'].each do |after|
-                      after['output'].each do |output|
-                        builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
-                      end if after['output'] && after['output'].is_a?(Array)
-                      if after['status'] == 'failed'
-                        builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
-                        error = after['result']['error_message'].split("\n")
-                        builder.span(:style => "color:#{COLOR[:failed]}") do
-                          error[0..-2].each do |line|
-                            builder << line + '<br/>'
-                          end
-                        end
-                        builder << "<strong>Hook: </strong>#{error[-1]}"
-                      end
-                    end
-                  end
+              @builder.div do
+                @builder.div(:id => "scenario#{n}") do
+                  feature['elements'].each{|scenario| build_scenario scenario}
                 end
               end
             end
           end
+          @builder << "<div id='featureTabPieChart'></div>"
         end
-        builder << "<div id='featureTabPieChart'></div>"
-      end
 
-      builder.div(:id => 'scenariosTab') do
-        builder.div(:id => 'status') do
-          all_scenarios.group_by{|scenario| scenario['status']}.each do |data|
-            builder.h3 do
-              builder.sapn(:class => data[0]) do
-                builder << "<strong>#{data[0].capitalize} scenarios (Count: #{data[1].size})</strong>"
+        @builder.div(:id => 'scenariosTab') do
+          @builder.div(:id => 'status') do
+            all_scenarios.group_by{|scenario| scenario['status']}.each do |data|
+              @builder.h3 do
+                @builder.sapn(:class => data[0]) do
+                  @builder << "<strong>#{data[0].capitalize} scenarios (Count: #{data[1].size})</strong>"
+                end
               end
-            end
-            builder.div do
-              builder.div(:id => data[0]) do
-                data[1].each do |scenario|
-                  builder.h3 do
-                    builder.span(:class => data[0]) do
-                      builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} (#{duration(scenario['duration'])})"
-                    end
-                  end
-                  builder.div do
-                    scenario['before'].each do |before|
-                      if before['status'] == 'failed'
-                        builder << "<strong style=color:#{COLOR[:failed]}>Error: </strong>"
-                        error = before['result']['error_message'].split("\n")
-                        builder.span(:style => "color:#{COLOR[:failed]}") do
-                          error[0..-2].each do |line|
-                            builder << line + '<br/>'
-                          end
-                        end
-                        builder << "<strong>Hook: </strong>#{error[-1]} <br/>"
-                      end
-                    end
-                    scenario['steps'].each do |step|
-                      builder.span(:class => step['status']) do
-                        builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{duration(step['duration'])})"
-                      end
-                      step['output'].each do |output|
-                        builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
-                      end if step['output'] && step['output'].is_a?(Array)
-                      if step['status'] == 'failed' && step['result']['error_message']
-                        builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
-                        error = step['result']['error_message'].split("\n")
-                        builder.span(:style => "color:#{COLOR[:failed]}") do
-                          error[0..-3].each do |line|
-                            builder << line + '<br/>'
-                          end
-                        end
-                        builder << "<strong>SD: </strong>#{error[-2]} <br/>"
-                        builder << "<strong>FF: </strong>#{error[-1]}"
-                      end
-                      step['after'].each do |after|
-                        after['output'].each do |output|
-                          builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
-                        end if after['output'] && after['output'].is_a?(Array)
-                        if after['result']['error_message']
-                          builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
-                          error = after['result']['error_message'].split("\n")
-                          builder.span(:style => "color:#{COLOR[:failed]}") do
-                            (scenario['keyword'] == 'Scenario Outline' ? error[0..-6] : error[0..-4]).each do |line|
-                              builder << line + '<br/>'
-                            end
-                          end
-                          builder << "<strong>Hook: </strong>#{scenario['keyword'] == 'Scenario Outline' ? error[-5] : error[-3]} <br/>"
-                          builder << "<strong>FF: </strong>#{error[-2]}"
-                        end
-                      end if step['after']
-                      builder << '<br>'
-                    end
-                    scenario['after'].each do |after|
-                      after['output'].each do |output|
-                        builder << "<br/> <span style='color:#{COLOR[:skipped]}'>#{output}</span>"
-                      end if after['output'] && after['output'].is_a?(Array)
-                      if after['status'] == 'failed'
-                        builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
-                        error = after['result']['error_message'].split("\n")
-                        builder.span(:style => "color:#{COLOR[:failed]}") do
-                          error[0..-2].each do |line|
-                            builder << line + '<br/>'
-                          end
-                        end
-                        builder << "<strong>Hook: </strong>#{error[-1]}"
-                      end
-                    end
-                  end
+              @builder.div do
+                @builder.div(:id => data[0]) do
+                  data[1].each{|scenario| build_scenario scenario}
                 end
               end
             end
           end
+          @builder << "<div id='scenarioTabPieChart'></div>"
         end
-        builder << "<div id='scenarioTabPieChart'></div>"
-      end
 
-      builder.div(:id => 'errorsTab') do
-        builder.ol do
-          all_scenarios.each do |scenario|
-            scenario['before'].each do |before|
-              next unless before['status'] == 'failed'
-              builder.li do
-                error = before['result']['error_message'].split("\n")
-                builder.span(:style => "color:#{COLOR[:failed]}") do
-                  error[0..-2].each do |line|
-                    builder << line + '<br/>'
-                  end
-                end
-                builder << "<strong>Hook: </strong>#{error[-1]} <br/>"
-                builder << "<strong>Scenario: </strong>#{scenario['name']}"
-              end
-            end
-            scenario['steps'].each do |step|
-              step['after'].each do |after|
-                next unless after['status'] == 'failed'
-                builder.li do
-                  error = after['result']['error_message'].split("\n")
-                  builder.span(:style => "color:#{COLOR[:failed]}") do
-                    (scenario['keyword'] == 'Scenario Outline' ? error[0..-6] : error[0..-4]).each do |line|
-                      builder << line + '<br/>'
-                    end
-                  end
-                  builder << "<strong>Hook: </strong>#{scenario['keyword'] == 'Scenario Outline' ? error[-5] : error[-3]} <br/>"
-                  builder << "<strong>FF: </strong>#{error[-2]} <br/>"
-                end
-              end if step['after']
-              next unless step['status'] == 'failed' && step['result']['error_message']
-              builder.li do
-                error = step['result']['error_message'].split("\n")
-                builder.span(:style => "color:#{COLOR[:failed]}") do
-                  error[0..-3].each do |line|
-                    builder << line + '<br/>'
-                  end
-                end
-                builder << "<strong>SD: </strong>#{error[-2]} <br/>"
-                builder << "<strong>FF: </strong>#{error[-1]}"
-              end
-            end
-            scenario['after'].each do |after|
-              next unless after['status'] == 'failed'
-              builder.li do
-                error = after['result']['error_message'].split("\n")
-                builder.span(:style => "color:#{COLOR[:failed]}") do
-                  error[0..-2].each do |line|
-                    builder << line + '<br/>'
-                  end
-                end
-                builder << "<strong>Hook: </strong>#{error[-1]} <br/>"
-                builder << "<strong>Scenario: </strong>#{scenario['name']}"
-              end
-            end
+        @builder.div(:id => 'errorsTab') do
+          @builder.ol do
+            all_scenarios.each{|scenario| build_error_list scenario}
           end
         end
       end
-    end
 
-    builder.script(:type => 'text/javascript') do
-      builder << pie_chart_js('featurePieChart', 'Features', feature_data)
-      builder << donut_js('featureTabPieChart', 'Features', feature_data)
-      builder << pie_chart_js('scenarioPieChart', 'Scenarios', scenario_data)
-      builder << donut_js('scenarioTabPieChart', 'Scenarios', scenario_data)
-      builder << pie_chart_js('stepPieChart', 'Steps', step_data)
-    end
+      @builder.script(:type => 'text/javascript') do
+        @builder << pie_chart_js('featurePieChart', 'Features', feature_data)
+        @builder << donut_js('featureTabPieChart', 'Features', feature_data)
+        @builder << pie_chart_js('scenarioPieChart', 'Scenarios', scenario_data)
+        @builder << donut_js('scenarioTabPieChart', 'Scenarios', scenario_data)
+        @builder << pie_chart_js('stepPieChart', 'Steps', step_data)
+      end
 
-    builder << '</body>'
-    builder << '</html>'
+      @builder << '</body>'
+      @builder << '</html>'
 
-    file.close
+      puts "HTML test report generated: '#{output_file_name}.html'"
+    end if output_file_type.to_s.upcase.include? 'HTML'
 
-    puts "HTML test report generated: '#{output_file_name}.html'"
     [total_time, feature_data, scenario_data, step_data]
+  end
+
+  def self.build_menu(tabs)
+    @builder.ul do
+      tabs.each do |tab|
+        @builder.li do
+          @builder.a(:href => "##{tab}Tab") do
+            @builder << tab.capitalize
+          end
+        end
+      end
+    end
+  end
+
+  def self.build_scenario(scenario)
+    @builder.h3 do
+      @builder.span(:class => scenario['status']) do
+        @builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} (#{duration(scenario['duration'])})"
+      end
+    end
+    @builder.div do
+      scenario['before'].each{|before| build_hook_error before}
+      scenario['steps'].each{|step| build_step step, scenario['keyword']}
+      scenario['after'].each do |after|
+        build_output after['output']
+        build_hook_error after
+        # build_embedding after['embeddings']
+      end
+    end
+  end
+
+  def self.build_step(step, scenario_keyword)
+    @builder.span(:class => step['status']) do
+      @builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{duration(step['duration'])})"
+    end
+    build_output step['output']
+    build_step_error step
+    step['after'].each do |after|
+      build_output after['output']
+      build_step_hook_error after, scenario_keyword
+    end if step['after']
+    @builder << '<br/>'
+  end
+
+  def self.build_output(outputs)
+    outputs.each do |output|
+      @builder << "<br/><span style='color:#{COLOR[:output]}'>#{output.gsub("\n",'</br>').gsub("\t",'&nbsp;&nbsp;').gsub(' ','&nbsp;')}</span>"
+    end if outputs.is_a?(Array)
+  end
+
+  def self.build_step_error(step)
+    if step['status'] == 'failed' && step['result']['error_message']
+      @builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
+      error = step['result']['error_message'].split("\n")
+      @builder.span(:style => "color:#{COLOR[:failed]}") do
+        error[0..-3].each do |line|
+          @builder << line + '<br/>'
+        end
+      end
+      @builder << "<strong>SD: </strong>#{error[-2]} <br/>"
+      @builder << "<strong>FF: </strong>#{error[-1]}"
+    end
+  end
+
+  def self.build_hook_error(hook)
+    if hook['status'] == 'failed'
+      @builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
+      error = hook['result']['error_message'].split("\n")
+      @builder.span(:style => "color:#{COLOR[:failed]}") do
+        error[0..-2].each do |line|
+          @builder << line + '<br/>'
+        end
+      end
+      @builder << "<strong>Hook: </strong>#{error[-1]}<br/>"
+    end
+  end
+
+  def self.build_step_hook_error(hook, scenario_keyword)
+    if hook['result']['error_message']
+      @builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
+      error = hook['result']['error_message'].split("\n")
+      @builder.span(:style => "color:#{COLOR[:failed]}") do
+        (scenario_keyword == 'Scenario Outline' ? error[0..-6] : error[0..-4]).each do |line|
+          @builder << line + '<br/>'
+        end
+      end
+      @builder << "<strong>Hook: </strong>#{scenario_keyword == 'Scenario Outline' ? error[-5] : error[-3]} <br/>"
+      @builder << "<strong>FF: </strong>#{error[-2]}"
+    end
+  end
+
+  def self.build_embedding(embeddings)
+    @img_count ||= 0
+    embeddings.each do |embedding|
+      @img_count += 1
+      id = "img_#{@img_count}"
+      @builder.span(:class => 'embed') do
+      @builder << %{<br/>
+      <a href="" style='text-decoration: none;' onclick="img=document.getElementById('#{id}');img.style.display = (img.style.display == 'none' ? 'block' : 'none');return false">
+      <span style='color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};'>Screenshot</span>
+      </a><br/>&nbsp;<img id="#{id}" style="display: none; border: 1px solid #{COLOR[:output]};" src="#{Base64.decode64(embedding['data'])}"/>
+       }
+      end
+    end if embeddings.is_a?(Array)
+  end
+
+  def self.build_error_list(scenario)
+    scenario['before'].each do |before|
+      next unless before['status'] == 'failed'
+      @builder.li do
+        error = before['result']['error_message'].split("\n")
+        @builder.span(:style => "color:#{COLOR[:failed]}") do
+          error[0..-2].each do |line|
+            @builder << line + '<br/>'
+          end
+        end
+        @builder << "<strong>Hook: </strong>#{error[-1]} <br/>"
+        @builder << "<strong>Scenario: </strong>#{scenario['name']}"
+      end
+    end
+    scenario['steps'].each do |step|
+      step['after'].each do |after|
+        next unless after['status'] == 'failed'
+        @builder.li do
+          error = after['result']['error_message'].split("\n")
+          @builder.span(:style => "color:#{COLOR[:failed]}") do
+            (scenario['keyword'] == 'Scenario Outline' ? error[0..-6] : error[0..-4]).each do |line|
+              @builder << line + '<br/>'
+            end
+          end
+          @builder << "<strong>Hook: </strong>#{scenario['keyword'] == 'Scenario Outline' ? error[-5] : error[-3]} <br/>"
+          @builder << "<strong>FF: </strong>#{error[-2]} <br/>"
+        end
+      end if step['after']
+      next unless step['status'] == 'failed' && step['result']['error_message']
+      @builder.li do
+        error = step['result']['error_message'].split("\n")
+        @builder.span(:style => "color:#{COLOR[:failed]}") do
+          error[0..-3].each do |line|
+            @builder << line + '<br/>'
+          end
+        end
+        @builder << "<strong>SD: </strong>#{error[-2]} <br/>"
+        @builder << "<strong>FF: </strong>#{error[-1]}"
+      end
+    end
+    scenario['after'].each do |after|
+      next unless after['status'] == 'failed'
+      @builder.li do
+        error = after['result']['error_message'].split("\n")
+        @builder.span(:style => "color:#{COLOR[:failed]}") do
+          error[0..-2].each do |line|
+            @builder << line + '<br/>'
+          end
+        end
+        @builder << "<strong>Hook: </strong>#{error[-1]} <br/>"
+        @builder << "<strong>Scenario: </strong>#{scenario['name']}"
+      end
+    end
   end
 
   def self.features(files)
