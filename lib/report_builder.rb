@@ -290,21 +290,34 @@ class ReportBuilder
   end
 
   def self.build_embedding(embeddings)
-    @img_count ||= 0
+    @embedding_count ||= 0
     embeddings.each do |embedding|
+      src = Base64.decode64(embedding['data'])
+      id = "embedding_#{@embedding_count}"
       if embedding['mime_type'] =~ /^image\/(png|gif|jpg|jpeg)/
-        src = Base64.decode64(embedding['data'])
-        src = 'data:' + embedding['mime_type'] + ';base64' + ',' + src unless src =~ /^data:image\/(png|gif|jpg|jpeg);base64,/
-        @img_count += 1
-        id = "img_#{@img_count}"
         @builder.span(:class => 'image') do
-          @builder << %{<br/>
-          <a href="" style='text-decoration: none;' onclick="img=document.getElementById('#{id}');img.style.display = (img.style.display == 'none' ? 'block' : 'none');return false">
-          <span style='color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};'>Screenshot</span>
-          </a><br/><img id="#{id}" style="display: none; border: 1px solid #{COLOR[:output]};" src="#{src}"/>
-           }
+          @builder << '<br/>'
+          @builder.a(:href => '', :style => 'text-decoration: none;', :onclick => "img=document.getElementById('#{id}');img.style.display = (img.style.display == 'none' ? 'block' : 'none');return false") do
+            @builder.span(:style => "color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};") do
+              @builder << 'Screenshot'
+            end
+          end
+          @builder << '<br/>'
+          src = 'data:' + embedding['mime_type'] + ';base64' + ',' + src unless src =~ /^data:image\/(png|gif|jpg|jpeg);base64,/
+          @builder << %{<img id='#{id}' style='display: none; border: 1px solid #{COLOR[:output]};' src='#{src}'/>} rescue puts('Image embedding skipped!')
+        end
+      elsif embedding['mime_type'] =~ /^text\/plain/
+        @builder.span(:class => 'link') do
+          @builder << '<br/>'
+          @builder.a(:id => id, :style => 'text-decoration: none;', :href => src, :title => 'Link') do
+            @builder.span(:style => "color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};") do
+              @builder << src
+            end
+          end rescue puts('Link embedding skipped!')
+          @builder << '<br/>'
         end
       end
+      @embedding_count += 1
     end if embeddings.is_a?(Array)
   end
 
