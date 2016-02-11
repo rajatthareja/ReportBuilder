@@ -339,7 +339,7 @@ class ReportBuilder
           end
         end
         @builder << "<strong>Hook: </strong>#{error[-1]} <br/>"
-        @builder << "<strong>Scenario: </strong>#{scenario['name']} <br/>"
+        @builder << "<strong>Scenario: </strong>#{scenario['name']} <br/><br/>"
       end
     end
     scenario['steps'].each do |step|
@@ -353,7 +353,7 @@ class ReportBuilder
             end
           end
           @builder << "<strong>Hook: </strong>#{scenario['keyword'] == 'Scenario Outline' ? error[-5] : error[-3]} <br/>"
-          @builder << "<strong>FF: </strong>#{error[-2]} <br/>"
+          @builder << "<strong>FF: </strong>#{error[-2]} <br/><br/>"
         end
       end if step['after']
       next unless step['status'] == 'failed' && step['result']['error_message']
@@ -365,7 +365,7 @@ class ReportBuilder
           end
         end
         @builder << "<strong>SD: </strong>#{error[-2]} <br/>"
-        @builder << "<strong>FF: </strong>#{error[-1]} <br/>"
+        @builder << "<strong>FF: </strong>#{error[-1]} <br/><br/>"
       end
     end
     scenario['after'].each do |after|
@@ -378,7 +378,7 @@ class ReportBuilder
           end
         end
         @builder << "<strong>Hook: </strong>#{error[-1]} <br/>"
-        @builder << "<strong>Scenario: </strong>#{scenario['name']} <br/>"
+        @builder << "<strong>Scenario: </strong>#{scenario['name']} <br/><br/>"
       end
     end
   end
