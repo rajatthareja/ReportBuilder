@@ -21,9 +21,10 @@ class ReportBuilder
   #
   # ReportBuilder.build_report()
   # ReportBuilder.build_report('path/of/json/files/dir')
-  # ReportBuilder.build_report('path/of/json/files/dir','my_test_report_name','json_html')
-  # ReportBuilder.build_report('path/of/json/files/dir','my_test_report_name','json')
-  # ReportBuilder.build_report('path/of/json/files/dir','my_test_report_name','html')
+  # ReportBuilder.build_report('path/of/json/files/dir', 'my_test_report_name', [:json])
+  # ReportBuilder.build_report('path/of/json/files/dir', 'my_test_report_name', ['json'])
+  # ReportBuilder.build_report('path/of/json/files/dir', 'my_test_report_name', [:json, 'html'])
+  # ReportBuilder.build_report('path/of/json/files/dir', 'my_test_report_name', [:json, :html], [:overview, :features, :scenarios, :errors])
   #
   #
   # ReportBuilder.build_report('path/of/json/cucumber.json')
@@ -36,10 +37,13 @@ class ReportBuilder
   #                            ])
   #
   #
+  # For changing colors in report
   # ReportBuilder::COLOR[:passed] = '#ffffff'
   # ReportBuilder::COLOR[:failed] = '#000000'
-  # ReportBuilder.build_report()
-
+  #
+  # For embedding images uniquely (use when building report with scenarios tab)
+  # ReportBuilder::COMPRESS = true
+  #
 
   # colors corresponding to status
   COLOR = {
@@ -54,18 +58,23 @@ class ReportBuilder
       output: '#007fff'
   }
 
-# @param [Object] file_or_dir  json file, array of json files or path, json files path
-# @param [String] output_file_name Output file name, by default test_report
-# @param [String] output_file_type Output file type, by default html, other options json and json_html
-  def self.build_report(file_or_dir = nil, output_file_name = 'test_report', output_file_type = 'html')
+  COMPRESS = false
+
+# @param [Object] file_or_dir Input json file, Default nil (current directory),  array of json files or path, json files path
+# @param [String] output_file_name Output file name, Default test_report
+# @param [String] output_file_type Output file type, Default [:html], Options [:json] and [:json, :html] or ['html', 'json']
+# @param [Array] tabs Tabs to build, by default [:overview, :features, :errors], Options [:overview, :features, :scenarios, :errors] or ['overview', 'features', 'scenarios', 'errors']
+  def self.build_report(file_or_dir = nil, output_file_name = 'test_report', output_file_type = [:html], tabs = [:overview, :features, :errors])
 
     input = files file_or_dir
     all_features = features input rescue (raise 'ReportBuilderParsingError')
 
+    output_file_type.map!(&:to_s).map!(&:upcase)
+
     File.open(output_file_name + '.json', 'w') do |file|
       file.write JSON.pretty_generate all_features
       puts "JSON test report generated: '#{output_file_name}.json'"
-    end if output_file_type.to_s.upcase.include? 'JSON'
+    end if output_file_type.include? 'JSON'
 
     all_scenarios = scenarios all_features
     all_steps = steps all_scenarios
@@ -126,13 +135,14 @@ class ReportBuilder
       end
 
       @builder.div(:id => 'results') do
-        build_menu %w(overview features scenarios errors)
+        tabs.map!(&:to_s)
+        build_menu tabs
 
         @builder.div(:id => 'overviewTab') do
           @builder << "<div id='featurePieChart'></div>"
           @builder << "<div id='scenarioPieChart'></div>"
           @builder << "<div id='stepPieChart'></div>"
-        end
+        end if tabs.include? 'overview'
 
         @builder.div(:id => 'featuresTab') do
           @builder.div(:id => 'features') do
@@ -150,7 +160,7 @@ class ReportBuilder
             end
           end
           @builder << "<div id='featureTabPieChart'></div>"
-        end
+        end if tabs.include? 'features'
 
         @builder.div(:id => 'scenariosTab') do
           @builder.div(:id => 'status') do
@@ -168,13 +178,13 @@ class ReportBuilder
             end
           end
           @builder << "<div id='scenarioTabPieChart'></div>"
-        end
+        end if tabs.include? 'scenarios'
 
         @builder.div(:id => 'errorsTab') do
           @builder.ol do
             all_scenarios.each{|scenario| build_error_list scenario}
           end
-        end
+        end if tabs.include? 'errors'
       end
 
       @builder.script(:type => 'text/javascript') do
@@ -189,7 +199,7 @@ class ReportBuilder
       @builder << '</html>'
 
       puts "HTML test report generated: '#{output_file_name}.html'"
-    end if output_file_type.to_s.upcase.include? 'HTML'
+    end if output_file_type.include? 'HTML'
 
     [total_time, feature_data, scenario_data, step_data]
   end
@@ -302,15 +312,7 @@ class ReportBuilder
             end
           end
           @builder << '<br/>'
-          begin
-            src = Base64.decode64(embedding['data'])
-            src = 'data:' + embedding['mime_type'] + ';base64,' + src unless src =~ /^data:image\/(png|gif|jpg|jpeg);base64,/
-            @builder << %{<img id='#{id}' style='display: none; border: 1px solid #{COLOR[:output]};' src='#{src}'/>}
-          rescue
-            src = embedding['data']
-            src = 'data:' + embedding['mime_type'] + ';base64,' + src unless src =~ /^data:image\/(png|gif|jpg|jpeg);base64,/
-            @builder << %{<img id='#{id}' style='display: none; border: 1px solid #{COLOR[:output]};' src='#{src}'/>}
-          end rescue puts('Image embedding skipped!')
+          COMPRESS ? build_unique_image(embedding, id) : build_image(embedding,id) rescue puts 'Image embedding failed!'
         end
       elsif embedding['mime_type'] =~ /^text\/plain/
         @builder.span(:class => 'link') do
@@ -326,6 +328,41 @@ class ReportBuilder
       end
       @embedding_count += 1
     end if embeddings.is_a?(Array)
+  end
+
+  def self.build_unique_image(image, id)
+    @images ||= []
+    index = @images.find_index image
+    if index
+      klass = "image_#{index}"
+    else
+      @images << image
+      klass = "image_#{@images.size - 1}"
+      @builder.style(:type => 'text/css') do
+        begin
+          src = Base64.decode64(image['data'])
+          src = 'data:' + image['mime_type'] + ';base64,' + src unless src =~ /^data:image\/(png|gif|jpg|jpeg);base64,/
+          @builder << "img.#{klass} {content: url(#{src});}"
+        rescue
+          src = image['data']
+          src = 'data:' + image['mime_type'] + ';base64,' + src unless src =~ /^data:image\/(png|gif|jpg|jpeg);base64,/
+          @builder << "img.#{klass} {content: url(#{src});}"
+        end
+      end
+    end
+    @builder << %{<img id='#{id}' class='#{klass}' style='display: none; border: 1px solid #{COLOR[:output]};' />}
+  end
+
+  def self.build_image(image, id)
+    begin
+      src = Base64.decode64(image['data'])
+      src = 'data:' + image['mime_type'] + ';base64,' + src unless src =~ /^data:image\/(png|gif|jpg|jpeg);base64,/
+      @builder << %{<img id='#{id}' style='display: none; border: 1px solid #{COLOR[:output]};' src='#{src}'/>}
+    rescue
+      src = image['data']
+      src = 'data:' + image['mime_type'] + ';base64,' + src unless src =~ /^data:image\/(png|gif|jpg|jpeg);base64,/
+      @builder << %{<img id='#{id}' style='display: none; border: 1px solid #{COLOR[:output]};' src='#{src}'/>}
+    end
   end
 
   def self.build_error_list(scenario)
@@ -530,5 +567,6 @@ class ReportBuilder
                        :build_scenario, :build_step,
                        :build_menu, :build_output, :build_embedding,
                        :build_error_list, :build_step_error,
-                       :build_hook_error, :build_step_hook_error
+                       :build_hook_error, :build_step_hook_error,
+                       :build_unique_image, :build_image
 end
