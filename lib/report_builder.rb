@@ -135,7 +135,7 @@ class ReportBuilder
       end
 
       @builder.div(:id => 'results') do
-        tabs.map!(&:to_s)
+        tabs.map!(&:to_s).map!(&:downcase)
         build_menu tabs
 
         @builder.div(:id => 'overviewTab') do
@@ -188,11 +188,11 @@ class ReportBuilder
       end
 
       @builder.script(:type => 'text/javascript') do
-        @builder << pie_chart_js('featurePieChart', 'Features', feature_data)
-        @builder << donut_js('featureTabPieChart', 'Features', feature_data)
-        @builder << pie_chart_js('scenarioPieChart', 'Scenarios', scenario_data)
-        @builder << donut_js('scenarioTabPieChart', 'Scenarios', scenario_data)
-        @builder << pie_chart_js('stepPieChart', 'Steps', step_data)
+        @builder << pie_chart_js('featurePieChart', 'Features', feature_data) if tabs.include? 'overview'
+        @builder << donut_js('featureTabPieChart', 'Features', feature_data) if tabs.include? 'features'
+        @builder << pie_chart_js('scenarioPieChart', 'Scenarios', scenario_data) if tabs.include? 'overview'
+        @builder << donut_js('scenarioTabPieChart', 'Scenarios', scenario_data) if tabs.include? 'scenarios'
+        @builder << pie_chart_js('stepPieChart', 'Steps', step_data) if tabs.include? 'overview'
       end
 
       @builder << '</body>'
