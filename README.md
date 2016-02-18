@@ -25,10 +25,10 @@ gem install report_builder
 
     require 'report_builder'
     
-    # @param [Object] file_or_dir Input json file, Default nil (current directory),  array of json files or path, json files path
-    # @param [String] output_file_name Output file name, Default test_report
-    # @param [Array] output_file_type Output file type, Default [:html], Options [:json] and [:json, :html] or ['html', 'json']
-    # @param [Array] tabs Tabs to build, by default [:overview, :features, :errors], Options [:overview, :features, :scenarios, :errors] or ['overview', 'features', 'scenarios', 'errors']
+    # @param [Object] file_or_dir Input json file, Default: nil (current directory), Options: array of json files/path or json files path
+    # @param [String] output_file_name Output file name, Default: test_report
+    # @param [Array] output_file_type Output file type, Default: [:html], Options: [:json] or [:json, :html] or ['html', 'json']
+    # @param [Array] tabs Tabs to build, Default: [:overview, :features, :errors], Options: [:overview, :features, :scenarios, :errors] or ['overview', 'features', 'scenarios', 'errors']
 
     # 1 
     ReportBuilder.build_report()
