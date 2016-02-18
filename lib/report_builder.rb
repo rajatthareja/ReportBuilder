@@ -166,7 +166,7 @@ class ReportBuilder
           @builder.div(:id => 'status') do
             all_scenarios.group_by{|scenario| scenario['status']}.each do |data|
               @builder.h3 do
-                @builder.sapn(:class => data[0]) do
+                @builder.span(:class => data[0]) do
                   @builder << "<strong>#{data[0].capitalize} scenarios (Count: #{data[1].size})</strong>"
                 end
               end
