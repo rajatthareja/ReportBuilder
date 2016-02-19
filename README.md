@@ -51,25 +51,35 @@ gem install report_builder
 
 ### Config Options:
 
-* json_path:       
+* json_path:
+
     Default: nil (current directory)
+    
     [String] / [Array] Input json file, array of json files/path or json files path
 
 * report_path:     
-    Default: 'test_report'
-    [String] Output file path with name
+  
+  Default: 'test_report'
+
+  [String] Output file path with name
 
 * report_types:    
+    
     Default: [:html]
+
     [Array] Output file types to build, [:json, :html] or ['html', 'json']
 
 * report_tabs:     
+
     Default: [:overview, :features, :errors]
+
     [Array] Tabs to build, [:overview, :features, :scenarios, :errors] or ['overview', 'features', 'scenarios', 'errors']
     
-* compress_images: 
-    Default: false
-    [Boolean] Set true to reducing the size of HTML report, Note: If true, takes more time to build report
+* compress_images 
+
+   Default: false
+   
+   [Boolean] Set true to reducing the size of HTML report, Note: If true, takes more time to build report
     
 
 
