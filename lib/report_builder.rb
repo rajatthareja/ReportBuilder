@@ -19,30 +19,15 @@ class ReportBuilder
 
   # report_builder:
   #
+  # ReportBuilder.configure do |config|
+  #       config.json_path = 'cucumber_sample/logs',
+  #       config.report_path = 'sample_report',
+  #       config.report_types = [:json, :html],
+  #       config.report_tabs = [:overview, :features, :scenarios, :errors],
+  #       config.compress_images = false
+  #      end
+  #
   # ReportBuilder.build_report()
-  # ReportBuilder.build_report('path/of/json/files/dir')
-  # ReportBuilder.build_report('path/of/json/files/dir', 'my_test_report_name', [:json])
-  # ReportBuilder.build_report('path/of/json/files/dir', 'my_test_report_name', ['json'])
-  # ReportBuilder.build_report('path/of/json/files/dir', 'my_test_report_name', [:json, 'html'])
-  # ReportBuilder.build_report('path/of/json/files/dir', 'my_test_report_name', [:json, :html], [:overview, :features, :scenarios, :errors])
-  #
-  #
-  # ReportBuilder.build_report('path/of/json/cucumber.json')
-  #
-  #
-  # ReportBuilder.build_report([
-  #                                'path/of/json/cucumber1.json',
-  #                                'path/of/json/cucumber2.json',
-  #                                'path/of/json/files/dir/'
-  #                            ])
-  #
-  #
-  # For changing colors in report
-  # ReportBuilder::COLOR[:passed] = '#ffffff'
-  # ReportBuilder::COLOR[:failed] = '#000000'
-  #
-  # For embedding images uniquely (use when building report with scenarios tab)
-  # ReportBuilder::COMPRESS = true
   #
 
   # colors corresponding to status
@@ -58,23 +43,58 @@ class ReportBuilder
       output: '#007fff'
   }
 
-  COMPRESS = false
+  #
+  # Ex: ReportBuilder.configure do |config|
+  #       config.json_path = 'cucumber_sample/logs',
+  #       config.report_path = 'sample_report',
+  #       config.report_types = [:JSON, :HTML],
+  #       config.report_tabs = [:Overview, :Features, :Scenarios, :Errors],
+  #       config.compress_images = true
+  #      end
+  #
+  def self.configure
+    default_options = OpenStruct.new(
+        json_path:       nil,                             # [String] / [Array] Input json file, array of json files/path or json files path, (Default current directory)
+        report_path:     'test_report',                   # [String] Output file path with name
+        report_types:    [:html],                         # [Array] Output file types to build, [:json, :html] or ['html', 'json']
+        report_tabs:     [:overview, :features, :errors], # [Array] Tabs to build, [:overview, :features, :scenarios, :errors] or ['overview', 'features', 'scenarios', 'errors']
+        compress_images: false                            # [Boolean] Set true to reducing the size of HTML report, Note: If true, takes more time to build report
+    )
+    yield default_options if block_given?
+    @options = default_options.to_h
+  end
 
-# @param [Object] file_or_dir Input json file, Default: nil (current directory), Options: array of json files/path or json files path
-# @param [String] output_file_name Output file name, Default: test_report
-# @param [Array] output_file_type Output file type, Default: [:html], Options: [:json] or [:json, :html] or ['html', 'json']
-# @param [Array] tabs Tabs to build, Default: [:overview, :features, :errors], Options: [:overview, :features, :scenarios, :errors] or ['overview', 'features', 'scenarios', 'errors']
-  def self.build_report(file_or_dir = nil, output_file_name = 'test_report', output_file_type = [:html], tabs = [:overview, :features, :errors])
+#
+# @param [Hash] options override the default and configured options.
+#
+# Ex: options = {
+#       json_path:    'cucumber_sample/logs',
+#       report_path:  'sample_report',
+#       report_types: ['json', 'html'],
+#       report_tabs:  [ 'overview', 'features', 'scenarios', 'errors']
+#       compress_images: false
+#     }
+#
+#     ReportBuilder.build_report options
+#
+  def self.build_report(options = nil)
 
-    input = files file_or_dir
+    configure unless @options
+    @options.merge! options if options.is_a? Hash
+
+    raise 'Error: Invalid report_types Use: [:json, :html]' unless @options[:report_types].is_a? Array
+    raise 'Error: Invalid report_tabs Use: [:overview, :features, :scenarios, :errors]' unless @options[:report_tabs].is_a? Array
+
+    @options[:report_types].map!(&:to_s).map!(&:upcase)
+    @options[:report_tabs].map!(&:to_s).map!(&:downcase)
+
+    input = files @options[:json_path]
     all_features = features input rescue (raise 'ReportBuilderParsingError')
 
-    output_file_type.map!(&:to_s).map!(&:upcase)
-
-    File.open(output_file_name + '.json', 'w') do |file|
+    File.open(@options[:report_path] + '.json', 'w') do |file|
       file.write JSON.pretty_generate all_features
-      puts "JSON test report generated: '#{output_file_name}.json'"
-    end if output_file_type.include? 'JSON'
+      puts "JSON test report generated: '#{@options[:report_path]}.json'"
+    end if @options[:report_types].include? 'JSON'
 
     all_scenarios = scenarios all_features
     all_steps = steps all_scenarios
@@ -83,7 +103,7 @@ class ReportBuilder
     scenario_data = data all_scenarios
     step_data = data all_steps
 
-    File.open(output_file_name + '.html', 'w:UTF-8') do |file|
+    File.open(@options[:report_path] + '.html', 'w:UTF-8') do |file|
       @builder = Builder::XmlMarkup.new(:target => file, :indent => 0)
       @builder.declare!(:DOCTYPE, :html)
       @builder << '<html>'
@@ -136,14 +156,13 @@ class ReportBuilder
       end
 
       @builder.div(:id => 'results') do
-        tabs.map!(&:to_s).map!(&:downcase)
-        build_menu tabs
+        build_menu @options[:report_tabs]
 
         @builder.div(:id => 'overviewTab') do
           @builder << "<div id='featurePieChart'></div>"
           @builder << "<div id='scenarioPieChart'></div>"
           @builder << "<div id='stepPieChart'></div>"
-        end if tabs.include? 'overview'
+        end if @options[:report_tabs].include? 'overview'
 
         @builder.div(:id => 'featuresTab') do
           @builder.div(:id => 'features') do
@@ -161,7 +180,7 @@ class ReportBuilder
             end
           end
           @builder << "<div id='featureTabPieChart'></div>"
-        end if tabs.include? 'features'
+        end if @options[:report_tabs].include? 'features'
 
         @builder.div(:id => 'scenariosTab') do
           @builder.div(:id => 'status') do
@@ -179,28 +198,28 @@ class ReportBuilder
             end
           end
           @builder << "<div id='scenarioTabPieChart'></div>"
-        end if tabs.include? 'scenarios'
+        end if @options[:report_tabs].include? 'scenarios'
 
         @builder.div(:id => 'errorsTab') do
           @builder.ol do
             all_scenarios.each{|scenario| build_error_list scenario}
           end
-        end if tabs.include? 'errors'
+        end if @options[:report_tabs].include? 'errors'
       end
 
       @builder.script(:type => 'text/javascript') do
-        @builder << pie_chart_js('featurePieChart', 'Features', feature_data) if tabs.include? 'overview'
-        @builder << donut_js('featureTabPieChart', 'Features', feature_data) if tabs.include? 'features'
-        @builder << pie_chart_js('scenarioPieChart', 'Scenarios', scenario_data) if tabs.include? 'overview'
-        @builder << donut_js('scenarioTabPieChart', 'Scenarios', scenario_data) if tabs.include? 'scenarios'
-        @builder << pie_chart_js('stepPieChart', 'Steps', step_data) if tabs.include? 'overview'
+        @builder << pie_chart_js('featurePieChart', 'Features', feature_data) if @options[:report_tabs].include? 'overview'
+        @builder << donut_js('featureTabPieChart', 'Features', feature_data) if @options[:report_tabs].include? 'features'
+        @builder << pie_chart_js('scenarioPieChart', 'Scenarios', scenario_data) if @options[:report_tabs].include? 'overview'
+        @builder << donut_js('scenarioTabPieChart', 'Scenarios', scenario_data) if @options[:report_tabs].include? 'scenarios'
+        @builder << pie_chart_js('stepPieChart', 'Steps', step_data) if @options[:report_tabs].include? 'overview'
       end
 
       @builder << '</body>'
       @builder << '</html>'
 
-      puts "HTML test report generated: '#{output_file_name}.html'"
-    end if output_file_type.include? 'HTML'
+      puts "HTML test report generated: '#{@options[:report_path]}.html'"
+    end if @options[:report_types].include? 'HTML'
 
     [total_time, feature_data, scenario_data, step_data]
   end
@@ -326,7 +345,7 @@ class ReportBuilder
             end
           end
           @builder << '<br/>'
-          COMPRESS ? build_unique_image(embedding, id) : build_image(embedding,id) rescue puts 'Image embedding failed!'
+          @options[:compress_images] ? build_unique_image(embedding, id) : build_image(embedding,id) rescue puts 'Image embedding failed!'
         end
       elsif embedding['mime_type'] =~ /^text\/plain/
         @builder.span(:class => 'link') do
