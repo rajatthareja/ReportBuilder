@@ -34,7 +34,7 @@ gem install report_builder
        config.compress_images = false
      end
     
-     ReportBuilder.build_report()
+     ReportBuilder.build_report
     
     # Ex 2:
     options = {
@@ -48,6 +48,8 @@ gem install report_builder
      ReportBuilder.build_report options
         
 ```
+
+### Config Options:
 
 * json_path:       
     Default: nil (current directory)

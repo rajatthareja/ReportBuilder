@@ -27,7 +27,7 @@ class ReportBuilder
   #       config.compress_images = false
   #      end
   #
-  # ReportBuilder.build_report()
+  # ReportBuilder.build_report
   #
 
   # colors corresponding to status
