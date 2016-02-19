@@ -98,6 +98,7 @@ class ReportBuilder
             @builder << ".#{color[0].to_s}{background:#{color[1]};color:#434348;padding:2px}"
           end
           @builder << '.summary{border: 1px solid #c5c5c5;border-radius:4px;text-align:right;background:#f1f1f1;color:#434348;padding:4px}'
+          @builder << '.data_table{border-collapse: collapse;} .data_table td{padding: 5px; border: 1px solid #ddd;}'
         end
 
         @builder.script(:type => 'text/javascript') do
@@ -241,6 +242,7 @@ class ReportBuilder
     @builder.span(:class => step['status']) do
       @builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{duration(step['duration'])})"
     end
+    build_data_table step['rows']
     build_output step['output']
     build_step_error step
     build_embedding step['embeddings']
@@ -250,6 +252,18 @@ class ReportBuilder
       build_embedding after['embeddings']
     end if step['after']
     @builder << '<br/>'
+  end
+
+  def self.build_data_table(rows)
+    @builder.table(:class => 'data_table') do
+      rows.each do |row|
+        @builder.tr do
+          row['cells'].each do |cell|
+            @builder << "<td> #{cell} </td>"
+          end
+        end
+      end
+    end if rows.is_a? Array
   end
 
   def self.build_output(outputs)
