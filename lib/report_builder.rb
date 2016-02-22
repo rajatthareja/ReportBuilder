@@ -17,18 +17,18 @@ end
 # Main report builder class
 class ReportBuilder
 
-  # report_builder:
-  #
-  # ReportBuilder.configure do |config|
-  #       config.json_path = 'cucumber_sample/logs',
-  #       config.report_path = 'sample_report',
-  #       config.report_types = [:json, :html],
-  #       config.report_tabs = [:overview, :features, :scenarios, :errors],
-  #       config.compress_images = false
-  #      end
-  #
-  # ReportBuilder.build_report
-  #
+# report_builder:
+#
+# ReportBuilder.configure do |config|
+#       config.json_path = 'cucumber_sample/logs',
+#       config.report_path = 'sample_report',
+#       config.report_types = [:json, :html],
+#       config.report_tabs = [:overview, :features, :scenarios, :errors],
+#       config.compress_images = false
+#      end
+#
+# ReportBuilder.build_report
+#
 
   # colors corresponding to status
   COLOR = {
@@ -64,19 +64,19 @@ class ReportBuilder
     @options = default_options.to_h
   end
 
-#
-# @param [Hash] options override the default and configured options.
-#
-# Ex: options = {
-#       json_path:    'cucumber_sample/logs',
-#       report_path:  'sample_report',
-#       report_types: ['json', 'html'],
-#       report_tabs:  [ 'overview', 'features', 'scenarios', 'errors']
-#       compress_images: false
-#     }
-#
-#     ReportBuilder.build_report options
-#
+  #
+  # @param [Hash] options override the default and configured options.
+  #
+  # Ex: options = {
+  #       json_path:    'cucumber_sample/logs',
+  #       report_path:  'sample_report',
+  #       report_types: ['json', 'html'],
+  #       report_tabs:  [ 'overview', 'features', 'scenarios', 'errors']
+  #       compress_images: false
+  #     }
+  #
+  #     ReportBuilder.build_report options
+  #
   def self.build_report(options = nil)
 
     configure unless @options
@@ -167,7 +167,7 @@ class ReportBuilder
         @builder.div(:id => 'featuresTab') do
           @builder.div(:id => 'features') do
             all_features.each_with_index do |feature, n|
-              @builder.h3 do
+              @builder.h3(style: "background:#{COLOR[feature['status'].to_sym]}") do
                 @builder.span(:class => feature['status']) do
                   @builder << "<strong>#{feature['keyword']}</strong> #{feature['name']} (#{duration(feature['duration'])})"
                 end
@@ -185,7 +185,7 @@ class ReportBuilder
         @builder.div(:id => 'scenariosTab') do
           @builder.div(:id => 'status') do
             all_scenarios.group_by{|scenario| scenario['status']}.each do |data|
-              @builder.h3 do
+              @builder.h3(style: "background:#{COLOR[data[0].to_sym]}") do
                 @builder.span(:class => data[0]) do
                   @builder << "<strong>#{data[0].capitalize} scenarios (Count: #{data[1].size})</strong>"
                 end
@@ -237,7 +237,7 @@ class ReportBuilder
   end
 
   def self.build_scenario(scenario)
-    @builder.h3 do
+    @builder.h3(style: "background:#{COLOR[scenario['status'].to_sym]}") do
       @builder.span(:class => scenario['status']) do
         @builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} (#{duration(scenario['duration'])})"
       end
@@ -258,7 +258,7 @@ class ReportBuilder
   end
 
   def self.build_step(step, scenario_keyword)
-    @builder.span(:class => step['status']) do
+    @builder.div(:class => step['status']) do
       @builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{duration(step['duration'])})"
     end
     build_data_table step['rows']
@@ -270,7 +270,6 @@ class ReportBuilder
       build_step_hook_error after, scenario_keyword
       build_embedding after['embeddings']
     end if step['after']
-    @builder << '<br/>'
   end
 
   def self.build_data_table(rows)
@@ -287,13 +286,13 @@ class ReportBuilder
 
   def self.build_output(outputs)
     outputs.each do |output|
-      @builder << "<br/><span style='color:#{COLOR[:output]}'>#{output.gsub("\n",'</br>').gsub("\t",'&nbsp;&nbsp;').gsub(' ','&nbsp;')}</span>"
+      @builder << "<span style='color:#{COLOR[:output]}'>#{output.gsub("\n",'</br>').gsub("\t",'&nbsp;&nbsp;').gsub(' ','&nbsp;')}</span><br/>"
     end if outputs.is_a?(Array)
   end
 
   def self.build_step_error(step)
     if step['status'] == 'failed' && step['result']['error_message']
-      @builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
+      @builder << "<strong style=color:#{COLOR[:failed]}>Error: </strong>"
       error = step['result']['error_message'].split("\n")
       @builder.span(:style => "color:#{COLOR[:failed]}") do
         error[0..-3].each do |line|
@@ -301,13 +300,13 @@ class ReportBuilder
         end
       end
       @builder << "<strong>SD: </strong>#{error[-2]} <br/>"
-      @builder << "<strong>FF: </strong>#{error[-1]}"
+      @builder << "<strong>FF: </strong>#{error[-1]}<br/>"
     end
   end
 
   def self.build_hook_error(hook)
     if hook['status'] == 'failed'
-      @builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
+      @builder << "<strong style=color:#{COLOR[:failed]}>Error: </strong>"
       error = hook['result']['error_message'].split("\n")
       @builder.span(:style => "color:#{COLOR[:failed]}") do
         error[0..-2].each do |line|
@@ -320,15 +319,15 @@ class ReportBuilder
 
   def self.build_step_hook_error(hook, scenario_keyword)
     if hook['result']['error_message']
-      @builder << "<br/><strong style=color:#{COLOR[:failed]}>Error: </strong>"
+      @builder << "<strong style=color:#{COLOR[:failed]}>Error: </strong>"
       error = hook['result']['error_message'].split("\n")
       @builder.span(:style => "color:#{COLOR[:failed]}") do
-        (scenario_keyword == 'Scenario Outline' ? error[0..-6] : error[0..-4]).each do |line|
+        (scenario_keyword == 'Scenario Outline' ? error[0..-8] : error[0..-5]).each do |line|
           @builder << line + '<br/>'
         end
       end
-      @builder << "<strong>Hook: </strong>#{scenario_keyword == 'Scenario Outline' ? error[-5] : error[-3]} <br/>"
-      @builder << "<strong>FF: </strong>#{error[-2]}"
+      @builder << "<strong>Hook: </strong>#{scenario_keyword == 'Scenario Outline' ? error[-7] : error[-4]} <br/>"
+      @builder << "<strong>FF: </strong>#{error[-2]}<br/>"
     end
   end
 
@@ -338,7 +337,6 @@ class ReportBuilder
       id = "embedding_#{@embedding_count}"
       if embedding['mime_type'] =~ /^image\/(png|gif|jpg|jpeg)/
         @builder.span(:class => 'image') do
-          @builder << '<br/>'
           @builder.a(:href => '', :style => 'text-decoration: none;', :onclick => "img=document.getElementById('#{id}');img.style.display = (img.style.display == 'none' ? 'block' : 'none');return false") do
             @builder.span(:style => "color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};") do
               @builder << 'Screenshot'
@@ -349,7 +347,6 @@ class ReportBuilder
         end
       elsif embedding['mime_type'] =~ /^text\/plain/
         @builder.span(:class => 'link') do
-          @builder << '<br/>'
           src = Base64.decode64(embedding['data'])
           @builder.a(:id => id, :style => 'text-decoration: none;', :href => src, :title => 'Link') do
             @builder.span(:style => "color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};") do
