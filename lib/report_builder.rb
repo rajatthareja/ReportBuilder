@@ -119,6 +119,7 @@ class ReportBuilder
           end
           @builder << '.summary{border: 1px solid #c5c5c5;border-radius:4px;text-align:right;background:#f1f1f1;color:#434348;padding:4px}'
           @builder << '.data_table{border-collapse: collapse;} .data_table td{padding: 5px; border: 1px solid #ddd;}'
+          @builder << '.ui-tooltip{background: black; color: white; font-size: 12px; padding: 2px 4px; border-radius: 20px; box-shadow: 0 0 7px black;}'
         end
 
         @builder.script(:type => 'text/javascript') do
@@ -127,13 +128,14 @@ class ReportBuilder
           end
           @builder << '$(function(){$("#results").tabs();});'
           @builder << "$(function(){$('#features').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
-          (0..all_scenarios.size).each do |n|
-            @builder << "$(function(){$('#scenario#{n}').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
+          (0..all_features.size).each do |n|
+            @builder << "$(function(){$('#feature#{n}').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
           end
           @builder << "$(function(){$('#status').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
           scenario_data.each do |data|
             @builder << "$(function(){$('##{data[:name]}').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
           end
+          @builder << '$(function() {$(document).tooltip({track: true});});'
         end
       end
 
@@ -173,7 +175,7 @@ class ReportBuilder
                 end
               end
               @builder.div do
-                @builder.div(:id => "scenario#{n}") do
+                @builder.div(:id => "feature#{n}") do
                   feature['elements'].each{|scenario| build_scenario scenario}
                 end
               end
@@ -237,7 +239,8 @@ class ReportBuilder
   end
 
   def self.build_scenario(scenario)
-    @builder.h3(style: "background:#{COLOR[scenario['status'].to_sym]}") do
+    tags = (scenario['tags'] ? scenario['tags'].map{|tag| tag['name']}.join(', ') : '')
+    @builder.h3(style: "background:#{COLOR[scenario['status'].to_sym]}", title: tags) do
       @builder.span(:class => scenario['status']) do
         @builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} (#{duration(scenario['duration'])})"
       end
