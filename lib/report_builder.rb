@@ -20,10 +20,10 @@ class ReportBuilder
 # report_builder:
 #
 # ReportBuilder.configure do |config|
-#       config.json_path = 'cucumber_sample/logs',
-#       config.report_path = 'sample_report',
-#       config.report_types = [:json, :html],
-#       config.report_tabs = [:overview, :features, :scenarios, :errors],
+#       config.json_path = 'cucumber_sample/logs'
+#       config.report_path = 'sample_report'
+#       config.report_types = [:json, :html]
+#       config.report_tabs = [:overview, :features, :scenarios, :errors]
 #       config.compress_images = false
 #      end
 #
@@ -45,10 +45,10 @@ class ReportBuilder
 
   #
   # Ex: ReportBuilder.configure do |config|
-  #       config.json_path = 'cucumber_sample/logs',
-  #       config.report_path = 'sample_report',
-  #       config.report_types = [:JSON, :HTML],
-  #       config.report_tabs = [:Overview, :Features, :Scenarios, :Errors],
+  #       config.json_path = 'cucumber_sample/logs'
+  #       config.report_path = 'sample_report'
+  #       config.report_types = [:JSON, :HTML]
+  #       config.report_tabs = [:Overview, :Features, :Scenarios, :Errors]
   #       config.compress_images = true
   #      end
   #
