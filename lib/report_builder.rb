@@ -185,11 +185,31 @@ class ReportBuilder
         end if @options[:report_tabs].include? 'features'
 
         @builder.div(:id => 'scenariosTab') do
+          all_tags = all_scenarios.map{|s| s['tags'] ? s['tags'].map{|t| t['name']} : []}.flatten.uniq
+          @builder.div(style: 'text-align:center;padding:5px;') do
+            @builder << '<strong>Tag: </strong>'
+            @builder.select(class: 'select-tags') do
+              @builder.option(value: 'scenario-all') do
+                @builder << 'All'
+              end
+              all_tags.each do |tag|
+                @builder.option(value: tag.gsub('@','tag-')) do
+                  @builder << tag
+                end
+              end
+            end
+            @builder.script do
+              @builder << '$("#scenariosTab .select-tags").change(function(){var val = $(this).val();$("#scenariosTab .scenario-all").next().hide();
+                  $("#scenariosTab .scenario-all").hide();$("#scenariosTab ." + val).show();$("#scenariosTab #count").each(function(){
+                  status = $(this).parent().parent().prop("className");$("#scenariosTab ." + status + " #count").html(
+                  $("#scenariosTab #" + status + " ." + val).length);});});'
+            end
+          end unless all_tags.empty?
           @builder.div(:id => 'status') do
             all_scenarios.group_by{|scenario| scenario['status']}.each do |data|
               @builder.h3(style: "background:#{COLOR[data[0].to_sym]}") do
                 @builder.span(:class => data[0]) do
-                  @builder << "<strong>#{data[0].capitalize} scenarios (Count: #{data[1].size})</strong>"
+                  @builder << "<strong>#{data[0].capitalize} scenarios (Count: <span id='count'>#{data[1].size}</span>)</strong>"
                 end
               end
               @builder.div do
@@ -239,8 +259,8 @@ class ReportBuilder
   end
 
   def self.build_scenario(scenario)
-    tags = (scenario['tags'] ? scenario['tags'].map{|tag| tag['name']}.join(', ') : '')
-    @builder.h3(style: "background:#{COLOR[scenario['status'].to_sym]}", title: tags) do
+    tags = (scenario['tags'] ? scenario['tags'].map{|tag| tag['name']}.join(' ') : '')
+    @builder.h3(style: "background:#{COLOR[scenario['status'].to_sym]}", title: tags, class: 'scenario-all ' + tags.gsub('@','tag-')) do
       @builder.span(:class => scenario['status']) do
         @builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} (#{duration(scenario['duration'])})"
       end
