@@ -25,27 +25,27 @@ gem install report_builder
 
      require 'report_builder'
     
-     # Ex 1:
-     ReportBuilder.configure do |config|
-       config.json_path = 'cucumber_sample/logs'
-       config.report_path = 'sample_report'
-       config.report_types = [:json, :html]
-       config.report_tabs = [:overview, :features, :scenarios, :errors]
-       config.compress_images = false
-     end
+    # Ex 1:
+    ReportBuilder.configure do |config|
+      config.json_path = 'cucumber_sample/logs'
+      config.report_path = 'sample_report'
+      config.report_types = [:json, :html]
+      config.report_tabs = [:overview, :features, :scenarios, :errors]
+      config.compress_images = false
+    end
     
-     ReportBuilder.build_report
+    ReportBuilder.build_report
     
     # Ex 2:
     options = {
-           json_path:    'cucumber_sample/logs',
-           report_path:  'sample_report',
-           report_types: ['json', 'html'],
-           report_tabs:  [ 'overview', 'features', 'scenarios', 'errors']
-           compress_images: false
-         }
+       json_path:    'cucumber_sample/logs',
+       report_path:  'sample_report',
+       report_types: ['json', 'html'],
+       report_tabs:  [ 'overview', 'features', 'scenarios', 'errors']
+       compress_images: false
+     }
     
-     ReportBuilder.build_report options
+    ReportBuilder.build_report options
         
 ```
 
