@@ -438,11 +438,11 @@ class ReportBuilder
         @builder.li do
           error = after['result']['error_message'].split("\n")
           @builder.span(:style => "color:#{COLOR[:failed]}") do
-            (scenario['keyword'] == 'Scenario Outline' ? error[0..-6] : error[0..-4]).each do |line|
+            (scenario['keyword'] == 'Scenario Outline' ? error[0..-8] : error[0..-5]).each do |line|
               @builder << line + '<br/>'
             end
           end
-          @builder << "<strong>Hook: </strong>#{scenario['keyword'] == 'Scenario Outline' ? error[-5] : error[-3]} <br/>"
+          @builder << "<strong>Hook: </strong>#{scenario['keyword'] == 'Scenario Outline' ? error[-7] : error[-4]} <br/>"
           @builder << "<strong>FF: </strong>#{error[-2]} <br/><hr/>"
         end
       end if step['after']
