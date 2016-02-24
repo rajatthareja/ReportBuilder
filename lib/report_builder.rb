@@ -161,9 +161,9 @@ class ReportBuilder
         build_menu @options[:report_tabs]
 
         @builder.div(:id => 'overviewTab') do
-          @builder << "<div id='featurePieChart'></div>"
-          @builder << "<div id='scenarioPieChart'></div>"
-          @builder << "<div id='stepPieChart'></div>"
+          @builder << "<div id='featurePieChart' style= float: left; width: 33%;></div>"
+          @builder << "<div id='scenarioPieChart'style= display: inline-block; width: 33%;></div>"
+          @builder << "<div id='stepPieChart'style= float: right; width: 33%;></div>"
         end if @options[:report_tabs].include? 'overview'
 
         @builder.div(:id => 'featuresTab') do
