@@ -23,41 +23,41 @@ gem install report_builder
 
 ```ruby
 
-    require 'report_builder'
+     require 'report_builder'
     
-    # @param [Object] file_or_dir Input json file, Default nil (current directory),  array of json files or path, json files path
-    # @param [String] output_file_name Output file name, Default test_report
-    # @param [Array] output_file_type Output file type, Default [:html], Options [:json] and [:json, :html] or ['html', 'json']
-    # @param [Array] tabs Tabs to build, by default [:overview, :features, :errors], Options [:overview, :features, :scenarios, :errors] or ['overview', 'features', 'scenarios', 'errors']
-
-    # 1 
-    ReportBuilder.build_report()
-    ReportBuilder.build_report('path/of/json/files/dir')
-    ReportBuilder.build_report('path/of/json/files/dir', 'my_test_report_name', [:json])
-    ReportBuilder.build_report('path/of/json/files/dir', 'my_test_report_name', ['json'])
-    ReportBuilder.build_report('path/of/json/files/dir', 'my_test_report_name', [:json, 'html'])
-    ReportBuilder.build_report('path/of/json/files/dir', 'my_test_report_name', [:json, :html], [:overview, :features, :scenarios, :errors])
-
-    # 2
-    ReportBuilder.build_report('path/of/json/cucumber.json')
-
-    # 3
-    ReportBuilder.build_report([
-            'path/of/json/cucumber1.json',
-            'path/of/json/cucumber2.json',
-            'path/of/json/files/dir/'
-            ])
-
-    # 4
-    ReportBuilder::COLOR[:passed] = '#ffffff'
-    ReportBuilder::COLOR[:failed] = '#000000'
-    ReportBuilder.build_report()
+    # Ex 1:
+    ReportBuilder.configure do |config|
+      config.json_path = 'cucumber_sample/logs'
+      config.report_path = 'sample_report'
+      config.report_types = [:json, :html]
+      config.report_tabs = [:overview, :features, :scenarios, :errors]
+      config.compress_images = false
+    end
     
-    # 5
-    ReportBuilder::COMPRESS = true
-    ReportBuilder.build_report 'parallel_cucumber_sample', 'sample_report_dev', [:json, :html], [:overview, :features, :scenarios, :errors]
+    ReportBuilder.build_report
     
+    # Ex 2:
+    options = {
+       json_path:    'cucumber_sample/logs',
+       report_path:  'sample_report',
+       report_types: ['json', 'html'],
+       report_tabs:  [ 'overview', 'features', 'scenarios', 'errors']
+       compress_images: false
+     }
+    
+    ReportBuilder.build_report options
+        
 ```
+
+### Config Options:
+
+| Option | Type | Default | Values |
+|--------|------|---------|--------|
+| json_path | [String] / [Array] | (current directory) | json files path / array of json files or path |
+| report_path | [String] | 'test_report' | output file path with file name without extension |
+| report_types | [Array] | [:html] | :json, :html (output file types) |
+| report_tabs | [Array] | [:overview, :features, :errors] | :overview, :features, :scenarios, :errors (tabs to build) |
+| compress_images | [Boolean] | false | true / false (If true, the size of HTML report is reduced but takes more time to build report) |
 
 ### Command Example:
 

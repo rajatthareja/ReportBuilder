@@ -5,5 +5,8 @@ require 'report_builder'
 ARGV[1] ||= 'test_report'
 ARGV[2] ||= [:html]
 ARGV[3] ||= [:overview, :features, :errors]
+ARGV[4] ||= false
 
-ReportBuilder.build_report(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
+options = {:json_path => ARGV[0], :report_path => ARGV[1], :report_types => ARGV[2], :report_tabs => ARGV[3], :compress_images => ARGV[4]}
+
+ReportBuilder.build_report options
