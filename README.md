@@ -84,11 +84,12 @@ Then run rake task report_builder
 
 ## Contributing
 
- We're open to any contribution. It has to be tested properly though.
+We're open to any contribution. It has to be tested properly though.
 
 ## Maintainer
 
-[Rajat Thareja](http://www.rajatthareja.com)
+* [Rajat Thareja](http://www.rajatthareja.com)
+* [Justin Commu](https://github.com/tk8817)
 
 ## License
 
