@@ -61,7 +61,7 @@ class ReportBuilder
         compress_images: false                            # [Boolean] Set true to reducing the size of HTML report, Note: If true, takes more time to build report
     )
     yield default_options if block_given?
-    @options = default_options.to_h
+    @options = default_options.marshal_dump
   end
 
   #
