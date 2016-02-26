@@ -78,8 +78,8 @@ Then run rake task report_builder
 
 ```bash
    rake report_builder
-   rake report_builder ['path/of/json/files/dir']
-   rake report_builder ['path/of/json/files/dir','report_file']
+   rake report_builder['path/of/json/files/dir']
+   rake report_builder['path/of/json/files/dir','report_file']
 ```
 
 ## Contributing
