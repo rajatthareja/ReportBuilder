@@ -62,6 +62,7 @@ class ReportBuilder
     )
     yield default_options if block_given?
     @options = default_options.to_h
+    @options = default_options.marshal_dump
   end
 
   #
