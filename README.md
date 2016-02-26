@@ -51,37 +51,13 @@ gem install report_builder
 
 ### Config Options:
 
-* json_path:
-
-    Default: nil (current directory)
-    
-    [String] / [Array] Input json file, array of json files/path or json files path
-
-* report_path:     
-  
-  Default: 'test_report'
-
-  [String] Output file path with name
-
-* report_types:    
-    
-    Default: [:html]
-
-    [Array] Output file types to build, [:json, :html] or ['html', 'json']
-
-* report_tabs:     
-
-    Default: [:overview, :features, :errors]
-
-    [Array] Tabs to build, [:overview, :features, :scenarios, :errors] or ['overview', 'features', 'scenarios', 'errors']
-    
-* compress_images 
-
-   Default: false
-   
-   [Boolean] Set true to reducing the size of HTML report, Note: If true, takes more time to build report
-    
-
+| Option | Type | Default | Values |
+|--------|------|---------|--------|
+| json_path | [String] / [Array] | (current directory) | json files path / array of json files or path |
+| report_path | [String] | 'test_report' | output file path with file name without extension |
+| report_types | [Array] | [:html] | :json, :html (output file types) |
+| report_tabs | [Array] | [:overview, :features, :errors] | :overview, :features, :scenarios, :errors (tabs to build) |
+| compress_images | [Boolean] | false | true / false (If true, the size of HTML report is reduced but takes more time to build report) |
 
 ### Command Example:
 
@@ -108,11 +84,12 @@ Then run rake task report_builder
 
 ## Contributing
 
- We're open to any contribution. It has to be tested properly though.
+We're open to any contribution. It has to be tested properly though.
 
 ## Maintainer
 
-[Rajat Thareja](http://www.rajatthareja.com)
+* [Rajat Thareja](http://www.rajatthareja.com)
+* [Justin Commu](https://github.com/tk8817)
 
 ## License
 
