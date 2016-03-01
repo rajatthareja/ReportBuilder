@@ -162,8 +162,8 @@ class ReportBuilder
 
         @builder.div(:id => 'overviewTab') do
           @builder << "<div id='featurePieChart' style=\"float:left;width:33%\"></div>"
-          @builder << "<div id='scenarioPieChart'style=\"display:inline-block;width:33%\"></div>"
-          @builder << "<div id='stepPieChart'style=\"float:right;width:33%\"></div>"
+          @builder << "<div id='scenarioPieChart' style=\"display:inline-block;width:33%\"></div>"
+          @builder << "<div id='stepPieChart' style=\"float:right;width:33%\"></div>"
         end if @options[:report_tabs].include? 'overview'
 
         @builder.div(:id => 'featuresTab') do
@@ -483,6 +483,14 @@ class ReportBuilder
     }.values.each_with_object([]) { |group, features|
       features << group.first.except('elements').merge('elements' => group.map{|feature| feature['elements']}.flatten)
     }.each{|feature|
+      if feature['elements'][0]['type'] == 'background'
+        (0..feature['elements'].size-1).step(2) do |i|
+          feature['elements'][i]['steps'].each{|step| step['name']+=(' ('+feature['elements'][i]['keyword']+')')}
+          feature['elements'][i+1]['steps'] = feature['elements'][i]['steps'] + feature['elements'][i+1]['steps']
+          feature['elements'][i+1]['before'] = feature['elements'][i]['before'] if feature['elements'][i]['before']
+        end
+        feature['elements'].reject!{|element| element['type'] == 'background'}
+      end
       feature['elements'].each { |scenario|
         scenario['before'] ||= []
         scenario['before'].each { |before|
