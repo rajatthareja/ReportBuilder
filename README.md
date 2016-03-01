@@ -19,6 +19,16 @@ gem install report_builder
 
 **Note:** Works with cucumber(>= 2.1.0) test results in JSON format.
 
+### Config Options:
+
+| Option | Type | Default | Values |
+|--------|------|---------|--------|
+| json_path | [String] / [Array] | (current directory) | json files path / array of json files or path |
+| report_path | [String] | 'test_report' | output file path with file name without extension |
+| report_types | [Array] | [:html] | :json, :html (output file types) |
+| report_tabs | [Array] | [:overview, :features] | :overview, :features, :scenarios, :errors (tabs to build) |
+| compress_images | [Boolean] | false | true / false (If true, the size of HTML report is reduced but takes more time to build report) |
+
 ### Code Examples:
 
 ```ruby
@@ -49,22 +59,24 @@ gem install report_builder
         
 ```
 
-### Config Options:
+### CLI Options:
 
-| Option | Type | Default | Values |
-|--------|------|---------|--------|
-| json_path | [String] / [Array] | (current directory) | json files path / array of json files or path |
-| report_path | [String] | 'test_report' | output file path with file name without extension |
-| report_types | [Array] | [:html] | :json, :html (output file types) |
-| report_tabs | [Array] | [:overview, :features, :errors] | :overview, :features, :scenarios, :errors (tabs to build) |
-| compress_images | [Boolean] | false | true / false (If true, the size of HTML report is reduced but takes more time to build report) |
+| Option         | Values     | Explanation                                              |
+|----------------|------------|----------------------------------------------------------|
+| -s, --source   | x,y,z      | List of json path or files                               |
+| -o, --out      | [PATH]NAME | Report path with name without extension                  |
+| -f, --format   | x,y,z      | List of report format - html,json                        |
+| -t, --tabs     | x,y,z      | List of report tabs - overview,features,scenarios,errors |
+| -c, --compress |            | Reduce report size if embedding images                   |
+| -h, --help     |            | Show available command line switches                     |
+| -v, --version  |            | Show gem version                                         |
 
-### Command Example:
+### CLI Example:
 
 ```bash
      report_builder
-     report_builder 'path/of/json/files/dir'
-     report_builder 'path/of/json/files/dir' 'report_file'
+     report_builder -s 'path/of/json/files/dir'
+     report_builder -s 'path/of/json/files/dir' -o 'report_file'
 ```
 
 ### Rake Example:
