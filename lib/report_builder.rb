@@ -54,11 +54,11 @@ class ReportBuilder
   #
   def self.configure
     default_options = OpenStruct.new(
-        json_path:       nil,                             # [String] / [Array] Input json file, array of json files/path or json files path, (Default current directory)
-        report_path:     'test_report',                   # [String] Output file path with name
-        report_types:    [:html],                         # [Array] Output file types to build, [:json, :html] or ['html', 'json']
-        report_tabs:     [:overview, :features, :errors], # [Array] Tabs to build, [:overview, :features, :scenarios, :errors] or ['overview', 'features', 'scenarios', 'errors']
-        compress_images: false                            # [Boolean] Set true to reducing the size of HTML report, Note: If true, takes more time to build report
+        json_path:       nil,                    # [String] / [Array] Input json file, array of json files/path or json files path, (Default current directory)
+        report_path:     'test_report',          # [String] Output file path with name
+        report_types:    [:html],                # [Array] Output file types to build, [:json, :html] or ['html', 'json']
+        report_tabs:     [:overview, :features], # [Array] Tabs to build, [:overview, :features, :scenarios, :errors] or ['overview', 'features', 'scenarios', 'errors']
+        compress_images: false                   # [Boolean] Set true to reducing the size of HTML report, Note: If true, takes more time to build report
     )
     yield default_options if block_given?
     @options = default_options.marshal_dump
