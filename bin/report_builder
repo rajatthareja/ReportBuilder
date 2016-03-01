@@ -37,7 +37,7 @@ opt_parser = OptionParser.new do |opts|
   end
 
   opts.on_tail('-v','--version', 'Show version') do
-    puts 'ReportBuilder v' + Gem.loaded_specs['report_builder'].version.to_s
+    puts 'ReportBuilder v' + Gem.loaded_specs['report_builder'].version.to_s rescue puts "Something want wrong. \nUse 'gem list report_builder'"
     exit
   end
 end
