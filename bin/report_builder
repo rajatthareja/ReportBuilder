@@ -1,12 +1,47 @@
 #!/usr/bin/env ruby
 
+require 'optparse'
 require 'report_builder'
 
-ARGV[1] ||= 'test_report'
-ARGV[2] ||= [:html]
-ARGV[3] ||= [:overview, :features, :errors]
-ARGV[4] ||= false
+options = {:json_path => nil, :report_path => 'test_report', :report_types => [:html], :report_tabs => [:overview, :features], :compress_images => false}
 
-options = {:json_path => ARGV[0], :report_path => ARGV[1], :report_types => ARGV[2], :report_tabs => ARGV[3], :compress_images => ARGV[4]}
+opt_parser = OptionParser.new do |opts|
+  opts.banner = "Usage: \n     report_builder [options]"
+  opts.separator 'Configuration options:'
+
+  opts.on('-s','--source x,y,z', Array, 'List of json path or files') do |list|
+    options[:json_path] = list
+  end
+
+  opts.on('-o', '--out [PATH]NAME', String, 'Report path with name without extension') do |report_path|
+    options[:report_path] = report_path
+  end
+
+  opts.on('-f','--format x,y,z', Array, 'List of report format - html,json') do |list|
+    options[:report_types] = list
+  end
+
+  opts.on('-t','--tabs x,y,z', Array, 'List of report tabs - overview,features,scenarios,errors') do |list|
+    options[:report_tabs] = list
+  end
+
+  opts.on('-c', '--compress', 'Reduce report size if embedding images') do |compress|
+    options[:compress_images] = compress
+  end
+
+  opts.separator 'Common options:'
+
+  opts.on_tail('-h', '--help', 'Show help') do
+    puts opts
+    exit
+  end
+
+  opts.on_tail('-v','--version', 'Show version') do
+    puts 'ReportBuilder v' + Gem.loaded_specs['report_builder'].version.to_s
+    exit
+  end
+end
+
+opt_parser.parse!(ARGV)
 
 ReportBuilder.build_report options
