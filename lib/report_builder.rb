@@ -629,5 +629,6 @@ class ReportBuilder
                        :build_menu, :build_output, :build_embedding,
                        :build_error_list, :build_step_error,
                        :build_hook_error, :build_step_hook_error,
-                       :build_unique_image, :build_image
+                       :build_unique_image, :build_image,
+                       :build_data_table
 end
