@@ -20,12 +20,14 @@ class ReportBuilder
 # report_builder:
 #
 # ReportBuilder.configure do |config|
-#       config.json_path = 'cucumber_sample/logs'
-#       config.report_path = 'sample_report'
-#       config.report_types = [:json, :html]
-#       config.report_tabs = [:overview, :features, :scenarios, :errors]
-#       config.compress_images = false
-#      end
+#   config.json_path = 'cucumber_sample/logs'
+#   config.report_path = 'my_test_report'
+#   config.report_types = [:json, :html]
+#   config.report_tabs = [:overview, :features, :scenarios, :errors]
+#   config.report_title = 'My Test Results'
+#   config.compress_images = false
+#   config.additional_info = {browser: 'Chrome', environment: 'Stage 5'}
+# end
 #
 # ReportBuilder.build_report
 #
@@ -46,22 +48,26 @@ class ReportBuilder
   #
   # Ex: ReportBuilder.configure do |config|
   #       config.json_path = 'cucumber_sample/logs'
-  #       config.report_path = 'sample_report'
+  #       config.report_path = 'my_test_report'
   #       config.report_types = [:JSON, :HTML]
   #       config.report_tabs = [:Overview, :Features, :Scenarios, :Errors]
+  #       config.report_title = 'My Test Results'
   #       config.compress_images = true
+  #       config.additional_info = {Browser: 'Chrome', Environment: 'Stage 5'}
   #      end
   #
   def self.configure
     default_options = OpenStruct.new(
-        json_path:       nil,                             # [String] / [Array] Input json file, array of json files/path or json files path, (Default current directory)
-        report_path:     'test_report',                   # [String] Output file path with name
-        report_types:    [:html],                         # [Array] Output file types to build, [:json, :html] or ['html', 'json']
-        report_tabs:     [:overview, :features, :errors], # [Array] Tabs to build, [:overview, :features, :scenarios, :errors] or ['overview', 'features', 'scenarios', 'errors']
-        compress_images: false                            # [Boolean] Set true to reducing the size of HTML report, Note: If true, takes more time to build report
+        json_path:       nil,                    # [String] / [Array] Input json file, array of json files/path or json files path, (Default current directory)
+        report_path:     'test_report',          # [String] Output file path with name
+        report_types:    [:html],                # [Array] Output file types to build, [:json, :html] or ['html', 'json']
+        report_tabs:     [:overview, :features], # [Array] Tabs to build, [:overview, :features, :scenarios, :errors] or ['overview', 'features', 'scenarios', 'errors']
+        report_title:    'Test Results',         # [String] Report and html title
+        compress_images: false,                  # [Boolean] Set true to reducing the size of HTML report, Note: If true, takes more time to build report
+        additional_info: {}                      # [Hash] Additional info for report summary
     )
     yield default_options if block_given?
-    @options = default_options.to_h
+    @options = default_options.marshal_dump
   end
 
   #
@@ -69,10 +75,12 @@ class ReportBuilder
   #
   # Ex: options = {
   #       json_path:    'cucumber_sample/logs',
-  #       report_path:  'sample_report',
+  #       report_path:  'my_test_report',
   #       report_types: ['json', 'html'],
-  #       report_tabs:  [ 'overview', 'features', 'scenarios', 'errors']
-  #       compress_images: false
+  #       report_tabs:  [ 'overview', 'features', 'scenarios', 'errors'],
+  #       report_title: 'My Test Results',
+  #       compress_images: false,
+  #       additional_info: {'browser' => 'Chrome', 'environment' => 'Stage 5'}
   #     }
   #
   #     ReportBuilder.build_report options
@@ -98,31 +106,34 @@ class ReportBuilder
 
     all_scenarios = scenarios all_features
     all_steps = steps all_scenarios
+    all_tags = tags all_scenarios
     total_time = total_time all_features
     feature_data = data all_features
     scenario_data = data all_scenarios
     step_data = data all_steps
 
     File.open(@options[:report_path] + '.html', 'w:UTF-8') do |file|
-      @builder = Builder::XmlMarkup.new(:target => file, :indent => 0)
+      @builder = Builder::XmlMarkup.new(target: file, indent: 0)
       @builder.declare!(:DOCTYPE, :html)
       @builder << '<html>'
 
       @builder.head do
         @builder.meta(charset: 'UTF-8')
-        @builder.title 'Test Results'
+        @builder.title @options[:report_title]
 
-        @builder.style(:type => 'text/css') do
+        @builder.style(type: 'text/css') do
           @builder << File.read(File.dirname(__FILE__) + '/../vendor/assets/stylesheets/jquery-ui.min.css')
           COLOR.each do |color|
             @builder << ".#{color[0].to_s}{background:#{color[1]};color:#434348;padding:2px}"
           end
-          @builder << '.summary{border: 1px solid #c5c5c5;border-radius:4px;text-align:right;background:#f1f1f1;color:#434348;padding:4px}'
+          @builder << '.summary{margin-bottom:4px;border: 1px solid #c5c5c5;border-radius:4px;background:#f1f1f1;color:#434348;padding:4px;overflow:hidden;vertical-align:bottom;}'
+          @builder << '.summary .results{text-align:right;float:right;}'
+          @builder << '.summary .info{text-align:left;float:left;}'
           @builder << '.data_table{border-collapse: collapse;} .data_table td{padding: 5px; border: 1px solid #ddd;}'
           @builder << '.ui-tooltip{background: black; color: white; font-size: 12px; padding: 2px 4px; border-radius: 20px; box-shadow: 0 0 7px black;}'
         end
 
-        @builder.script(:type => 'text/javascript') do
+        @builder.script(type: 'text/javascript') do
           %w(jquery-min jquery-ui.min highcharts highcharts-3d).each do |js|
             @builder << File.read(File.dirname(__FILE__) + '/../vendor/assets/javascripts/' + js + '.js')
           end
@@ -141,41 +152,54 @@ class ReportBuilder
 
       @builder << '<body>'
 
-      @builder.h4(:class => 'summary') do
-        @builder << all_features.size.to_s + ' feature ('
-        feature_data.each do |data|
-          @builder << ' ' + data[:count].to_s + ' ' + data[:name]
+      @builder.div(class: 'summary') do
+        @builder.span(class: 'info') do
+          info = @options[:additional_info].empty?
+          @builder << '<br/>&nbsp;&nbsp;&nbsp;' if info
+          @builder.span(style: "font-size:#{info ? 36 : 18 }px;font-weight: bold;") do
+            @builder << @options[:report_title]
+          end
+          @options[:additional_info].each do |l|
+            @builder << '<br/>' + l[0].to_s.capitalize + ' : ' + l[1].to_s
+          end
+        end if @options[:additional_info].is_a? Hash
+        @builder.span(class: 'results') do
+          @builder << all_features.size.to_s + ' feature ('
+          feature_data.each do |data|
+            @builder << ' ' + data[:count].to_s + ' ' + data[:name]
+          end
+          @builder << ')<br/>' + all_scenarios.size.to_s + ' scenario ('
+          scenario_data.each do |data|
+            @builder << ' ' + data[:count].to_s + ' ' + data[:name]
+          end
+          @builder << ')<br/>' + all_steps.size.to_s + ' step ('
+          step_data.each do |data|
+            @builder << ' ' + data[:count].to_s + ' ' + data[:name]
+          end
+          @builder << ')<br/>&#128336; ' + duration(total_time).to_s
         end
-        @builder << ') ~ ' + all_scenarios.size.to_s + ' scenario ('
-        scenario_data.each do |data|
-          @builder << ' ' + data[:count].to_s + ' ' + data[:name]
-        end
-        @builder << ') ~ ' + all_steps.size.to_s + ' step ('
-        step_data.each do |data|
-          @builder << ' ' + data[:count].to_s + ' ' + data[:name]
-        end
-        @builder << ') ~ ' + duration(total_time).to_s
       end
 
-      @builder.div(:id => 'results') do
+      @builder.div(id: 'results') do
         build_menu @options[:report_tabs]
 
-        @builder.div(:id => 'overviewTab') do
+        @builder.div(id: 'overviewTab') do
           @builder << "<div id='featurePieChart' style=\"float:left;width:33%\"></div>"
-          @builder << "<div id='scenarioPieChart'style=\"display:inline-block;width:33%\"></div>"
-          @builder << "<div id='stepPieChart'style=\"float:right;width:33%\"></div>"
+          @builder << "<div id='scenarioPieChart' style=\"display:inline-block;width:33%\"></div>"
+          @builder << "<div id='stepPieChart' style=\"float:right;width:33%\"></div>"
         end if @options[:report_tabs].include? 'overview'
 
-        @builder.div(:id => 'featuresTab') do
-          @builder.div(:id => 'features') do
+        @builder.div(id: 'featuresTab') do
+          build_tags_drop_down(all_tags)
+          @builder.div(id: 'features') do
             all_features.each_with_index do |feature, n|
               @builder.h3(style: "background:#{COLOR[feature['status'].to_sym]}") do
-                @builder.span(:class => feature['status']) do
+                @builder.span(class: feature['status']) do
                   @builder << "<strong>#{feature['keyword']}</strong> #{feature['name']} (#{duration(feature['duration'])})"
                 end
               end
               @builder.div do
-                @builder.div(:id => "feature#{n}") do
+                @builder.div(id: "feature#{n}") do
                   feature['elements'].each{|scenario| build_scenario scenario}
                 end
               end
@@ -184,36 +208,17 @@ class ReportBuilder
           @builder << "<div id='featureTabPieChart'></div>"
         end if @options[:report_tabs].include? 'features'
 
-        @builder.div(:id => 'scenariosTab') do
-          all_tags = all_scenarios.map{|s| s['tags'] ? s['tags'].map{|t| t['name']} : []}.flatten.uniq
-          @builder.div(style: 'text-align:center;padding:5px;') do
-            @builder << '<strong>Tag: </strong>'
-            @builder.select(class: 'select-tags') do
-              @builder.option(value: 'scenario-all') do
-                @builder << 'All'
-              end
-              all_tags.each do |tag|
-                @builder.option(value: tag.gsub('@','tag-')) do
-                  @builder << tag
-                end
-              end
-            end
-            @builder.script do
-              @builder << '$("#scenariosTab .select-tags").change(function(){var val = $(this).val();$("#scenariosTab .scenario-all").next().hide();
-                  $("#scenariosTab .scenario-all").hide();$("#scenariosTab ." + val).show();$("#scenariosTab #count").each(function(){
-                  status = $(this).parent().parent().prop("className");$("#scenariosTab ." + status + " #count").html(
-                  $("#scenariosTab #" + status + " ." + val).length);});});'
-            end
-          end unless all_tags.empty?
-          @builder.div(:id => 'status') do
+        @builder.div(id: 'scenariosTab') do
+          build_tags_drop_down(all_tags)
+          @builder.div(id: 'status') do
             all_scenarios.group_by{|scenario| scenario['status']}.each do |data|
               @builder.h3(style: "background:#{COLOR[data[0].to_sym]}") do
-                @builder.span(:class => data[0]) do
+                @builder.span(class: data[0]) do
                   @builder << "<strong>#{data[0].capitalize} scenarios (Count: <span id='count'>#{data[1].size}</span>)</strong>"
                 end
               end
               @builder.div do
-                @builder.div(:id => data[0]) do
+                @builder.div(id: data[0]) do
                   data[1].each{|scenario| build_scenario scenario}
                 end
               end
@@ -222,19 +227,27 @@ class ReportBuilder
           @builder << "<div id='scenarioTabPieChart'></div>"
         end if @options[:report_tabs].include? 'scenarios'
 
-        @builder.div(:id => 'errorsTab') do
+        @builder.div(id: 'errorsTab') do
           @builder.ol do
             all_scenarios.each{|scenario| build_error_list scenario}
           end
         end if @options[:report_tabs].include? 'errors'
       end
 
-      @builder.script(:type => 'text/javascript') do
+      @builder.script(type: 'text/javascript') do
         @builder << pie_chart_js('featurePieChart', 'Features', feature_data) if @options[:report_tabs].include? 'overview'
         @builder << donut_js('featureTabPieChart', 'Features', feature_data) if @options[:report_tabs].include? 'features'
         @builder << pie_chart_js('scenarioPieChart', 'Scenarios', scenario_data) if @options[:report_tabs].include? 'overview'
         @builder << donut_js('scenarioTabPieChart', 'Scenarios', scenario_data) if @options[:report_tabs].include? 'scenarios'
         @builder << pie_chart_js('stepPieChart', 'Steps', step_data) if @options[:report_tabs].include? 'overview'
+        unless all_tags.empty?
+          @builder << '$("#featuresTab .select-tags").change(function(){var val = $(this).val();$("#featuresTab .scenario-all").next().hide();
+                $("#featuresTab .scenario-all").hide();$("#featuresTab ." + val).show();});' if @options[:report_tabs].include? 'features'
+          @builder << '$("#scenariosTab .select-tags").change(function(){var val = $(this).val();$("#scenariosTab .scenario-all").next().hide();
+                  $("#scenariosTab .scenario-all").hide();$("#scenariosTab ." + val).show();$("#scenariosTab #count").each(function(){
+                  status = $(this).parent().parent().prop("className");$("#scenariosTab ." + status + " #count").html(
+                  $("#scenariosTab #" + status + " ." + val).length);});});' if @options[:report_tabs].include? 'scenarios'
+        end
       end
 
       @builder << '</body>'
@@ -250,7 +263,7 @@ class ReportBuilder
     @builder.ul do
       tabs.each do |tab|
         @builder.li do
-          @builder.a(:href => "##{tab}Tab") do
+          @builder.a(href: "##{tab}Tab") do
             @builder << tab.capitalize
           end
         end
@@ -261,7 +274,7 @@ class ReportBuilder
   def self.build_scenario(scenario)
     tags = (scenario['tags'] ? scenario['tags'].map{|tag| tag['name']}.join(' ') : '')
     @builder.h3(style: "background:#{COLOR[scenario['status'].to_sym]}", title: tags, class: 'scenario-all ' + tags.gsub('@','tag-')) do
-      @builder.span(:class => scenario['status']) do
+      @builder.span(class: scenario['status']) do
         @builder << "<strong>#{scenario['keyword']}</strong> #{scenario['name']} (#{duration(scenario['duration'])})"
       end
     end
@@ -281,7 +294,7 @@ class ReportBuilder
   end
 
   def self.build_step(step, scenario_keyword)
-    @builder.div(:class => step['status']) do
+    @builder.div(class: step['status']) do
       @builder << "<strong>#{step['keyword']}</strong> #{step['name']} (#{duration(step['duration'])})"
     end
     build_data_table step['rows']
@@ -296,7 +309,7 @@ class ReportBuilder
   end
 
   def self.build_data_table(rows)
-    @builder.table(:class => 'data_table') do
+    @builder.table(class: 'data_table') do
       rows.each do |row|
         @builder.tr do
           row['cells'].each do |cell|
@@ -313,11 +326,27 @@ class ReportBuilder
     end if outputs.is_a?(Array)
   end
 
+  def self.build_tags_drop_down(tags)
+    @builder.div(style: 'text-align:center;padding:5px;') do
+      @builder << '<strong>Tag: </strong>'
+      @builder.select(class: 'select-tags') do
+        @builder.option(value: 'scenario-all') do
+          @builder << 'All'
+        end
+        tags.each do |tag|
+          @builder.option(value: tag.gsub('@','tag-')) do
+            @builder << tag
+          end
+        end
+      end
+    end if tags.is_a?(Array)
+  end
+
   def self.build_step_error(step)
     if step['status'] == 'failed' && step['result']['error_message']
       @builder << "<strong style=color:#{COLOR[:failed]}>Error: </strong>"
       error = step['result']['error_message'].split("\n")
-      @builder.span(:style => "color:#{COLOR[:failed]}") do
+      @builder.span(style: "color:#{COLOR[:failed]}") do
         error[0..-3].each do |line|
           @builder << line + '<br/>'
         end
@@ -331,7 +360,7 @@ class ReportBuilder
     if hook['status'] == 'failed'
       @builder << "<strong style=color:#{COLOR[:failed]}>Error: </strong>"
       error = hook['result']['error_message'].split("\n")
-      @builder.span(:style => "color:#{COLOR[:failed]}") do
+      @builder.span(style: "color:#{COLOR[:failed]}") do
         error[0..-2].each do |line|
           @builder << line + '<br/>'
         end
@@ -344,7 +373,7 @@ class ReportBuilder
     if hook['result']['error_message']
       @builder << "<strong style=color:#{COLOR[:failed]}>Error: </strong>"
       error = hook['result']['error_message'].split("\n")
-      @builder.span(:style => "color:#{COLOR[:failed]}") do
+      @builder.span(style: "color:#{COLOR[:failed]}") do
         (scenario_keyword == 'Scenario Outline' ? error[0..-8] : error[0..-5]).each do |line|
           @builder << line + '<br/>'
         end
@@ -359,9 +388,9 @@ class ReportBuilder
     embeddings.each do |embedding|
       id = "embedding_#{@embedding_count}"
       if embedding['mime_type'] =~ /^image\/(png|gif|jpg|jpeg)/
-        @builder.span(:class => 'image') do
-          @builder.a(:href => '', :style => 'text-decoration: none;', :onclick => "img=document.getElementById('#{id}');img.style.display = (img.style.display == 'none' ? 'block' : 'none');return false") do
-            @builder.span(:style => "color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};") do
+        @builder.span(class: 'image') do
+          @builder.a(href: '', style: 'text-decoration: none;', onclick: "img=document.getElementById('#{id}');img.style.display = (img.style.display == 'none' ? 'block' : 'none');return false") do
+            @builder.span(style: "color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};") do
               @builder << 'Screenshot'
             end
           end
@@ -369,10 +398,10 @@ class ReportBuilder
           @options[:compress_images] ? build_unique_image(embedding, id) : build_image(embedding,id) rescue puts 'Image embedding failed!'
         end
       elsif embedding['mime_type'] =~ /^text\/plain/
-        @builder.span(:class => 'link') do
+        @builder.span(class: 'link') do
           src = Base64.decode64(embedding['data'])
-          @builder.a(:id => id, :style => 'text-decoration: none;', :href => src, :title => 'Link') do
-            @builder.span(:style => "color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};") do
+          @builder.a(id: id, style: 'text-decoration: none;', href: src, title: 'Link') do
+            @builder.span(style: "color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};") do
               @builder << src
             end
           end
@@ -391,7 +420,7 @@ class ReportBuilder
     else
       @images << image
       klass = "image_#{@images.size - 1}"
-      @builder.style(:type => 'text/css') do
+      @builder.style(type: 'text/css') do
         begin
           src = Base64.decode64(image['data'])
           src = 'data:' + image['mime_type'] + ';base64,' + src unless src =~ /^data:image\/(png|gif|jpg|jpeg);base64,/
@@ -423,7 +452,7 @@ class ReportBuilder
       next unless before['status'] == 'failed'
       @builder.li do
         error = before['result']['error_message'].split("\n")
-        @builder.span(:style => "color:#{COLOR[:failed]}") do
+        @builder.span(style: "color:#{COLOR[:failed]}") do
           error[0..-2].each do |line|
             @builder << line + '<br/>'
           end
@@ -437,7 +466,7 @@ class ReportBuilder
         next unless after['status'] == 'failed'
         @builder.li do
           error = after['result']['error_message'].split("\n")
-          @builder.span(:style => "color:#{COLOR[:failed]}") do
+          @builder.span(style: "color:#{COLOR[:failed]}") do
             (scenario['keyword'] == 'Scenario Outline' ? error[0..-8] : error[0..-5]).each do |line|
               @builder << line + '<br/>'
             end
@@ -449,7 +478,7 @@ class ReportBuilder
       next unless step['status'] == 'failed' && step['result']['error_message']
       @builder.li do
         error = step['result']['error_message'].split("\n")
-        @builder.span(:style => "color:#{COLOR[:failed]}") do
+        @builder.span(style: "color:#{COLOR[:failed]}") do
           error[0..-3].each do |line|
             @builder << line + '<br/>'
           end
@@ -462,7 +491,7 @@ class ReportBuilder
       next unless after['status'] == 'failed'
       @builder.li do
         error = after['result']['error_message'].split("\n")
-        @builder.span(:style => "color:#{COLOR[:failed]}") do
+        @builder.span(style: "color:#{COLOR[:failed]}") do
           error[0..-2].each do |line|
             @builder << line + '<br/>'
           end
@@ -483,6 +512,14 @@ class ReportBuilder
     }.values.each_with_object([]) { |group, features|
       features << group.first.except('elements').merge('elements' => group.map{|feature| feature['elements']}.flatten)
     }.each{|feature|
+      if feature['elements'][0]['type'] == 'background'
+        (0..feature['elements'].size-1).step(2) do |i|
+          feature['elements'][i]['steps'].each{|step| step['name']+=(' ('+feature['elements'][i]['keyword']+')')}
+          feature['elements'][i+1]['steps'] = feature['elements'][i]['steps'] + feature['elements'][i+1]['steps']
+          feature['elements'][i+1]['before'] = feature['elements'][i]['before'] if feature['elements'][i]['before']
+        end
+        feature['elements'].reject!{|element| element['type'] == 'background'}
+      end
       feature['elements'].each { |scenario|
         scenario['before'] ||= []
         scenario['before'].each { |before|
@@ -540,6 +577,12 @@ class ReportBuilder
     scenarios.map do |scenario|
       scenario['steps']
     end.flatten
+  end
+
+  def self.tags(scenarios)
+    scenarios.map do |scenario|
+      scenario['tags'] ? scenario['tags'].map{|t| t['name']} : []
+    end.flatten.uniq
   end
 
   def self.files(path)
@@ -621,5 +664,6 @@ class ReportBuilder
                        :build_menu, :build_output, :build_embedding,
                        :build_error_list, :build_step_error,
                        :build_hook_error, :build_step_hook_error,
-                       :build_unique_image, :build_image
+                       :build_unique_image, :build_image,
+                       :build_data_table, :tags, :build_tags_drop_down
 end
