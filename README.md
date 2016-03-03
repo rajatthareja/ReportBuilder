@@ -27,9 +27,9 @@ gem install report_builder
 | report_path | [String] | 'test_report' | output file path with file name without extension |
 | report_types | [Array] | [:html] | :json, :html (output file types) |
 | report_tabs | [Array] | [:overview, :features] | :overview, :features, :scenarios, :errors (tabs to build) |
-| report_title | [String] | 'Test Results' | Report title |
+| report_title | [String] | 'Test Results' | report and html title |
 | compress_images | [Boolean] | false | true / false (If true, the size of HTML report is reduced but takes more time to build report) |
-| additional_info | [Hash] | {} | Additional info for report summary |
+| additional_info | [Hash] | {} | additional info for report summary |
 
 ### Code Examples:
 
