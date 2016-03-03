@@ -58,7 +58,7 @@ gem install report_builder
        report_tabs:  [ 'overview', 'features', 'scenarios', 'errors'],
        report_title: 'My Test Results',
        compress_images: false,
-       additional_info = {'browser' => 'Chrome', 'environment' => 'Stage 5'}
+       additional_info: {'browser' => 'Chrome', 'environment' => 'Stage 5'}
      }
     
     ReportBuilder.build_report options
