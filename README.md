@@ -29,6 +29,7 @@ gem install report_builder
 | report_tabs | [Array] | [:overview, :features] | :overview, :features, :scenarios, :errors (tabs to build) |
 | report_title | [String] | 'Test Results' | Report title |
 | compress_images | [Boolean] | false | true / false (If true, the size of HTML report is reduced but takes more time to build report) |
+| additional_info | [Hash] | {} | Additional info for report summary |
 
 ### Code Examples:
 
@@ -44,6 +45,7 @@ gem install report_builder
       config.report_tabs = [:overview, :features, :scenarios, :errors]
       config.report_title = 'My Test Results'
       config.compress_images = false
+      config.additional_info = {browser: 'Chrome', environment: 'Stage 5'}
     end
     
     ReportBuilder.build_report
@@ -55,7 +57,8 @@ gem install report_builder
        report_types: ['json', 'html'],
        report_tabs:  [ 'overview', 'features', 'scenarios', 'errors'],
        report_title: 'My Test Results',
-       compress_images: false
+       compress_images: false,
+       additional_info = {'browser' => 'Chrome', 'environment' => 'Stage 5'}
      }
     
     ReportBuilder.build_report options
