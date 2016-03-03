@@ -21,9 +21,10 @@ class ReportBuilder
 #
 # ReportBuilder.configure do |config|
 #       config.json_path = 'cucumber_sample/logs'
-#       config.report_path = 'sample_report'
+#       config.report_path = 'my_test_report'
 #       config.report_types = [:json, :html]
 #       config.report_tabs = [:overview, :features, :scenarios, :errors]
+#       config.report_title = 'My Test Results'
 #       config.compress_images = false
 #      end
 #
@@ -46,9 +47,10 @@ class ReportBuilder
   #
   # Ex: ReportBuilder.configure do |config|
   #       config.json_path = 'cucumber_sample/logs'
-  #       config.report_path = 'sample_report'
+  #       config.report_path = 'my_test_report'
   #       config.report_types = [:JSON, :HTML]
   #       config.report_tabs = [:Overview, :Features, :Scenarios, :Errors]
+  #       config.report_title = 'My Test Results'
   #       config.compress_images = true
   #      end
   #
@@ -58,6 +60,7 @@ class ReportBuilder
         report_path:     'test_report',          # [String] Output file path with name
         report_types:    [:html],                # [Array] Output file types to build, [:json, :html] or ['html', 'json']
         report_tabs:     [:overview, :features], # [Array] Tabs to build, [:overview, :features, :scenarios, :errors] or ['overview', 'features', 'scenarios', 'errors']
+        report_title:    'Test Results',         # [String] Report title
         compress_images: false                   # [Boolean] Set true to reducing the size of HTML report, Note: If true, takes more time to build report
     )
     yield default_options if block_given?
@@ -69,9 +72,10 @@ class ReportBuilder
   #
   # Ex: options = {
   #       json_path:    'cucumber_sample/logs',
-  #       report_path:  'sample_report',
+  #       report_path:  'my_test_report',
   #       report_types: ['json', 'html'],
-  #       report_tabs:  [ 'overview', 'features', 'scenarios', 'errors']
+  #       report_tabs:  [ 'overview', 'features', 'scenarios', 'errors'],
+  #       report_title: 'My Test Results',
   #       compress_images: false
   #     }
   #
@@ -111,7 +115,7 @@ class ReportBuilder
 
       @builder.head do
         @builder.meta(charset: 'UTF-8')
-        @builder.title 'Test Results'
+        @builder.title @options[:report_title]
 
         @builder.style(:type => 'text/css') do
           @builder << File.read(File.dirname(__FILE__) + '/../vendor/assets/stylesheets/jquery-ui.min.css')

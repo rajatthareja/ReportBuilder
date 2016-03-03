@@ -27,6 +27,7 @@ gem install report_builder
 | report_path | [String] | 'test_report' | output file path with file name without extension |
 | report_types | [Array] | [:html] | :json, :html (output file types) |
 | report_tabs | [Array] | [:overview, :features] | :overview, :features, :scenarios, :errors (tabs to build) |
+| report_title | [String] | 'Test Results' | Report title |
 | compress_images | [Boolean] | false | true / false (If true, the size of HTML report is reduced but takes more time to build report) |
 
 ### Code Examples:
@@ -38,9 +39,10 @@ gem install report_builder
     # Ex 1:
     ReportBuilder.configure do |config|
       config.json_path = 'cucumber_sample/logs'
-      config.report_path = 'sample_report'
+      config.report_path = 'my_test_report'
       config.report_types = [:json, :html]
       config.report_tabs = [:overview, :features, :scenarios, :errors]
+      config.report_title = 'My Test Results'
       config.compress_images = false
     end
     
@@ -49,9 +51,10 @@ gem install report_builder
     # Ex 2:
     options = {
        json_path:    'cucumber_sample/logs',
-       report_path:  'sample_report',
+       report_path:  'my_test_report',
        report_types: ['json', 'html'],
-       report_tabs:  [ 'overview', 'features', 'scenarios', 'errors']
+       report_tabs:  [ 'overview', 'features', 'scenarios', 'errors'],
+       report_title: 'My Test Results',
        compress_images: false
      }
     
