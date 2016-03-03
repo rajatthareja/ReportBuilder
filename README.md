@@ -79,7 +79,8 @@ gem install report_builder
 ```bash
      report_builder
      report_builder -s 'path/of/json/files/dir'
-     report_builder -s 'path/of/json/files/dir' -o 'report_file'
+     report_builder -s 'path/of/json/files/dir' -o my_report_file
+     report_builder -s 'path/of/json/files/dir' -o my_report_file -t overview,features,scenarios,errors
 ```
 
 ### Rake Example:
