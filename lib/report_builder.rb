@@ -164,15 +164,15 @@ class ReportBuilder
           end
         end if @options[:additional_info].is_a? Hash
         @builder.span(class: 'results') do
-          @builder << all_features.size.to_s + ' feature ('
+          @builder << all_features.size.to_s + ' features ('
           feature_data.each do |data|
             @builder << ' ' + data[:count].to_s + ' ' + data[:name]
           end
-          @builder << ')<br/>' + all_scenarios.size.to_s + ' scenario ('
+          @builder << ')<br/>' + all_scenarios.size.to_s + ' scenarios ('
           scenario_data.each do |data|
             @builder << ' ' + data[:count].to_s + ' ' + data[:name]
           end
-          @builder << ')<br/>' + all_steps.size.to_s + ' step ('
+          @builder << ')<br/>' + all_steps.size.to_s + ' steps ('
           step_data.each do |data|
             @builder << ' ' + data[:count].to_s + ' ' + data[:name]
           end
