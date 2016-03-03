@@ -98,6 +98,7 @@ class ReportBuilder
 
     all_scenarios = scenarios all_features
     all_steps = steps all_scenarios
+    all_tags = tags all_scenarios
     total_time = total_time all_features
     feature_data = data all_features
     scenario_data = data all_scenarios
@@ -167,6 +168,7 @@ class ReportBuilder
         end if @options[:report_tabs].include? 'overview'
 
         @builder.div(:id => 'featuresTab') do
+          build_tags_drop_down(all_tags)
           @builder.div(:id => 'features') do
             all_features.each_with_index do |feature, n|
               @builder.h3(style: "background:#{COLOR[feature['status'].to_sym]}") do
@@ -185,26 +187,7 @@ class ReportBuilder
         end if @options[:report_tabs].include? 'features'
 
         @builder.div(:id => 'scenariosTab') do
-          all_tags = all_scenarios.map{|s| s['tags'] ? s['tags'].map{|t| t['name']} : []}.flatten.uniq
-          @builder.div(style: 'text-align:center;padding:5px;') do
-            @builder << '<strong>Tag: </strong>'
-            @builder.select(class: 'select-tags') do
-              @builder.option(value: 'scenario-all') do
-                @builder << 'All'
-              end
-              all_tags.each do |tag|
-                @builder.option(value: tag.gsub('@','tag-')) do
-                  @builder << tag
-                end
-              end
-            end
-            @builder.script do
-              @builder << '$("#scenariosTab .select-tags").change(function(){var val = $(this).val();$("#scenariosTab .scenario-all").next().hide();
-                  $("#scenariosTab .scenario-all").hide();$("#scenariosTab ." + val).show();$("#scenariosTab #count").each(function(){
-                  status = $(this).parent().parent().prop("className");$("#scenariosTab ." + status + " #count").html(
-                  $("#scenariosTab #" + status + " ." + val).length);});});'
-            end
-          end unless all_tags.empty?
+          build_tags_drop_down(all_tags)
           @builder.div(:id => 'status') do
             all_scenarios.group_by{|scenario| scenario['status']}.each do |data|
               @builder.h3(style: "background:#{COLOR[data[0].to_sym]}") do
@@ -235,6 +218,14 @@ class ReportBuilder
         @builder << pie_chart_js('scenarioPieChart', 'Scenarios', scenario_data) if @options[:report_tabs].include? 'overview'
         @builder << donut_js('scenarioTabPieChart', 'Scenarios', scenario_data) if @options[:report_tabs].include? 'scenarios'
         @builder << pie_chart_js('stepPieChart', 'Steps', step_data) if @options[:report_tabs].include? 'overview'
+        unless all_tags.empty?
+          @builder << '$("#featuresTab .select-tags").change(function(){var val = $(this).val();$("#featuresTab .scenario-all").next().hide();
+                $("#featuresTab .scenario-all").hide();$("#featuresTab ." + val).show();});' if @options[:report_tabs].include? 'features'
+          @builder << '$("#scenariosTab .select-tags").change(function(){var val = $(this).val();$("#scenariosTab .scenario-all").next().hide();
+                  $("#scenariosTab .scenario-all").hide();$("#scenariosTab ." + val).show();$("#scenariosTab #count").each(function(){
+                  status = $(this).parent().parent().prop("className");$("#scenariosTab ." + status + " #count").html(
+                  $("#scenariosTab #" + status + " ." + val).length);});});' if @options[:report_tabs].include? 'scenarios'
+        end
       end
 
       @builder << '</body>'
@@ -311,6 +302,22 @@ class ReportBuilder
     outputs.each do |output|
       @builder << "<span style='color:#{COLOR[:output]}'>#{output.gsub("\n",'</br>').gsub("\t",'&nbsp;&nbsp;').gsub(' ','&nbsp;')}</span><br/>"
     end if outputs.is_a?(Array)
+  end
+
+  def self.build_tags_drop_down(tags)
+    @builder.div(style: 'text-align:center;padding:5px;') do
+      @builder << '<strong>Tag: </strong>'
+      @builder.select(class: 'select-tags') do
+        @builder.option(value: 'scenario-all') do
+          @builder << 'All'
+        end
+        tags.each do |tag|
+          @builder.option(value: tag.gsub('@','tag-')) do
+            @builder << tag
+          end
+        end
+      end
+    end if tags.is_a?(Array)
   end
 
   def self.build_step_error(step)
@@ -550,6 +557,12 @@ class ReportBuilder
     end.flatten
   end
 
+  def self.tags(scenarios)
+    scenarios.map do |scenario|
+      scenario['tags'] ? scenario['tags'].map{|t| t['name']} : []
+    end.flatten.uniq
+  end
+
   def self.files(path)
     files = if path.is_a? String
               (path =~ /\.json$/) ? [path] : Dir.glob("#{path}/*.json")
@@ -630,5 +643,5 @@ class ReportBuilder
                        :build_error_list, :build_step_error,
                        :build_hook_error, :build_step_hook_error,
                        :build_unique_image, :build_image,
-                       :build_data_table
+                       :build_data_table, :tags, :build_tags_drop_down
 end
