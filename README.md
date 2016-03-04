@@ -77,7 +77,7 @@ gem install report_builder
 | -t, --tabs     | x,y,z       | List of report tabs - overview,features,scenarios,errors |
 | -c, --compress |             | Reduce report size if embedding images                   |
 | -T, --title    | TITLE       | Report title                                             |
-| -I, --info     | a:x,b:y,c:z | List of additional info about test - key:value                   |
+| -I, --info     | a:x,b:y,c:z | List of additional info about test - key:value           |
 | -h, --help     |             | Show available command line switches                     |
 | -v, --version  |             | Show gem version                                         |
 
