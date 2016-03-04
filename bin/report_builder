@@ -3,7 +3,15 @@
 require 'optparse'
 require 'report_builder'
 
-options = {:json_path => nil, :report_path => 'test_report', :report_types => [:html], :report_tabs => [:overview, :features], :compress_images => false}
+options = {
+    :json_path => nil,
+    :report_path => 'test_report',
+    :report_types => [:html],
+    :report_tabs => [:overview, :features],
+    :report_title => 'Test Results',
+    :compress_images => false,
+    :additional_info => {}
+    }
 
 opt_parser = OptionParser.new do |opts|
   opts.banner = "Usage: \n     report_builder [options]"
@@ -27,6 +35,17 @@ opt_parser = OptionParser.new do |opts|
 
   opts.on('-c', '--compress', 'Reduce report size if embedding images') do |compress|
     options[:compress_images] = compress
+  end
+
+  opts.on('-T', '--title TITLE', String, 'Report title') do |report_title|
+    options[:report_title] = report_title
+  end
+
+  opts.on('-I','--info a:x,b:y,c:z', Array, 'List of additional info') do |list|
+    list.each do |i|
+      key, value = i.split(':')
+      options[:additional_info][key] = value
+    end
   end
 
   opts.separator 'Common options:'
