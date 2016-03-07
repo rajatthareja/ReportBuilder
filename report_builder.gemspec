@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name        = 'report_builder'
-  s.version     = '0.1.0'
+  s.version     = '0.1.1'
   s.bindir      = 'bin'
   s.executables << 'report_builder'
-  s.date        = '2016-03-01'
+  s.date        = '2016-03-04'
   s.summary     = 'ReportBuilder'
   s.description = 'Merge Cucumber JSON reports and build single HTML Test Report'
-  s.post_install_message = 'Thanks for installing!'
+  s.post_install_message = 'Happy reporting!'
   s.authors     = ['Rajat Thareja']
   s.email       = 'rajat.thareja.1990@gmail.com'
   s.files       = Dir['lib/*.rb','lib/*.rake','vendor/assets/stylesheets/*.css','vendor/assets/javascripts/*.js','README.md']
