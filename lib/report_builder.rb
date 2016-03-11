@@ -514,7 +514,7 @@ class ReportBuilder
       feature['uri']+feature['id']+feature['line'].to_s
     }.values.each_with_object([]) { |group, features|
       features << group.first.except('elements').merge('elements' => group.map{|feature| feature['elements']}.flatten)
-    }.each{|feature|
+    }.sort_by!{|feature| feature['name']}.each{|feature|
       if feature['elements'][0]['type'] == 'background'
         (0..feature['elements'].size-1).step(2) do |i|
           feature['elements'][i]['steps'].each{|step| step['name']+=(' ('+feature['elements'][i]['keyword']+')')}
