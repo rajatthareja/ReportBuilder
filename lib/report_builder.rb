@@ -222,7 +222,7 @@ class ReportBuilder
               end
               @builder.div do
                 @builder.div(id: data[0]) do
-                  data[1].each{|scenario| build_scenario scenario}
+                  data[1].sort_by{|scenario| scenario['name']}.each{|scenario| build_scenario scenario}
                 end
               end
             end
