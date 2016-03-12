@@ -39,7 +39,7 @@ class ReportBuilder
       failed: '#f45b5b',
       broken: '#f45b5b',
       undefined: '#e4d354',
-      unknown: '#e4d354',
+      incomplete: '#e7a35c',
       pending: '#f7a35c',
       skipped: '#7cb5ec',
       output: '#007fff'
@@ -560,7 +560,7 @@ class ReportBuilder
     feature['elements'].each do |scenario|
       status = scenario['status']
       return 'broken' if status == 'failed'
-      feature_status = 'unknown' if %w(undefined pending).include?(status)
+      feature_status = 'incomplete' if %w(undefined pending).include?(status)
     end
     feature_status
   end
