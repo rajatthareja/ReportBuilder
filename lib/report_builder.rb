@@ -315,7 +315,7 @@ class ReportBuilder
   end
 
   def self.build_data_table(rows)
-    @builder.table(class: 'data_table') do
+    @builder.table(class: 'data_table', style: 'margin: 10px') do
       rows.each do |row|
         @builder.tr do
           row['cells'].each do |cell|
