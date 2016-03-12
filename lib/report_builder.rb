@@ -244,12 +244,15 @@ class ReportBuilder
         @builder << donut_js('scenarioTabPieChart', 'Scenarios', scenario_data) if @options[:report_tabs].include? 'scenarios'
         @builder << pie_chart_js('stepPieChart', 'Steps', step_data) if @options[:report_tabs].include? 'overview'
         unless all_tags.empty?
-          @builder << '$("#featuresTab .select-tags").change(function(){var val = $(this).val();$("#featuresTab .scenario-all").next().hide();
-                $("#featuresTab .scenario-all").hide();$("#featuresTab ." + val).show();});' if @options[:report_tabs].include? 'features'
+          @builder << '$("#featuresTab .select-tags").change(function(){var val = $(this).val();
+                $("#featuresTab .scenario-all").hide().next().hide().parent().hide().parent().hide().prev().hide();
+                $("#featuresTab ." + val).show().parent().show().parent().prev().show();});' if @options[:report_tabs].include? 'features'
           @builder << '$("#scenariosTab .select-tags").change(function(){var val = $(this).val();$("#scenariosTab .scenario-all").next().hide();
-                  $("#scenariosTab .scenario-all").hide();$("#scenariosTab ." + val).show();$("#scenariosTab #count").each(function(){
-                  status = $(this).parent().parent().prop("className");$("#scenariosTab ." + status + " #count").html(
-                  $("#scenariosTab #" + status + " ." + val).length);});});' if @options[:report_tabs].include? 'scenarios'
+                $("#scenariosTab .scenario-all").hide();$("#scenariosTab ." + val).show();$("#scenariosTab #count").each(function(){
+                status = $(this).parent().parent().prop("className");count = $("#scenariosTab #" + status + " ." + val).length;
+                countElement = $("#scenariosTab ." + status + " #count");countElement.parent().parent().parent().show();
+                if(count==0){countElement.parent().parent().parent().next().hide();countElement.parent().parent().parent().hide();}
+                countElement.html(count);});});' if @options[:report_tabs].include? 'scenarios'
         end
       end
 
