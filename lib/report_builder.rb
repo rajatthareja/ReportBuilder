@@ -531,6 +531,7 @@ class ReportBuilder
           before['result']['duration'] ||= 0
           before.merge! 'status' => before['result']['status'], 'duration' => before['result']['duration']
         }
+        scenario['steps'] ||= []
         scenario['steps'].each { |step|
           step['result']['duration'] ||= 0
           duration = step['result']['duration']
