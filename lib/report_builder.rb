@@ -519,6 +519,7 @@ class ReportBuilder
     }.sort_by!{|feature| feature['name']}.each{|feature|
       if feature['elements'][0]['type'] == 'background'
         (0..feature['elements'].size-1).step(2) do |i|
+          feature['elements'][i]['steps'] ||= []
           feature['elements'][i]['steps'].each{|step| step['name']+=(' ('+feature['elements'][i]['keyword']+')')}
           feature['elements'][i+1]['steps'] = feature['elements'][i]['steps'] + feature['elements'][i+1]['steps']
           feature['elements'][i+1]['before'] = feature['elements'][i]['before'] if feature['elements'][i]['before']
