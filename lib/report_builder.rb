@@ -338,7 +338,7 @@ class ReportBuilder
         @builder.option(value: 'scenario-all') do
           @builder << 'All'
         end
-        tags.each do |tag|
+        tags.sort.each do |tag|
           @builder.option(value: tag.gsub('@','tag-')) do
             @builder << tag
           end
