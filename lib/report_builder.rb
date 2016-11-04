@@ -398,7 +398,7 @@ class ReportBuilder
           @builder.span(class: 'image') do
             @builder.a(href: '', style: 'text-decoration: none;', onclick: "img=document.getElementById('#{id}');img.style.display = (img.style.display == 'none' ? 'block' : 'none');return false") do
               @builder.span(style: "color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};") do
-                @builder << 'Screenshot'
+                @builder << "Screenshot ##{@embedding_count}"
               end
             end
             @builder << '<br/>'
