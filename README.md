@@ -17,7 +17,6 @@ gem install report_builder
 
 * RDoc documentation [available on RubyDoc.info](http://www.rubydoc.info/gems/report_builder)
 * Source code [available on GitHub](http://github.com/rajatthareja/ReportBuilder)
-* Sample report [available here](http://www.rajatthareja.com/reportbuilder/sample.html)
 
 ## Usage
 
