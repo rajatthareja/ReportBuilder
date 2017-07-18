@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'report_builder'
-  s.version     = '0.1.2'
+  s.version     = '0.1.3'
   s.bindir      = 'bin'
   s.executables << 'report_builder'
   s.date        = '2016-03-17'
