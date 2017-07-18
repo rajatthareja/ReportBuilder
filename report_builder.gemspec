@@ -15,5 +15,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version =  '>= 1.9.1'
   s.add_runtime_dependency 'builder', '~>3.2', '>= 3.2.2'
   s.add_runtime_dependency 'json', '>= 1.8.1'
+  s.add_development_dependency 'rake', '< 13.0'
+  s.add_development_dependency 'rspec', '< 4.0'
   s.requirements << 'Cucumber >= 2.1.0 test results in JSON format'
 end
