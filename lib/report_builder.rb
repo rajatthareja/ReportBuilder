@@ -327,7 +327,7 @@ class ReportBuilder
 
   def self.build_output(outputs)
     outputs.each do |output|
-      @builder << "<span style='color:#{COLOR[:output]}'>#{output.gsub("\n",'</br>').gsub("\t",'&nbsp;&nbsp;').gsub(' ','&nbsp;')}</span><br/>"
+      @builder << "<span style='color:#{COLOR[:output]}'>#{output.to_s.gsub("\n",'</br>').gsub("\t",'&nbsp;&nbsp;').gsub(' ','&nbsp;')}</span><br/>"
     end if outputs.is_a?(Array)
   end
 
