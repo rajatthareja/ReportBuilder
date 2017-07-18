@@ -2,10 +2,6 @@ require 'json'
 require 'builder'
 require 'base64'
 
-
-# new lines
-
-
 # Add except method to Hash
 class Hash
   def except(*keys)
