@@ -331,7 +331,7 @@ class ReportBuilder
 
   def self.build_output(outputs)
     outputs.each do |output|
-      @builder << "<span style='color:#{COLOR[:output]}'>#{output.gsub("\n",'</br>').gsub("\t",'&nbsp;&nbsp;').gsub(' ','&nbsp;')}</span><br/>"
+      @builder << "<span style='color:#{COLOR[:output]}'>#{output.to_s.gsub("\n",'</br>').gsub("\t",'&nbsp;&nbsp;').gsub(' ','&nbsp;')}</span><br/>"
     end if outputs.is_a?(Array)
   end
 
@@ -342,7 +342,7 @@ class ReportBuilder
         @builder.option(value: 'scenario-all') do
           @builder << 'All'
         end
-        tags.each do |tag|
+        tags.sort.each do |tag|
           @builder.option(value: tag.gsub('@','tag-')) do
             @builder << tag
           end
@@ -395,27 +395,45 @@ class ReportBuilder
   def self.build_embedding(embeddings)
     @embedding_count ||= 0
     embeddings.each do |embedding|
+      src = Base64.decode64(embedding['data'])
       id = "embedding_#{@embedding_count}"
       if embedding['mime_type'] =~ /^image\/(png|gif|jpg|jpeg)/
-        @builder.span(class: 'image') do
-          @builder.a(href: '', style: 'text-decoration: none;', onclick: "img=document.getElementById('#{id}');img.style.display = (img.style.display == 'none' ? 'block' : 'none');return false") do
-            @builder.span(style: "color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};") do
-              @builder << 'Screenshot'
+        begin
+          @builder.span(class: 'image') do
+            @builder.a(href: '', style: 'text-decoration: none;', onclick: "img=document.getElementById('#{id}');img.style.display = (img.style.display == 'none' ? 'block' : 'none');return false") do
+              @builder.span(style: "color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};") do
+                @builder << "Screenshot ##{@embedding_count}"
+              end
             end
+            @builder << '<br/>'
+            @options[:compress_images] ? build_unique_image(embedding, id) : build_image(embedding,id)
           end
-          @builder << '<br/>'
-          @options[:compress_images] ? build_unique_image(embedding, id) : build_image(embedding,id) rescue puts 'Image embedding failed!'
+        rescue => e
+          puts 'Image embedding failed!'
+          puts [e.class, e.message, e.backtrace[0..10].join("\n")].join("\n")
         end
       elsif embedding['mime_type'] =~ /^text\/plain/
-        @builder.span(class: 'link') do
-          src = Base64.decode64(embedding['data'])
-          @builder.a(id: id, style: 'text-decoration: none;', href: src, title: 'Link') do
-            @builder.span(style: "color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};") do
+        begin
+          if src.include?('|||')
+            title, link = src.split('|||')
+            @builder.span(class: 'link') do
+              @builder.a(id: id, style: 'text-decoration: none;', href: link, title: title) do
+                @builder.span(style: "color: #{COLOR[:output]}; font-weight: bold; border-bottom: 1px solid #{COLOR[:output]};") do
+                  @builder << title
+                end
+              end
+              @builder << '<br/>'
+            end
+          else
+            @builder.span(class: 'info') do
               @builder << src
+              @builder << '<br/>'
             end
           end
-          @builder << '<br/>'
-        end rescue puts('Link embedding skipped!')
+        rescue => e
+          puts('Link embedding skipped!')
+          puts [e.class, e.message, e.backtrace[0..10].join("\n")].join("\n")
+        end
       end
       @embedding_count += 1
     end if embeddings.is_a?(Array)
