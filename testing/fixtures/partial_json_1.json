@@ -55,7 +55,8 @@
               "location": "features/step_definitions/my_steps.rb:1"
             },
             "result": {
-              "status": "passed",
+              "status": "failed",
+              "error_message": " (RuntimeError)\n./features/step_definitions/my_steps.rb:14:in `/^this step will (.*)$/'\n./features/b.feature:8:in `* this step will fail'\n./features/b.feature:4:in `* this step will <pass_or_fail>'",
               "duration": 23000
             }
           }

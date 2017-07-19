@@ -53,10 +53,11 @@
               "location": "features/step_definitions/my_steps.rb:1"
             },
             "result": {
-              "status": "passed",
+              "status": "failed",
+              "error_message": " (RuntimeError)\n./features/step_definitions/my_steps.rb:6:in `/^a failing step$/'\n./features/a.feature:7:in `* a failing step'",
               "duration": 36000
             },
-            "status": "passed",
+            "status": "failed",
             "duration": 36000
           }
         ],
@@ -64,11 +65,11 @@
         ],
         "after": [
         ],
-        "status": "passed",
+        "status": "failed",
         "duration": 36000
       }
     ],
-    "status": "working",
+    "status": "broken",
     "duration": 69000
   },
   {
@@ -95,10 +96,11 @@
               "location": "features/step_definitions/my_steps.rb:1"
             },
             "result": {
-              "status": "passed",
+              "status": "failed",
+              "error_message": " (RuntimeError)\n./features/step_definitions/my_steps.rb:14:in `/^this step will (.*)$/'\n./features/b.feature:8:in `* this step will fail'\n./features/b.feature:4:in `* this step will <pass_or_fail>'",
               "duration": 23000
             },
-            "status": "passed",
+            "status": "failed",
             "duration": 23000
           }
         ],
@@ -106,7 +108,7 @@
         ],
         "after": [
         ],
-        "status": "passed",
+        "status": "failed",
         "duration": 23000
       },
       {
@@ -140,6 +142,43 @@
         "duration": 12000
       },
       {
+        "id": ";test-5",
+        "keyword": "Scenario",
+        "name": "test 5",
+        "description": "",
+        "line": 14,
+        "type": "scenario",
+        "comments": [
+          {
+            "value": "# Making sure that we have two failing tests in the same file",
+            "line": 13
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "* ",
+            "name": "a failing step",
+            "line": 15,
+            "match": {
+              "location": "features/step_definitions/my_steps.rb:5"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": " (RuntimeError)\n./features/step_definitions/my_steps.rb:6:in `/^a failing step$/'\nfeatures/b.feature:15:in `* a failing step'",
+              "duration": 144000
+            },
+            "status": "failed",
+            "duration": 144000
+          }
+        ],
+        "before": [
+        ],
+        "after": [
+        ],
+        "status": "failed",
+        "duration": 144000
+      },
+      {
         "id": ";test-3;;2",
         "keyword": "Scenario Outline",
         "name": "test 3",
@@ -170,7 +209,7 @@
         "duration": 34000
       }
     ],
-    "status": "working",
-    "duration": 69000
+    "status": "broken",
+    "duration": 213000
   }
 ]
