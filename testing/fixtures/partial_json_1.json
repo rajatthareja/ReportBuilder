@@ -1,0 +1,66 @@
+[
+  {
+    "uri": "features/a.feature",
+    "id": "",
+    "keyword": "Feature",
+    "name": "",
+    "description": "",
+    "line": 1,
+    "elements": [
+      {
+        "id": ";test-1",
+        "keyword": "Scenario",
+        "name": "test 1",
+        "description": "",
+        "line": 3,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "* ",
+            "name": "a step",
+            "line": 4,
+            "match": {
+              "location": "features/step_definitions/my_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 33000
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/b.feature",
+    "id": "",
+    "keyword": "Feature",
+    "name": "",
+    "description": "",
+    "line": 1,
+    "elements": [
+      {
+        "id": ";test-3;;3",
+        "keyword": "Scenario Outline",
+        "name": "test 3",
+        "description": "",
+        "line": 8,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "* ",
+            "name": "a step",
+            "line": 8,
+            "match": {
+              "location": "features/step_definitions/my_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
