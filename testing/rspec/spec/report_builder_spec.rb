@@ -25,8 +25,8 @@ describe ReportBuilder do
 
     ReportBuilder.build_report(report_types: [:retry], json_path: [input_1_path, input_2_path, input_3_path], report_path: output_location)
 
-    combined_report = File.read("#{output_location}.txt")
-    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined_retry.txt")
+    combined_report = File.read("#{output_location}.retry")
+    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined.retry")
 
 
     expect(combined_report).to eq(expected_report)
