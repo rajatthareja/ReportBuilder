@@ -264,11 +264,7 @@ class ReportBuilder
     File.open(@options[:report_path] + '.retry', 'w:UTF-8') do |file|
       all_features.each do |feature|
         if feature['status'] == 'broken'
-          feature_retry_line = "#{feature['uri']}"
-
-          feature['elements'].each { |scenario| feature_retry_line += ":#{scenario['line']}" if scenario['status'] == 'failed' }
-
-          file.puts feature_retry_line
+          feature['elements'].each { |scenario| file.puts "#{feature['uri']}:#{scenario['line']}" if scenario['status'] == 'failed' }
         end
       end
     end if @options[:report_types].include? 'RETRY'
