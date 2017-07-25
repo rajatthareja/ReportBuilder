@@ -1,0 +1,66 @@
+[
+  {
+    "uri": "features/a.feature",
+    "id": "",
+    "keyword": "Feature",
+    "name": "",
+    "description": "",
+    "line": 1,
+    "elements": [
+      {
+        "id": ";test-2",
+        "keyword": "Scenario",
+        "name": "test 2",
+        "description": "",
+        "line": 6,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "* ",
+            "name": "another step",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/my_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 36000
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uri": "features/b.feature",
+    "id": "",
+    "keyword": "Feature",
+    "name": "",
+    "description": "",
+    "line": 1,
+    "elements": [
+      {
+        "id": ";test-4",
+        "keyword": "Scenario",
+        "name": "test 4",
+        "description": "",
+        "line": 10,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "* ",
+            "name": "another step",
+            "line": 11,
+            "match": {
+              "location": "features/step_definitions/my_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

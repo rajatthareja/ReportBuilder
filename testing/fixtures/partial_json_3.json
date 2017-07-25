@@ -1,0 +1,34 @@
+[
+  {
+    "uri": "features/b.feature",
+    "id": "",
+    "keyword": "Feature",
+    "name": "",
+    "description": "",
+    "line": 1,
+    "elements": [
+      {
+        "id": ";test-3;;2",
+        "keyword": "Scenario Outline",
+        "name": "test 3",
+        "description": "",
+        "line": 7,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "* ",
+            "name": "a step",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/my_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 34000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

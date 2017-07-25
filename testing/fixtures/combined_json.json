@@ -1,0 +1,176 @@
+[
+  {
+    "uri": "features/a.feature",
+    "id": "",
+    "keyword": "Feature",
+    "name": "",
+    "description": "",
+    "line": 1,
+    "elements": [
+      {
+        "id": ";test-1",
+        "keyword": "Scenario",
+        "name": "test 1",
+        "description": "",
+        "line": 3,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "* ",
+            "name": "a step",
+            "line": 4,
+            "match": {
+              "location": "features/step_definitions/my_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 33000
+            },
+            "status": "passed",
+            "duration": 33000
+          }
+        ],
+        "before": [
+        ],
+        "after": [
+        ],
+        "status": "passed",
+        "duration": 33000
+      },
+      {
+        "id": ";test-2",
+        "keyword": "Scenario",
+        "name": "test 2",
+        "description": "",
+        "line": 6,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "* ",
+            "name": "another step",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/my_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 36000
+            },
+            "status": "passed",
+            "duration": 36000
+          }
+        ],
+        "before": [
+        ],
+        "after": [
+        ],
+        "status": "passed",
+        "duration": 36000
+      }
+    ],
+    "status": "working",
+    "duration": 69000
+  },
+  {
+    "uri": "features/b.feature",
+    "id": "",
+    "keyword": "Feature",
+    "name": "",
+    "description": "",
+    "line": 1,
+    "elements": [
+      {
+        "id": ";test-3;;3",
+        "keyword": "Scenario Outline",
+        "name": "test 3",
+        "description": "",
+        "line": 8,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "* ",
+            "name": "a step",
+            "line": 8,
+            "match": {
+              "location": "features/step_definitions/my_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23000
+            },
+            "status": "passed",
+            "duration": 23000
+          }
+        ],
+        "before": [
+        ],
+        "after": [
+        ],
+        "status": "passed",
+        "duration": 23000
+      },
+      {
+        "id": ";test-4",
+        "keyword": "Scenario",
+        "name": "test 4",
+        "description": "",
+        "line": 10,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "* ",
+            "name": "another step",
+            "line": 11,
+            "match": {
+              "location": "features/step_definitions/my_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12000
+            },
+            "status": "passed",
+            "duration": 12000
+          }
+        ],
+        "before": [
+        ],
+        "after": [
+        ],
+        "status": "passed",
+        "duration": 12000
+      },
+      {
+        "id": ";test-3;;2",
+        "keyword": "Scenario Outline",
+        "name": "test 3",
+        "description": "",
+        "line": 7,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "* ",
+            "name": "a step",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/my_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 34000
+            },
+            "status": "passed",
+            "duration": 34000
+          }
+        ],
+        "before": [
+        ],
+        "after": [
+        ],
+        "status": "passed",
+        "duration": 34000
+      }
+    ],
+    "status": "working",
+    "duration": 69000
+  }
+]
