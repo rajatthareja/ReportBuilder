@@ -25,7 +25,7 @@ opt_parser = OptionParser.new do |opts|
     options[:report_path] = report_path
   end
 
-  opts.on('-f','--format x,y,z', Array, 'List of report format - html,json') do |list|
+  opts.on('-f','--format x,y,z', Array, 'List of report format - html,json,retry') do |list|
     options[:report_types] = list
   end
 

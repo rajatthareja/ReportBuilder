@@ -23,7 +23,8 @@
               "location": "features/step_definitions/my_steps.rb:1"
             },
             "result": {
-              "status": "passed",
+              "status": "failed",
+              "error_message": " (RuntimeError)\n./features/step_definitions/my_steps.rb:6:in `/^a failing step$/'\n./features/a.feature:7:in `* a failing step'",
               "duration": 36000
             }
           }

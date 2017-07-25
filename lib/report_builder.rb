@@ -261,6 +261,14 @@ class ReportBuilder
       puts "HTML test report generated: '#{@options[:report_path]}.html'"
     end if @options[:report_types].include? 'HTML'
 
+    File.open(@options[:report_path] + '.retry', 'w:UTF-8') do |file|
+      all_features.each do |feature|
+        if feature['status'] == 'broken'
+          feature['elements'].each { |scenario| file.puts "#{feature['uri']}:#{scenario['line']}" if scenario['status'] == 'failed' }
+        end
+      end
+    end if @options[:report_types].include? 'RETRY'
+
     [total_time, feature_data, scenario_data, step_data]
   end
 
