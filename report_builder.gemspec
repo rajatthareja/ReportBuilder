@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'report_builder'
-  s.version     = '0.1.3'
+  s.version     = '0.1.4'
   s.bindir      = 'bin'
   s.executables << 'report_builder'
   s.date        = '2016-03-17'
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.files       = Dir['lib/*.rb','lib/*.rake','vendor/assets/stylesheets/*.css','vendor/assets/javascripts/*.js','README.md']
   s.homepage    = 'https://github.com/rajatthareja/ReportBuilder'
   s.license     = 'MIT'
-  s.required_ruby_version =  '>= 1.9.1'
+  s.required_ruby_version = '>= 1.9.1'
   s.add_runtime_dependency 'builder', '~>3.2', '>= 3.2.2'
   s.add_runtime_dependency 'json', '>= 1.8.1'
   s.add_development_dependency 'rake', '< 13.0'
