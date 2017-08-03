@@ -2,17 +2,7 @@ require 'json'
 require 'builder'
 require 'base64'
 
-# Add except method to Hash
-class Hash
-  def except(*keys)
-    dup.except!(*keys)
-  end
-
-  def except!(*keys)
-    keys.each { |key| delete(key) }
-    self
-  end
-end
+require 'report_builder/core-ext/hash'
 
 # Main report builder class
 class ReportBuilder

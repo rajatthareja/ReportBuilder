@@ -1,4 +1,5 @@
 require 'rspec/core/rake_task'
+require "bundler/gem_tasks"
 
 
 namespace 'report_builder' do
@@ -9,6 +10,5 @@ namespace 'report_builder' do
   end
 
 end
-
 
 task :default => 'report_builder:test_everything'
