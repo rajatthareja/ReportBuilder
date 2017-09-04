@@ -38,7 +38,6 @@ module ReportBuilder
 
       File.open(options[:report_path] + '.json', 'w') do |file|
         file.write JSON.pretty_generate all_features
-        puts "JSON test report generated: '#{options[:report_path]}.json'"
       end if options[:report_types].include? 'JSON'
 
       all_scenarios = scenarios all_features
@@ -50,7 +49,7 @@ module ReportBuilder
       step_data = data all_steps
 
       File.open(options[:report_path] + '.html', 'w:UTF-8') do |file|
-        @builder = Builder::XmlMarkup.new(target: file, indent: 0)
+        @builder = ::Builder::XmlMarkup.new(target: file, indent: 0)
         @builder.declare!(:DOCTYPE, :html)
         @builder << '<html>'
 
@@ -59,7 +58,7 @@ module ReportBuilder
           @builder.title options[:report_title]
 
           @builder.style(type: 'text/css') do
-            @builder << File.read(File.dirname(__FILE__) + '/../vendor/assets/stylesheets/jquery-ui.min.css')
+            @builder << File.read(File.dirname(__FILE__) + '/../../vendor/assets/stylesheets/jquery-ui.min.css')
             COLOR.each do |color|
               @builder << ".#{color[0].to_s}{background:#{color[1]};color:#434348;padding:2px}"
             end
@@ -72,7 +71,7 @@ module ReportBuilder
 
           @builder.script(type: 'text/javascript') do
             %w(jquery-min jquery-ui.min highcharts highcharts-3d).each do |js|
-              @builder << File.read(File.dirname(__FILE__) + '/../vendor/assets/javascripts/' + js + '.js')
+              @builder << File.read(File.dirname(__FILE__) + '/../../vendor/assets/javascripts/' + js + '.js')
             end
             @builder << '$(function(){$("#results").tabs();});'
             @builder << "$(function(){$('#features').accordion({collapsible: true, heightStyle: 'content', active: false, icons: false});});"
@@ -195,7 +194,6 @@ module ReportBuilder
         @builder << '</body>'
         @builder << '</html>'
 
-        puts "HTML test report generated: '#{options[:report_path]}.html'"
       end if options[:report_types].include? 'HTML'
 
       File.open(options[:report_path] + '.retry', 'w:UTF-8') do |file|

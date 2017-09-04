@@ -1,0 +1,92 @@
+[
+  {
+    "uri": "features/Test.feature",
+    "id": "test",
+    "keyword": "Feature",
+    "name": "Test",
+    "description": "",
+    "line": 1,
+    "elements": [
+      {
+        "id": "test;google-search",
+        "keyword": "Scenario",
+        "name": "Google Search",
+        "description": "",
+        "line": 4,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@test",
+            "line": 3
+          }
+        ],
+        "before": [
+          {
+            "output": [
+              "ENV['RDEE_BROWSER'] :: chrome55_win10"
+            ],
+            "match": {
+              "location": "features/support/hooks.rb:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10186724976
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I launch Google",
+            "line": 5,
+            "match": {
+              "location": "features/step_definitions/Test_Steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1703906662
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I search \"Test\"",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/Test_Steps.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9812784233
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I am rendered search results",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/Test_Steps.rb:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10101871222
+            }
+          }
+        ],
+        "after": [
+          {
+            "output": [
+              "Scenario ID - 13ba347857534acdab850890d9001dc8 , PLATFORM :: chrome55_win10"
+            ],
+            "match": {
+              "location": "features/support/hooks.rb:31"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 714646809
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

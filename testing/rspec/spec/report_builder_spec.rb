@@ -32,4 +32,24 @@ describe ReportBuilder do
     expect(combined_report).to eq(expected_report)
   end
 
+  it 'produces the report without change during my refactoring' do
+    output_location = Tempfile.new('new_report').path
+    options = {
+        json_path: "#{TEST_FIXTURES_DIRECTORY}/junit_reports/**",
+        report_path: output_location,
+        report_types: ['html'],
+        report_tabs: ['overview', 'features', 'scenarios', 'errors'],
+        report_title: 'Test Results',
+        compress_images: false,
+        additional_info: {'environment' => 'POC'}
+    }
+
+    ReportBuilder.build_report options
+    generated_report = File.read("#{output_location}.html")
+    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/original.html")
+
+    expect(generated_report).to eq(expected_report)
+
+  end
+
 end
