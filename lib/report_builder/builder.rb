@@ -36,7 +36,8 @@ module ReportBuilder
       input = files options[:json_path]
       all_features = features input rescue (raise 'ReportBuilderParsingError')
 
-      File.open(options[:report_path] + '.json', 'w') do |file|
+      report_name = options[:json_report_path] || options[:report_path]
+      File.open(report_name + '.json', 'w') do |file|
         file.write JSON.pretty_generate all_features
       end if options[:report_types].include? 'JSON'
 
@@ -48,7 +49,8 @@ module ReportBuilder
       scenario_data = data all_scenarios
       step_data = data all_steps
 
-      File.open(options[:report_path] + '.html', 'w:UTF-8') do |file|
+      report_name = options[:html_report_path] || options[:report_path]
+      File.open(report_name + '.html', 'w:UTF-8') do |file|
         @builder = ::Builder::XmlMarkup.new(target: file, indent: 0)
         @builder.declare!(:DOCTYPE, :html)
         @builder << '<html>'
@@ -196,7 +198,8 @@ module ReportBuilder
 
       end if options[:report_types].include? 'HTML'
 
-      File.open(options[:report_path] + '.retry', 'w:UTF-8') do |file|
+      report_name = options[:retry_report_path] || options[:report_path]
+      File.open(report_name + '.retry', 'w:UTF-8') do |file|
         all_features.each do |feature|
           if feature['status'] == 'broken'
             feature['elements'].each {|scenario| file.puts "#{feature['uri']}:#{scenario['line']}" if scenario['status'] == 'failed'}
