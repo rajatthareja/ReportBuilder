@@ -84,4 +84,20 @@ describe ReportBuilder do
     expect(files_created).to match_array(["#{File.basename(json_output_location)}.json", "#{File.basename(html_output_location)}.html", "#{File.basename(retry_output_location)}.retry"])
   end
 
+  it 'prioritizes specific report names over the general name' do
+    input_path = "#{TEST_FIXTURES_DIRECTORY}/partial_json_1.json"
+    output_directory = Dir.mktmpdir
+
+    generic_output_location = "#{output_directory}/report"
+    html_output_location = "#{output_directory}/html_report"
+
+    ReportBuilder.build_report(report_types: [:json, :html, :retry], json_path: [input_path], report_path: generic_output_location, html_report_path: html_output_location)
+
+    files_created = Dir.entries(output_directory)
+    files_created.delete('.')
+    files_created.delete('..')
+
+    expect(files_created).to match_array(["#{File.basename(generic_output_location)}.json", "#{File.basename(html_output_location)}.html", "#{File.basename(generic_output_location)}.retry"])
+  end
+
 end

@@ -25,6 +25,18 @@ opt_parser = OptionParser.new do |opts|
     options[:report_path] = report_path
   end
 
+  opts.on('--json_out [PATH]NAME', String, 'Report path for json report with name without extension') do |report_path|
+    options[:json_report_path] = report_path
+  end
+
+  opts.on('--html_out [PATH]NAME', String, 'Report path for html report with name without extension') do |report_path|
+    options[:html_report_path] = report_path
+  end
+
+  opts.on('--retry_out [PATH]NAME', String, 'Report path for retry report with name without extension') do |report_path|
+    options[:retry_report_path] = report_path
+  end
+
   opts.on('-f','--format x,y,z', Array, 'List of report format - html,json,retry') do |list|
     options[:report_types] = list
   end

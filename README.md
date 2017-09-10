@@ -70,17 +70,20 @@ gem install report_builder
 
 ### CLI Options:
 
-| Option         | Values      | Explanation                                              |
-|----------------|-------------|----------------------------------------------------------|
-| -s, --source   | x,y,z       | List of json path or files                               |
-| -o, --out      | [PATH]NAME  | Report path with name without extension                  |
-| -f, --format   | x,y,z       | List of report format - html,json,retry                        |
-| -t, --tabs     | x,y,z       | List of report tabs - overview,features,scenarios,errors |
-| -c, --compress |             | Reduce report size if embedding images                   |
-| -T, --title    | TITLE       | Report title                                             |
-| -I, --info     | a:x,b:y,c:z | List of additional info about test - key:value           |
-| -h, --help     |             | Show available command line switches                     |
-| -v, --version  |             | Show gem version                                         |
+| Option         | Values      | Explanation                                                       |
+|----------------|-------------|-------------------------------------------------------------------|
+| -s, --source   | x,y,z       | List of json path or files                                        |
+| -o, --out      | [PATH]NAME  | Report path with name without extension                           |
+| --json_out     | [PATH]NAME  | Same as the -o option but will only apply the json report format  |
+| --html_out     | [PATH]NAME  | Same as the -o option but will only apply the html report format  |
+| --retry_out    | [PATH]NAME  | Same as the -o option but will only apply the retry report format |
+| -f, --format   | x,y,z       | List of report format - html,json,retry                           |
+| -t, --tabs     | x,y,z       | List of report tabs - overview,features,scenarios,errors          |
+| -c, --compress |             | Reduce report size if embedding images                            |
+| -T, --title    | TITLE       | Report title                                                      |
+| -I, --info     | a:x,b:y,c:z | List of additional info about test - key:value                    |
+| -h, --help     |             | Show available command line switches                              |
+| -v, --version  |             | Show gem version                                                  |
 
 ### CLI Example:
 
