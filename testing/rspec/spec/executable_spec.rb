@@ -6,7 +6,7 @@ describe 'gem executable' do
 
     it 'generates a named json report with --json_out' do
       input_path = "#{TEST_FIXTURES_DIRECTORY}/partial_json_1.json"
-      output_directory = Dir.mktmpdir
+      output_directory = ReportBuilder::FileHelper.create_directory
       json_output_location = "#{output_directory}/json_report"
 
       `ruby #{BIN_DIRECTORY}/report_builder -s #{input_path} -f json --json_out #{json_output_location}`
@@ -20,7 +20,7 @@ describe 'gem executable' do
 
     it 'generates a named html report with --html_out' do
       input_path = "#{TEST_FIXTURES_DIRECTORY}/partial_json_1.json"
-      output_directory = Dir.mktmpdir
+      output_directory = ReportBuilder::FileHelper.create_directory
       html_output_location = "#{output_directory}/html_report"
 
       `ruby #{BIN_DIRECTORY}/report_builder -s #{input_path} -f html --html_out #{html_output_location}`
@@ -34,7 +34,7 @@ describe 'gem executable' do
 
     it 'generates a named retry report with --retry_out' do
       input_path = "#{TEST_FIXTURES_DIRECTORY}/partial_json_1.json"
-      output_directory = Dir.mktmpdir
+      output_directory = ReportBuilder::FileHelper.create_directory
       retry_output_location = "#{output_directory}/retry_report"
 
       `ruby #{BIN_DIRECTORY}/report_builder -s #{input_path} -f retry --retry_out #{retry_output_location}`

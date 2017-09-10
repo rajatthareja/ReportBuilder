@@ -54,7 +54,7 @@ describe ReportBuilder do
 
   it 'names all reports the same by default' do
     input_path = "#{TEST_FIXTURES_DIRECTORY}/partial_json_1.json"
-    output_directory = Dir.mktmpdir
+    output_directory = ReportBuilder::FileHelper.create_directory
 
     generic_output_location = "#{output_directory}/report"
 
@@ -69,7 +69,7 @@ describe ReportBuilder do
 
   it 'can name reports individually' do
     input_path = "#{TEST_FIXTURES_DIRECTORY}/partial_json_1.json"
-    output_directory = Dir.mktmpdir
+    output_directory = ReportBuilder::FileHelper.create_directory
 
     json_output_location = "#{output_directory}/json_report"
     html_output_location = "#{output_directory}/html_report"
@@ -86,7 +86,7 @@ describe ReportBuilder do
 
   it 'prioritizes specific report names over the general name' do
     input_path = "#{TEST_FIXTURES_DIRECTORY}/partial_json_1.json"
-    output_directory = Dir.mktmpdir
+    output_directory = ReportBuilder::FileHelper.create_directory
 
     generic_output_location = "#{output_directory}/report"
     html_output_location = "#{output_directory}/html_report"
