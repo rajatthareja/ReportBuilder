@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'report_builder'
-  s.version     = '0.1.5'
+  s.version     = '0.1.6'
   s.bindir      = 'bin'
   s.summary     = 'ReportBuilder'
   s.description = 'Merge Cucumber JSON reports and build single HTML Test Report'
