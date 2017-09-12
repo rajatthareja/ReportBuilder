@@ -121,11 +121,13 @@ Then run rake task report_builder
 
 We're open to any contribution. It has to be tested properly though.
 
-## Maintainer
+## Collaborators
 
-* [Rajat Thareja](http://www.rajatthareja.com)
+* [Rajat Thareja](https://github.com/rajatthareja)
 * [Justin Commu](https://github.com/tk8817)
+* [Eric Kessler](https://github.com/enkessler)
+* [Jeff Morgan](https://github.com/cheezy)
 
 ## License
 
-Copyright (c) 2016 [MIT LICENSE](LICENSE)
+Copyright (c) 2017 [MIT LICENSE](LICENSE)
