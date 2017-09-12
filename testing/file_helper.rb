@@ -16,7 +16,7 @@ module ReportBuilder
 
       def clear_created_directories
         created_directories.each do |directory_path|
-          FileUtils.remove_entry(directory_path)
+          FileUtils.remove_entry(directory_path) if File.exist?(directory_path)
         end
       end
 
