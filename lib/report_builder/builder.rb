@@ -23,8 +23,7 @@ module ReportBuilder
     }
 
     def build_report(opts = nil)
-
-      options = default_options.marshal_dump unless options
+      options = self.options || default_options.marshal_dump
       options.merge! opts if opts.is_a? Hash
 
       raise 'Error: Invalid report_types Use: [:json, :html]' unless options[:report_types].is_a? Array

@@ -100,4 +100,48 @@ describe ReportBuilder do
     expect(files_created).to match_array(["#{File.basename(generic_output_location)}.json", "#{File.basename(html_output_location)}.html", "#{File.basename(generic_output_location)}.retry"])
   end
 
+  describe 'report configuration' do
+
+    it 'has a default configuration' do
+      expect(ReportBuilder.configure).to eq({
+                                              json_path: nil,
+                                              report_path: 'test_report',
+                                              report_types: [:html],
+                                              report_tabs: [:overview, :features],
+                                              report_title: 'Test Results',
+                                              compress_images: false,
+                                              additional_info: {}
+                                            })
+    end
+
+
+    context 'with specific configuration' do
+
+      let (:source_path) { "#{TEST_FIXTURES_DIRECTORY}/partial_json_1.json" }
+      let (:report_directory) { ReportBuilder::FileHelper.create_directory }
+      let (:report_file_path) { "#{report_directory}/report" }
+
+      before(:each) do
+        ReportBuilder.configure do |configuration|
+          configuration.json_path = source_path
+          configuration.report_path = report_file_path
+          configuration.report_types = [:json, :retry]
+        end
+      end
+
+
+      it 'uses the overridden configuration' do
+        ReportBuilder.build_report
+
+        files_created = Dir.entries(report_directory)
+        files_created.delete('.')
+        files_created.delete('..')
+
+        expect(files_created).to match_array(["#{File.basename(report_file_path)}.json", "#{File.basename(report_file_path)}.retry"])
+      end
+
+    end
+
+  end
+
 end
