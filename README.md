@@ -5,6 +5,8 @@
 
 Ruby gem to merge Cucumber JSON reports and build single HTML Test Report
 
+[View sample report](http://rajatthareja.github.io/ReportBuilder/)
+
 ## Installation
 
 ```bash
