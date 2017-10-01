@@ -194,10 +194,10 @@
 
 <header class="brown lighten-5">
   <div class="row brown lighten-1">
-    <div class="col s8">
+    <div class="col m8 hide-on-small-only">
       <h5 class="truncate white-text tooltipped" data-tooltip="<%=options[:report_title]%>"><%=options[:report_title]%></h5>
     </div>
-    <div class="col s4 brown lighten-1">
+    <div class="col m4 s12 brown lighten-1">
       <ul class="tabs brown lighten-1">
         <li class="tab col s3">
           <a class="btn brown lighten-3 active blue-text waves-effect waves-light tooltipped" data-tooltip="Overview" href="#overview"><i class="material-icons">public</i></a>
@@ -219,20 +219,20 @@
   <div class="row">
     <div id="overview" class="col s12 brown lighten-5">
       <div class="row">
-        <div class="col s4">
+        <div class="col m4 s12">
           <canvas id="featuresDoughnut" width="400" height="400"></canvas>
-          <table id="metaDataFeatures" class="bordered responsive-table">
+          <table id="metaDataFeatures" class="bordered">
             <tbody></tbody>
           </table>
         </div>
-        <div class="col s4">
+        <div class="col m4 s12">
           <canvas id="scenariosDoughnut" width="400" height="400"></canvas>
-          <table id="metaDataScenarios" class="bordered responsive-table">
+          <table id="metaDataScenarios" class="bordered">
             <tbody></tbody>
           </table>
         </div>
-        <div class="col s4">
-          <table id="metaData" class="bordered responsive-table">
+        <div class="col m4 s12">
+          <table id="metaData" class="bordered">
             <tbody>
             <%options[:additional_info].each do |key, value|%>
                 <tr><th><%=key%></th><td><%=value%></td></tr>
@@ -266,13 +266,13 @@
       </ul>
     </div>
     <div id="summary" class="col s12 brown lighten-5">
-      <table id="summaryTable" class="bordered responsive-table brown lighten-1 white-text">
+      <table id="summaryTable" class="bordered brown lighten-1 white-text">
         <thead>
         <tr>
           <th>Feature</th>
           <th>Scenario</th>
           <th>Status</th>
-          <th>Error</th>
+          <th class="hide-on-small-only">Error</th>
         </tr>
         </thead>
         <tbody>
@@ -282,7 +282,7 @@
                   <td class="hoverable"><%=feature['name']%></td>
                   <td class="hoverable"><a class="modal-trigger white-text" href="#f<%=f%>s<%=s%>"><%=scenario['name']%></a></td>
                   <td class="hoverable uppercase"><%=scenario['status']%></td>
-                  <td class="hoverable"><%if scenario['error']%><%=scenario['error']%><%end%></td>
+                  <td class="hoverable hide-on-small-only"><%if scenario['error']%><%=scenario['error']%><%end%></td>
                 </tr>
             <%end%>
         <%end%>
