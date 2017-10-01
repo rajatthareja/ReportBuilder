@@ -29,9 +29,8 @@ gem install report_builder
 | json_path | [String] / [Array] | (current directory) | json files path / array of json files or path |
 | report_path | [String] | 'test_report' | output file path with file name without extension |
 | report_types | [Array] | [:html] | :json, :html, :retry (output file types) |
-| report_tabs | [Array] | [:overview, :features] | :overview, :features, :scenarios, :errors (tabs to build) |
 | report_title | [String] | 'Test Results' | report and html title |
-| compress_images | [Boolean] | false | true / false (If true, the size of HTML report is reduced but takes more time to build report) |
+| include_images | [Boolean] | true | true / false (If false, the size of HTML report is reduced by excluding embedded images) |
 | additional_info | [Hash] | {} | additional info for report summary |
 
 ### Code Examples:
@@ -45,9 +44,8 @@ gem install report_builder
       config.json_path = 'cucumber_sample/logs'
       config.report_path = 'my_test_report'
       config.report_types = [:json, :html]
-      config.report_tabs = [:overview, :features, :scenarios, :errors]
       config.report_title = 'My Test Results'
-      config.compress_images = false
+      config.include_images = false
       config.additional_info = {browser: 'Chrome', environment: 'Stage 5'}
     end
     
@@ -58,9 +56,8 @@ gem install report_builder
        json_path:    'cucumber_sample/logs',
        report_path:  'my_test_report',
        report_types: ['json', 'html'],
-       report_tabs:  [ 'overview', 'features', 'scenarios', 'errors'],
        report_title: 'My Test Results',
-       compress_images: false,
+       include_images: false,
        additional_info: {'browser' => 'Chrome', 'environment' => 'Stage 5'}
      }
     
@@ -78,8 +75,7 @@ gem install report_builder
 | --html_out     | [PATH]NAME  | Same as the -o option but will only apply the html report format  |
 | --retry_out    | [PATH]NAME  | Same as the -o option but will only apply the retry report format |
 | -f, --format   | x,y,z       | List of report format - html,json,retry                           |
-| -t, --tabs     | x,y,z       | List of report tabs - overview,features,scenarios,errors          |
-| -c, --compress |             | Reduce report size if embedding images                            |
+| -i, --images   |             | Reduce report size if embedding images                            |
 | -T, --title    | TITLE       | Report title                                                      |
 | -I, --info     | a:x,b:y,c:z | List of additional info about test - key:value                    |
 | -h, --help     |             | Show available command line switches                              |
@@ -92,7 +88,6 @@ gem install report_builder
      report_builder
      report_builder -s 'path/of/json/files/dir'
      report_builder -s 'path/of/json/files/dir' -o my_report_file
-     report_builder -s 'path/of/json/files/dir' -o my_report_file -t overview,features,scenarios,errors
 
 ```
 

@@ -1,4 +1,4 @@
-require 'report_builder/builder'
+require_relative 'report_builder/builder'
 
 
 module ReportBuilder
@@ -8,9 +8,8 @@ module ReportBuilder
   #       config.json_path = 'cucumber_sample/logs'
   #       config.report_path = 'my_test_report'
   #       config.report_types = [:JSON, :HTML]
-  #       config.report_tabs = [:Overview, :Features, :Scenarios, :Errors]
   #       config.report_title = 'My Test Results'
-  #       config.compress_images = true
+  #       config.include_images = true
   #       config.additional_info = {Browser: 'Chrome', Environment: 'Stage 5'}
   #      end
   #
@@ -27,9 +26,8 @@ module ReportBuilder
   #       json_path:    'cucumber_sample/logs',
   #       report_path:  'my_test_report',
   #       report_types: ['json', 'html'],
-  #       report_tabs:  [ 'overview', 'features', 'scenarios', 'errors'],
   #       report_title: 'My Test Results',
-  #       compress_images: false,
+  #       include_images: true,
   #       additional_info: {'browser' => 'Chrome', 'environment' => 'Stage 5'}
   #     }
   #

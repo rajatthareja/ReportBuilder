@@ -1,0 +1,1 @@
+body{display:flex;min-height:100vh;flex-direction:column}main{flex:1 0 auto}.uppercase{text-transform:uppercase}i{vertical-align:middle}.rotate-45{-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg)}
