@@ -29,12 +29,12 @@ module ReportBuilder
       end if options[:report_types].include? 'JSON'
 
       html_report_path = options[:html_report_path] || options[:report_path]
-      File.open(html_report_path + '.html', 'w:UTF-8') do |file|
+      File.open(html_report_path + '.html', 'w') do |file|
         file.write ERB.new(File.read(File.dirname(__FILE__) + '/../../template/html_report.erb')).result(binding).gsub('  ', '').gsub("\n\n", '')
       end if options[:report_types].include? 'HTML'
 
       retry_report_path = options[:retry_report_path] || options[:report_path]
-      File.open(retry_report_path + '.retry', 'w:UTF-8') do |file|
+      File.open(retry_report_path + '.retry', 'w') do |file|
         features.each do |feature|
           if feature['status'] == 'broken'
             feature['elements'].each {|scenario| file.puts "#{feature['uri']}:#{scenario['line']}" if scenario['status'] == 'failed'}
