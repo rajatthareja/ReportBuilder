@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.version     = '1.0'
   s.bindir      = 'bin'
   s.summary     = 'ReportBuilder'
-  s.description = 'Merge Cucumber JSON reports and build single JSON, HTML Test Report'
+  s.description = 'Ruby gem to merge Cucumber JSON reports and build mobile friendly HTML Test Report, JSON report and retry file.'
   s.post_install_message = 'Happy reporting!'
   s.authors     = ['Rajat Thareja']
   s.email       = 'rajat.thareja.1990@gmail.com'
