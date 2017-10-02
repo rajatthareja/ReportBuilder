@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/report_builder.svg)](https://badge.fury.io/rb/report_builder) 
 [![Join the chat at https://gitter.im/rajatthareja/ReportBuilder](https://badges.gitter.im/rajatthareja/ReportBuilder.svg)](https://gitter.im/rajatthareja/ReportBuilder?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Ruby gem to merge Cucumber JSON reports and build single HTML Test Report
+Ruby gem to merge Cucumber JSON reports and build mobile friendly HTML Test Report, JSON report and retry file.
 
 [View sample report](http://reportbuilder.rajatthareja.com/)
 
@@ -77,7 +77,7 @@ gem install report_builder
 | --html_out     | [PATH]NAME  | Same as the -o option but will only apply the html report format  |
 | --retry_out    | [PATH]NAME  | Same as the -o option but will only apply the retry report format |
 | -f, --format   | x,y,z       | List of report format - html,json,retry                           |
-| -i, --images   |             | Reduce report size if embedding images                            |
+| --[no-]images  |             | Reduce report size by excluding embedded images                   |
 | -T, --title    | TITLE       | Report title                                                      |
 | -I, --info     | a:x,b:y,c:z | List of additional info about test - key:value                    |
 | -h, --help     |             | Show available command line switches                              |
