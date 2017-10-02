@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2013781000
+              "duration": 2003171000
             }
           }
         ],
@@ -41,7 +41,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2166168000
+              "duration": 71000
             },
             "after": [
               {
@@ -50,7 +50,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5001813000
+                  "duration": 5004876000
                 }
               }
             ]
@@ -59,12 +59,15 @@
             "keyword": "When ",
             "name": "I am when step of some feature",
             "line": 6,
+            "output": [
+              "ABC"
+            ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:5"
+              "location": "features/step_definitions/sample_steps.rb:4"
             },
             "result": {
               "status": "passed",
-              "duration": 5004104000
+              "duration": 81000
             },
             "after": [
               {
@@ -73,7 +76,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5002445000
+                  "duration": 5004919000
                 }
               }
             ]
@@ -83,11 +86,11 @@
             "name": "I am then step of some feature",
             "line": 7,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:9"
+              "location": "features/step_definitions/sample_steps.rb:8"
             },
             "result": {
               "status": "passed",
-              "duration": 2000251000
+              "duration": 68000
             },
             "after": [
               {
@@ -96,7 +99,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5003196000
+                  "duration": 5004005000
                 }
               }
             ]
@@ -109,7 +112,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 24000
+              "duration": 32000
             }
           }
         ]
@@ -134,7 +137,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2004506000
+              "duration": 2001440000
             }
           }
         ],
@@ -144,11 +147,11 @@
             "name": "I am give step of some other feature",
             "line": 16,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:13"
+              "location": "features/step_definitions/sample_steps.rb:11"
             },
             "result": {
               "status": "passed",
-              "duration": 2003560000
+              "duration": 50000
             },
             "after": [
               {
@@ -157,7 +160,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5003363000
+                  "duration": 5001302000
                 }
               }
             ]
@@ -166,12 +169,15 @@
             "keyword": "When ",
             "name": "I am when step of some other feature",
             "line": 16,
+            "output": [
+              123
+            ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:17"
+              "location": "features/step_definitions/sample_steps.rb:14"
             },
             "result": {
               "status": "passed",
-              "duration": 2002704000
+              "duration": 66000
             },
             "after": [
               {
@@ -180,7 +186,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5004491000
+                  "duration": 5004926000
                 }
               }
             ]
@@ -190,11 +196,11 @@
             "name": "I am then step of some other feature",
             "line": 16,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:21"
+              "location": "features/step_definitions/sample_steps.rb:18"
             },
             "result": {
               "status": "passed",
-              "duration": 2002990000
+              "duration": 86000
             },
             "after": [
               {
@@ -203,7 +209,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5003834000
+                  "duration": 5000529000
                 }
               }
             ]
@@ -216,7 +222,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 24000
+              "duration": 25000
             }
           }
         ]
@@ -241,7 +247,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2003452000
+              "duration": 2003332000
             }
           }
         ],
@@ -251,11 +257,11 @@
             "name": "I am give step of some other feature",
             "line": 17,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:13"
+              "location": "features/step_definitions/sample_steps.rb:11"
             },
             "result": {
               "status": "passed",
-              "duration": 2003207000
+              "duration": 50000
             },
             "after": [
               {
@@ -264,7 +270,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5000112000
+                  "duration": 5000155000
                 }
               }
             ]
@@ -273,12 +279,15 @@
             "keyword": "When ",
             "name": "I am when step of some other feature",
             "line": 17,
+            "output": [
+              123
+            ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:17"
+              "location": "features/step_definitions/sample_steps.rb:14"
             },
             "result": {
               "status": "passed",
-              "duration": 2004838000
+              "duration": 63000
             },
             "after": [
               {
@@ -287,7 +296,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5000669000
+                  "duration": 5003230000
                 }
               }
             ]
@@ -297,11 +306,11 @@
             "name": "I am then step of some this feature",
             "line": 17,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:21"
+              "location": "features/step_definitions/sample_steps.rb:18"
             },
             "result": {
               "status": "passed",
-              "duration": 2003468000
+              "duration": 68000
             },
             "after": [
               {
@@ -310,7 +319,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5003976000
+                  "duration": 5004387000
                 }
               }
             ]
@@ -323,7 +332,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 29000
+              "duration": 24000
             }
           }
         ]
@@ -348,7 +357,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2002135000
+              "duration": 2003406000
             }
           }
         ],
@@ -362,7 +371,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2004094000
+              "duration": 52000
             },
             "after": [
               {
@@ -371,7 +380,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5003802000
+                  "duration": 5003147000
                 }
               }
             ]
@@ -380,12 +389,15 @@
             "keyword": "When ",
             "name": "I am when step of some feature",
             "line": 22,
+            "output": [
+              "ABC"
+            ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:5"
+              "location": "features/step_definitions/sample_steps.rb:4"
             },
             "result": {
               "status": "passed",
-              "duration": 5001839000
+              "duration": 68000
             },
             "after": [
               {
@@ -394,7 +406,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5001594000
+                  "duration": 5004222000
                 }
               }
             ]
@@ -404,11 +416,11 @@
             "name": "I am then step of some feature",
             "line": 23,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:9"
+              "location": "features/step_definitions/sample_steps.rb:8"
             },
             "result": {
               "status": "passed",
-              "duration": 2002559000
+              "duration": 51000
             },
             "after": [
               {
@@ -417,7 +429,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5004622000
+                  "duration": 5003115000
                 }
               }
             ]
@@ -430,7 +442,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 28000
+              "duration": 24000
             }
           }
         ]
@@ -455,7 +467,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2003081000
+              "duration": 2004002000
             }
           }
         ],
@@ -465,11 +477,11 @@
             "name": "I am give step of some other feature",
             "line": 27,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:13"
+              "location": "features/step_definitions/sample_steps.rb:11"
             },
             "result": {
               "status": "passed",
-              "duration": 2001093000
+              "duration": 48000
             },
             "after": [
               {
@@ -478,7 +490,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5000828000
+                  "duration": 5000730000
                 }
               }
             ]
@@ -487,12 +499,15 @@
             "keyword": "When ",
             "name": "I am when step of some other feature",
             "line": 28,
+            "output": [
+              123
+            ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:17"
+              "location": "features/step_definitions/sample_steps.rb:14"
             },
             "result": {
               "status": "passed",
-              "duration": 2003284000
+              "duration": 53000
             },
             "after": [
               {
@@ -501,7 +516,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5002003000
+                  "duration": 5004173000
                 }
               }
             ]
@@ -511,11 +526,11 @@
             "name": "I am then step of some other feature",
             "line": 29,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:21"
+              "location": "features/step_definitions/sample_steps.rb:18"
             },
             "result": {
               "status": "passed",
-              "duration": 2004429000
+              "duration": 56000
             },
             "after": [
               {
@@ -524,7 +539,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 5002952000
+                  "duration": 5001883000
                 }
               }
             ]
@@ -537,7 +552,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 31000
+              "duration": 28000
             }
           }
         ]
