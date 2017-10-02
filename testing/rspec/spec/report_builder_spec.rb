@@ -32,24 +32,22 @@ describe ReportBuilder do
     expect(combined_report).to eq(expected_report)
   end
 
-  it 'produces the report without change during my refactoring' do
+  it 'correctly combines multiple JSON reports into a single HTML report' do
     output_location = Tempfile.new('new_report').path
     options = {
-        json_path: "#{TEST_FIXTURES_DIRECTORY}/junit_reports/**",
+        json_path: "#{TEST_FIXTURES_DIRECTORY}/json_reports",
         report_path: output_location,
         report_types: ['html'],
-        report_tabs: ['overview', 'features', 'scenarios', 'errors'],
         report_title: 'Test Results',
-        compress_images: false,
-        additional_info: {'environment' => 'POC'}
+        include_images: false,
+        additional_info: {Environment: 'POC'}
     }
 
     ReportBuilder.build_report options
     generated_report = File.read("#{output_location}.html")
-    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/original.html")
+    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/report.html")
 
     expect(generated_report).to eq(expected_report)
-
   end
 
   it 'names all reports the same by default' do
@@ -104,12 +102,11 @@ describe ReportBuilder do
 
     it 'has a default configuration' do
       expect(ReportBuilder.configure).to eq({
-                                              json_path: nil,
+                                              json_path: Dir.pwd,
                                               report_path: 'test_report',
                                               report_types: [:html],
-                                              report_tabs: [:overview, :features],
                                               report_title: 'Test Results',
-                                              compress_images: false,
+                                              include_images: true,
                                               additional_info: {}
                                             })
     end
