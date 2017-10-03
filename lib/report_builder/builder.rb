@@ -51,7 +51,7 @@ module ReportBuilder
           report_types: [:html], # [Array] Output file types to build, [:json, :html] or ['html', 'json']
           report_title: 'Test Results', # [String] Report and html title
           include_images: true, # [Boolean] Set false to reducing the size of HTML report, by excluding embedded images
-          additional_info: {} # [Hash] Additional info for report summary
+          additional_info: {} # [Hash] Additional info for report
       )
     end
 

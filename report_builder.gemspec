@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.test_files  = s.files.grep(%r{^(testing)/})
 
-  s.add_runtime_dependency 'json', '>= 2.1.0'
+  s.add_runtime_dependency 'json', '>= 1.8.1'
 
   s.add_development_dependency 'rake', '< 13.0'
   s.add_development_dependency 'rspec', '< 4.0'
