@@ -56,7 +56,7 @@ module ReportBuilder
     end
 
     def decode(data)
-      Base64.decode64(data) rescue data
+      (Base64.decode64(data) rescue data).gsub(/^data:image\/(png|gif|jpg|jpeg)\;base64,/, '')
     end
 
     private
