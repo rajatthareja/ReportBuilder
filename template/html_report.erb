@@ -30,6 +30,7 @@
             <%end%>
 
             <h5><%=scenario['name']%></h5>
+            <%=feature['uri']%>:<%=scenario['line']%>
 
             <%if scenario['before']%>
                 <%scenario['before'].each do |before|%>
