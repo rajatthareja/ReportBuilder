@@ -1,7 +1,6 @@
 pkg/
 .idea/
 .DS_Store
-temp/
 Gemfile.lock
 doc/
 .yardoc/

@@ -1,0 +1,1 @@
+default: -f json -o ../fixtures/json_reports/report<%= ENV['TEST_ENV_NUMBER'] %>.json -f html -o report<%= ENV['TEST_ENV_NUMBER'] %>.html -f pretty

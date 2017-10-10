@@ -5,7 +5,7 @@ describe 'gem executable' do
   describe 'option flags' do
 
     it 'generates a named json report with --json_out' do
-      input_path = "#{TEST_FIXTURES_DIRECTORY}/partial_json_1.json"
+      input_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/report.json"
       output_directory = ReportBuilder::FileHelper.create_directory
       json_output_location = "#{output_directory}/json_report"
 
@@ -19,7 +19,7 @@ describe 'gem executable' do
     end
 
     it 'generates a named html report with --html_out' do
-      input_path = "#{TEST_FIXTURES_DIRECTORY}/partial_json_1.json"
+      input_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/report.json"
       output_directory = ReportBuilder::FileHelper.create_directory
       html_output_location = "#{output_directory}/html_report"
 
@@ -33,7 +33,7 @@ describe 'gem executable' do
     end
 
     it 'generates a named retry report with --retry_out' do
-      input_path = "#{TEST_FIXTURES_DIRECTORY}/partial_json_1.json"
+      input_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/report.json"
       output_directory = ReportBuilder::FileHelper.create_directory
       retry_output_location = "#{output_directory}/retry_report"
 

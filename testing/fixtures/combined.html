@@ -43,7 +43,7 @@ features/feature1.feature:22<ul class="collection stepList"><li class="collectio
 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
 </div>
 </div><div id="f1s0" class="modal modal-fixed-footer">
-<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@scenario</div><h5>I am some failed testing scenario of some functionality</h5>
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@scenario</div><div class="chip"><i class="material-icons rotate-45">label</i>@screenshot</div><h5>I am some failed testing scenario of some functionality</h5>
 features/feature3.feature:4<ul class="collection stepList"><li class="collection-item step passed"><b>Given </b> I am give step of some feature</li><li class="collection-item step failed"><b>When </b> I am when step which will fail
 <pre class="error">I am some error (RuntimeError)
 ./features/step_definitions/sample_steps.rb:26:in `/^I am when step which will fail$/'
@@ -108,7 +108,11 @@ features/feature2.feature:17<ul class="collection stepList"><li class="collectio
 </div>
 </div><div id="f2s3" class="modal modal-fixed-footer">
 <div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@high</div><h5>I am some testing scenario of some functionality</h5>
-features/feature2.feature:20<ul class="collection stepList"><li class="collection-item step passed"><b>Given </b> I am give step of some feature</li><li class="collection-item step passed"><b>When </b> I am when step of some feature<pre>$ ABC % XYZ £</pre></li><li class="collection-item step passed"><b>Then </b> I am then step of some feature</li></ul>
+features/feature2.feature:20<ul class="collection stepList"><li class="collection-item step passed"><b>Given </b> I am give step of some feature</li><li class="collection-item step failed"><b>When </b> I am when step which will fail
+<pre class="error">I am some error (RuntimeError)
+./features/step_definitions/sample_steps.rb:26:in `/^I am when step which will fail$/'
+features/feature2.feature:22:in `When I am when step which will fail'</pre>
+</li><li class="collection-item step skipped"><b>Then </b> I am then step of some feature</li></ul>
 </div>
 <div class="modal-footer">
 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
@@ -182,7 +186,11 @@ features/feature.feature:19<ul class="collection stepList"><li class="collection
 </div>
 </div><div id="f4s3" class="modal modal-fixed-footer">
 <div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@feature</div><h5>I am some testing scenario of other functionality</h5>
-features/feature.feature:25<ul class="collection stepList"><li class="collection-item step passed"><b>Given </b> I am give step of some feature (Background)</li><li class="collection-item step passed"><b>When </b> I am when step of some feature<pre>$ ABC % XYZ £</pre></li><li class="collection-item step passed"><b>Then </b> I am then step of some feature</li></ul>
+features/feature.feature:25<ul class="collection stepList"><li class="collection-item step passed"><b>Given </b> I am give step of some feature (Background)</li><li class="collection-item step passed"><b>When </b> I am when step of some feature<pre>$ ABC % XYZ £</pre></li><li class="collection-item step failed"><b>And </b> I am when step which will fail
+<pre class="error">I am some error (RuntimeError)
+./features/step_definitions/sample_steps.rb:26:in `/^I am when step which will fail$/'
+features/feature.feature:27:in `And I am when step which will fail'</pre>
+</li><li class="collection-item step skipped"><b>Then </b> I am then step of some feature</li></ul>
 </div>
 <div class="modal-footer">
 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
@@ -284,7 +292,7 @@ features/feature.feature:25<ul class="collection stepList"><li class="collection
 </a>
 </li></ul>
 </div>
-</li><li class="feature working">
+</li><li class="feature broken">
 <div class="collapsible-header brown lighten-1 white-text waves-effect waves-light">
 <i class="material-icons white-text">featured_play_list</i>
 <b>Feature</b>&nbsp;I am some other feature for testing some functionality
@@ -302,7 +310,7 @@ features/feature.feature:25<ul class="collection stepList"><li class="collection
 <a class="waves-effect waves-light modal-trigger white-text" href="#f2s2">
 <b>Scenario Outline</b> I am some testing scenario outline of other functionality
 </a>
-</li><li class="collection-item scenario passed">
+</li><li class="collection-item scenario failed">
 <a class="waves-effect waves-light modal-trigger white-text" href="#f2s3">
 <b>Scenario</b> I am some testing scenario of some functionality
 </a>
@@ -340,7 +348,7 @@ features/feature.feature:25<ul class="collection stepList"><li class="collection
 </a>
 </li></ul>
 </div>
-</li><li class="feature working">
+</li><li class="feature broken">
 <div class="collapsible-header brown lighten-1 white-text waves-effect waves-light">
 <i class="material-icons white-text">featured_play_list</i>
 <b>Feature</b>&nbsp;This is a feature with table in step
@@ -358,7 +366,7 @@ features/feature.feature:25<ul class="collection stepList"><li class="collection
 <a class="waves-effect waves-light modal-trigger white-text" href="#f4s2">
 <b>Scenario</b> I am some other testing scenario of some functionality
 </a>
-</li><li class="collection-item scenario passed">
+</li><li class="collection-item scenario failed">
 <a class="waves-effect waves-light modal-trigger white-text" href="#f4s3">
 <b>Scenario</b> I am some testing scenario of other functionality
 </a>
@@ -437,11 +445,11 @@ features/feature.feature:25<ul class="collection stepList"><li class="collection
 <td class="hoverable"><a class="modal-trigger white-text" href="#f2s2">I am some testing scenario outline of other functionality</a></td>
 <td class="hoverable uppercase">passed</td>
 <td class="hoverable hide-on-small-only"></td>
-</tr><tr class="passed">
+</tr><tr class="failed">
 <td class="hoverable">I am some other feature for testing some functionality</td>
 <td class="hoverable"><a class="modal-trigger white-text" href="#f2s3">I am some testing scenario of some functionality</a></td>
-<td class="hoverable uppercase">passed</td>
-<td class="hoverable hide-on-small-only"></td>
+<td class="hoverable uppercase">failed</td>
+<td class="hoverable hide-on-small-only">I am some error (RuntimeError)</td>
 </tr><tr class="passed">
 <td class="hoverable">I am some other feature for testing some functionality</td>
 <td class="hoverable"><a class="modal-trigger white-text" href="#f2s4">I am some other testing scenario of some functionality</a></td>
@@ -487,11 +495,11 @@ features/feature.feature:25<ul class="collection stepList"><li class="collection
 <td class="hoverable"><a class="modal-trigger white-text" href="#f4s2">I am some other testing scenario of some functionality</a></td>
 <td class="hoverable uppercase">passed</td>
 <td class="hoverable hide-on-small-only"></td>
-</tr><tr class="passed">
+</tr><tr class="failed">
 <td class="hoverable">This is a feature with table in step</td>
 <td class="hoverable"><a class="modal-trigger white-text" href="#f4s3">I am some testing scenario of other functionality</a></td>
-<td class="hoverable uppercase">passed</td>
-<td class="hoverable hide-on-small-only"></td>
+<td class="hoverable uppercase">failed</td>
+<td class="hoverable hide-on-small-only">I am some error (RuntimeError)</td>
 </tr>
 </tbody>
 </table>
@@ -505,6 +513,10 @@ features/feature.feature:25<ul class="collection stepList"><li class="collection
 <ul class="collection failedScenarioList">
 <li class="collection-item failedScenario brown lighten-5">
 <i class="material-icons red-text">highlight_off</i>&nbsp;<a class="modal-trigger red-text"href="#f1s0">I am some failed testing scenario of some functionality</a>
+</li><li class="collection-item failedScenario brown lighten-5">
+<i class="material-icons red-text">highlight_off</i>&nbsp;<a class="modal-trigger red-text"href="#f2s3">I am some testing scenario of some functionality</a>
+</li><li class="collection-item failedScenario brown lighten-5">
+<i class="material-icons red-text">highlight_off</i>&nbsp;<a class="modal-trigger red-text"href="#f4s3">I am some testing scenario of other functionality</a>
 </li>
 </ul>
 </div>

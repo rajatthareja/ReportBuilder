@@ -1,0 +1,7 @@
+require 'rake/clean'
+
+CLEAN.include('*.html')
+CLEAN.include('*.json')
+CLEAN.include('*.png')
+CLEAN.include('xml/*')
+CLEAN.include('Gemfile.lock')
