@@ -19,10 +19,10 @@ Feature: I am some other feature for testing tag functionality
     Then I am then step of some feature
 
   @low
-  Scenario:  I am some other testing scenario of some functionality
+  Scenario:  I am some other testing scenario with watir screenshot
     Given I am give step of some other feature
     When I am when step of some other feature
-    And I am step with screenshot
+    And I am step with watir screenshot
     Then I am then step of some other feature
 
   @high @more @long

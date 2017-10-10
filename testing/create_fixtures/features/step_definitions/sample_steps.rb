@@ -30,10 +30,10 @@ When(/^I am step with options:$/) do |table|
   table.hashes
 end
 
-And(/^I am step with screenshot$/) do
+And(/^I am step with watir screenshot$/) do
   browser = Watir::Browser.new :chrome
-  browser.goto 'google.com'
-  browser.driver.save_screenshot('screenshot.png')
-  embed('screenshot.png', 'image/png')
+  browser.goto 'watir.com/guides/screenshots/'
+  browser.screenshot.save 'screenshot.png'
+  embed 'screenshot.png', 'image/png'
   browser.quit
 end
