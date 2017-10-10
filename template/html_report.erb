@@ -71,19 +71,12 @@
                     <b><%=step['keyword']%></b> <%=step['name']%>
 
                     <%if step['rows']%>
-                        <table>
-                          <tbody>
-                          <%step['rows'].each do |row|%>
-                              <tr>
-                                <td>|
-                                  <%row['cells'].each do |cell|%>
-                                      <%=cell + ' |'%>
-                                  <%end%>
-                                </td>
-                              </tr>
+                       <%step['rows'].each do |row|%>
+                          <%='<br/>| '%>
+                          <%row['cells'].each do |cell|%>
+                              <%=cell + ' | '%>
                           <%end%>
-                          </tbody>
-                        </table>
+                       <%end%>
                     <%end%>
 
                     <%if step['output']%>
