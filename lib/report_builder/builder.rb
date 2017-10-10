@@ -55,10 +55,6 @@ module ReportBuilder
       )
     end
 
-    def decode(data)
-      (Base64.decode64(data) rescue data).gsub(/^data:image\/(png|gif|jpg|jpeg)\;base64,/, '')
-    end
-
     private
 
     def get_files(path)
@@ -121,13 +117,22 @@ module ReportBuilder
               after['result']['duration'] ||= 0
               duration += after['result']['duration']
               status = 'failed' if after['result']['status'] == 'failed'
+              after['embeddings'].map! { |embedding|
+                decode_embedding(embedding)
+              } if after['embeddings']
               after.merge! 'status' => after['result']['status'], 'duration' => after['result']['duration']
             } if step['after']
+            step['embeddings'].map! { |embedding|
+              decode_embedding(embedding)
+            } if step['embeddings']
             step.merge! 'status' => status, 'duration' => duration
           }
           scenario['after'] ||= []
           scenario['after'].each {|after|
             after['result']['duration'] ||= 0
+            after['embeddings'].map! { |embedding|
+              decode_embedding(embedding)
+            } if after['embeddings']
             after.merge! 'status' => after['result']['status'], 'duration' => after['result']['duration']
           }
           scenario.merge! 'status' => scenario_status(scenario), 'duration' => total_time(scenario['before']) + total_time(scenario['steps']) + total_time(scenario['after'])
@@ -152,6 +157,33 @@ module ReportBuilder
         return status unless status == 'passed'
       end
       'passed'
+    end
+
+    def decode_image(data)
+      base64 = /^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{4}|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)$/
+      if data =~ base64
+        data_base64 = Base64.decode64(data).gsub(/^data:image\/(png|gif|jpg|jpeg)\;base64,/, '')
+        if data_base64 =~ base64
+          data_base64
+        else
+          data
+        end
+      else
+        ''
+      end
+    end
+
+    def decode_text(data)
+      Base64.decode64 data
+    end
+
+    def decode_embedding(embedding)
+      if embedding['mime_type'] =~ /^image\/(png|gif|jpg|jpeg)/
+        embedding['data'] = decode_image(embedding['data'])
+      elsif embedding['mime_type'] =~ /^text\/plain/
+        embedding['data'] = decode_text(embedding['data'])
+      end
+      embedding
     end
 
     def total_time(data)

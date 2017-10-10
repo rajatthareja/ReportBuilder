@@ -40,7 +40,7 @@ opt_parser = OptionParser.new do |opts|
     options[:report_types] = list
   end
 
-  opts.on('--[no-]images', 'Reduce report size by excluding embedded images') do |include_images|
+  opts.on('--[no-]images', 'Reduce HTML report size by excluding embedded images') do |include_images|
     options[:include_images] = include_images
   end
 
