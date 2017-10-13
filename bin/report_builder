@@ -55,7 +55,7 @@ opt_parser = OptionParser.new do |opts|
     end
   end
 
-  opts.on('--custom_stylesheet', 'Adds custom stylesheet to overwrite materialize styles if so desired') do |custom_stylesheet|
+  opts.on('--custom_stylesheet', 'Adds custom stylesheet to overwrite materialize styles') do |custom_stylesheet|
     options[:custom_stylesheet] = custom_stylesheet
   end
 

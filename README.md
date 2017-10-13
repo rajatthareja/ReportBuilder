@@ -34,7 +34,7 @@ gem install report_builder
 | report_title | [String] | 'Test Results' | report and html title |
 | include_images | [Boolean] | true | true / false (If false, the size of HTML report is reduced by excluding embedded images) |
 | additional_info | [Hash] | {} | additional info for report summary |
-| custom_stylesheet | [String] | nil |
+| custom_stylesheet | [String] | nil | pass custom stylesheet link to overwrite default materialize styles |
 
 ### Code Examples:
 
