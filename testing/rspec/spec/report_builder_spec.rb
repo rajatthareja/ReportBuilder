@@ -140,6 +140,23 @@ describe ReportBuilder do
         expect(files_created).to match_array(["#{File.basename(report_file_path)}.json", "#{File.basename(report_file_path)}.retry"])
       end
 
+      it 'uses custom_css_url from configuration' do
+        output_location = Tempfile.new('new_report').path
+        options = {
+            json_path: "#{TEST_FIXTURES_DIRECTORY}/json_reports",
+            report_path: output_location,
+            report_types: ['html'],
+            report_title: 'Test Results',
+            include_images: false,
+            additional_info: {Environment: 'POC'},
+            custom_stylesheet: "#{TEST_FIXTURES_DIRECTORY}/custom_stylesheet.css"
+        }
+
+        ReportBuilder.build_report options
+        generated_report = File.read("#{output_location}.html")
+        expect(generated_report).to include(options[:custom_stylesheet])
+      end
+
     end
 
   end
