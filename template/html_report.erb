@@ -49,7 +49,7 @@
             <%end%>
 
             <ul class="collection stepList">
-              <%scenario['steps'].each_with_index do |step|%>
+              <%scenario['steps'].each do |step|%>
                   <li class="collection-item step <%=step['status']%>">
 
                     <%if scenario['before']%>
