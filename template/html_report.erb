@@ -29,7 +29,7 @@
                 <%end%>
             <%end%>
 
-            <h5><%=scenario['name']%></h5>
+            <h5><%=scenario['name']%> (<%=duration(scenario['duration'])%>)</h5>
             <%=feature['uri']%>:<%=scenario['line']%>
 
             <%if scenario['before']%>
@@ -49,7 +49,7 @@
             <%end%>
 
             <ul class="collection stepList">
-              <%scenario['steps'].each_with_index do |step|%>
+              <%scenario['steps'].each do |step|%>
                   <li class="collection-item step <%=step['status']%>">
 
                     <%if scenario['before']%>
@@ -68,7 +68,7 @@
                         <%end%>
                     <%end%>
 
-                    <b><%=step['keyword']%></b> <%=step['name']%>
+                    <b><%=step['keyword']%></b> <%=step['name']%> (<%=duration(step['result']['duration'])%>)
 
                     <%if step['rows']%>
                        <%step['rows'].each do |row|%>
@@ -238,14 +238,14 @@
             <li class="feature <%=feature['status']%>">
               <div class="collapsible-header brown lighten-1 white-text waves-effect waves-light">
                 <i class="material-icons white-text">featured_play_list</i>
-                <b><%=feature['keyword']%></b>&nbsp;<%=feature['name']%>
+                <b><%=feature['keyword']%></b>&nbsp;<%=feature['name']%>&nbsp;(<%=duration(feature['duration'])%>)
               </div>
               <div class="collapsible-body brown lighten-4">
                 <ul class="collection scenarioList">
                   <%feature['elements'].each_with_index do |scenario, s|%>
                       <li class="collection-item scenario <%=scenario['status']%>">
                         <a class="waves-effect waves-light modal-trigger white-text" href="#f<%=f%>s<%=s%>">
-                          <b><%=scenario['keyword']%></b> <%=scenario['name']%>
+                          <b><%=scenario['keyword']%></b> <%=scenario['name']%>&nbsp;(<%=duration(scenario['duration'])%>)
                         </a>
                       </li>
                   <%end%>
