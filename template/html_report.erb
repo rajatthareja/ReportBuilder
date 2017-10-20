@@ -68,7 +68,7 @@
                         <%end%>
                     <%end%>
 
-                    <b><%=step['keyword']%></b> <%=step['name']%> (<%=duration(step['result']['duration'])%>)
+                    <b><%=step['keyword']%></b> <%=step['name']%> (<%=duration(step['duration'])%>)
 
                     <%if step['rows']%>
                        <%step['rows'].each do |row|%>
@@ -259,8 +259,9 @@
       <table id="summaryTable" class="bordered brown lighten-1 white-text">
         <thead>
         <tr>
-          <th>Feature</th>
+          <th class="hide-on-small-only">Feature</th>
           <th>Scenario</th>
+          <th class="hide-on-small-only">Tags</th>
           <th>Status</th>
           <th class="hide-on-small-only">Error</th>
         </tr>
@@ -269,10 +270,17 @@
         <%features.each_with_index do |feature, f|%>
             <%feature['elements'].each_with_index do |scenario, s|%>
                 <tr class="<%=scenario['status']%>">
-                  <td class="hoverable"><%=feature['name']%></td>
+                  <td class="hide-on-small-only"><%=feature['name']%></td>
                   <td class="hoverable"><a class="modal-trigger white-text" href="#f<%=f%>s<%=s%>"><%=scenario['name']%></a></td>
-                  <td class="hoverable uppercase"><%=scenario['status']%></td>
-                  <td class="hoverable hide-on-small-only"><%if scenario['error']%><%=scenario['error']%><%end%></td>
+                  <td class="hide-on-small-only">
+                    <%if scenario['tags']%>
+                        <%scenario['tags'].each do |tag|%>
+                            <%=tag['name'] + '. '%>
+                        <%end%>
+                    <%end%>
+                  </td>
+                  <td class="uppercase"><%=scenario['status']%></td>
+                  <td class="hide-on-small-only"><%if scenario['error']%><%=scenario['error']%><%end%></td>
                 </tr>
             <%end%>
         <%end%>

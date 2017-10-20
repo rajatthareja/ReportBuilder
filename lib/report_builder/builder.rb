@@ -192,10 +192,17 @@ module ReportBuilder
       total_time
     end
 
-    def duration(seconds)
-      seconds = seconds.to_f/1000000000
-      m, s = seconds.divmod(60)
-      "#{m}m #{'%.3f' % s}s"
+    def duration(ms)
+      s = ms.to_f/1000000000
+      m, s = s.divmod(60)
+      if m > 59
+        h, m = m.divmod(60)
+        "#{h}h #{m}m #{'%.2f' % s}s"
+      elsif m > 0
+        "#{m}m #{'%.2f' % s}s"
+      else
+        "#{'%.3f' % s}s"
+      end
     end
   end
 end
