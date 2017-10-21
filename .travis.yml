@@ -1,0 +1,12 @@
+os:
+  - linux
+  - osx
+
+language: ruby
+rvm:
+  - 1.9.3
+  - 2.4.0
+  - jruby-9.1.7.0
+
+
+script: bundle exec rake report_builder:test_everything
