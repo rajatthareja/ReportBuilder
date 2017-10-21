@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ### Added
 - Duration for Step, Scenario and Feature
-- Scenario Tags in Summary view(data table) 
+- Search and Filter Scenario by Tag 
 - Cucumber features to generate JSON for testing
 - Changelog file
 
