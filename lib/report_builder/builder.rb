@@ -18,6 +18,7 @@ module ReportBuilder
 
       options[:report_types].map!(&:to_s).map!(&:upcase)
 
+      options[:json_path] ||= options[:input_path]
       files = get_files options[:json_path]
       raise "Error:: No file(s) found at #{options[:json_path]}" if files.empty?
 
@@ -27,6 +28,10 @@ module ReportBuilder
       File.open(json_report_path + '.json', 'w') do |file|
         file.write JSON.pretty_generate features
       end if options[:report_types].include? 'JSON'
+
+      if options[:additional_css] and Pathname.new(options[:additional_css]).file?
+        options[:additional_css] = File.read(options[:additional_css])
+      end
 
       html_report_path = options[:html_report_path] || options[:report_path]
       File.open(html_report_path + '.html', 'w') do |file|

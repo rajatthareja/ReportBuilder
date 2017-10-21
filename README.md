@@ -27,15 +27,18 @@ gem install report_builder
 
 ### Config Options:
 
-| Option | Type | Default | Values |
-|--------|------|---------|--------|
-| json_path | [String] / [Array] | (current directory) | json files path / array of json files or path |
-| report_path | [String] | 'test_report' | output file path with file name without extension |
-| report_types | [Array] | [:html] | :json, :html, :retry (output file types) |
-| report_title | [String] | 'Test Results' | report and html title |
-| include_images | [Boolean] | true | true / false (If false, the size of HTML report is reduced by excluding embedded images) |
-| additional_info | [Hash] | {} | additional info for report summary |
-| custom_stylesheet | [String] | nil | pass custom stylesheet link to overwrite default materialize styles |
+| Option                  | Type               | Default             | Values                                                                                   |
+|-------------------------|--------------------|---------------------|------------------------------------------------------------------------------------------|
+| json_path / input_path  | [String] / [Array] | (current directory) | input json files path / array of json files or path                                      |
+| report_path             | [String]           | 'test_report'       | reports output file path with file name without extension                                |
+| json_report_path        | [String]           | (report_path)       | json report output file path with file name without extension                            |
+| html_report_path        | [String]           | (report_path)       | html report output file path with file name without extension                            |
+| retry_report_path       | [String]           | (report_path)       | retry report output file path with file name without extension                           |
+| report_types            | [Array]            | [:html]             | :json, :html, :retry (output file types)                                                 |
+| report_title            | [String]           | 'Test Results'      | report and html title                                                                    |
+| include_images          | [Boolean]          | true                | true / false (If false, the size of HTML report is reduced by excluding embedded images) |
+| additional_info         | [Hash]             | {}                  | additional info for report summary                                                       |
+| additional_css          | [String]           | nil                 | additional CSS string or CSS file path or CSS file url for customizing html report       |
 
 ### Code Examples:
 
@@ -71,20 +74,20 @@ gem install report_builder
 
 ### CLI Options:
 
-| Option              | Values      | Explanation                                                       |
-|---------------------|-------------|-------------------------------------------------------------------|
-| -s, --source        | x,y,z       | List of json path or files                                        |
-| -o, --out           | [PATH]NAME  | Report path with name without extension                           |
-| --json_out          | [PATH]NAME  | Same as the -o option but will only apply the json report format  |
-| --html_out          | [PATH]NAME  | Same as the -o option but will only apply the html report format  |
-| --retry_out         | [PATH]NAME  | Same as the -o option but will only apply the retry report format |
-| -f, --format        | x,y,z       | List of report format - html,json,retry                           |
-| --[no-]images       |             | Reduce HTML report size by excluding embedded images              |
-| -T, --title         | TITLE       | Report title                                                      |
-| -I, --info          | a:x,b:y,c:z | List of additional info about test - key:value                    |
-| -h, --help          |             | Show available command line switches                              |
-| -v, --version       |             | Show gem version                                                  |
-| --custom_stylesheet |             | Custom stylesheet for overwriting materialize stylesheet          |
+| Option              | Values          | Explanation                                                                        |
+|---------------------|-----------------|------------------------------------------------------------------------------------|
+| -s, --source        | x,y,z           | List of input json path or files                                                   |
+| -o, --out           | [PATH]NAME      | Reports path with name without extension                                           |
+| --json_out          | [PATH]NAME      | JSON report path with name without extension                                       |
+| --html_out          | [PATH]NAME      | HTML report path with name without extension                                       |
+| --retry_out         | [PATH]NAME      | Retry report path with name without extension                                      |
+| -f, --format        | x,y,z           | List of report format - html,json,retry                                            |
+| --[no-]images       |                 | Reduce HTML report size by excluding embedded images                               |
+| -T, --title         | TITLE           | Report title                                                                       |
+| -I, --info          | a:x,b:y,c:z     | List of additional info about test - key:value                                     |
+| --css               | STRING|PATH|URL | Additional CSS string or CSS file path or CSS file url for customizing html report |
+| -h, --help          |                 | Show available command line switches                                               |
+| -v, --version       |                 | Show gem version                                                                   |
 
 ### CLI Example:
 

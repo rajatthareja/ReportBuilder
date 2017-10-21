@@ -55,8 +55,8 @@ opt_parser = OptionParser.new do |opts|
     end
   end
 
-  opts.on('--custom_stylesheet', 'Adds custom stylesheet to overwrite materialize styles') do |custom_stylesheet|
-    options[:custom_stylesheet] = custom_stylesheet
+  opts.on('--css', 'Additional CSS string or CSS file path or CSS file url for customizing html report') do |additional_css|
+    options[:additional_css] = additional_css
   end
 
   opts.separator 'Common options:'

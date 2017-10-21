@@ -140,7 +140,7 @@ describe ReportBuilder do
         expect(files_created).to match_array(["#{File.basename(report_file_path)}.json", "#{File.basename(report_file_path)}.retry"])
       end
 
-      it 'uses custom_css_url from configuration' do
+      it 'uses additional_css from configuration' do
         output_location = Tempfile.new('new_report').path
         options = {
             json_path: "#{TEST_FIXTURES_DIRECTORY}/json_reports",
@@ -149,12 +149,13 @@ describe ReportBuilder do
             report_title: 'Test Results',
             include_images: false,
             additional_info: {Environment: 'POC'},
-            custom_stylesheet: "#{TEST_FIXTURES_DIRECTORY}/custom_stylesheet.css"
+            additional_css: "#{TEST_FIXTURES_DIRECTORY}/custom.css"
         }
 
         ReportBuilder.build_report options
         generated_report = File.read("#{output_location}.html")
-        expect(generated_report).to include(options[:custom_stylesheet])
+        additional_css = File.read(options[:additional_css]).gsub('  ', '').gsub("\n\n", '')
+        expect(generated_report).to include(additional_css)
       end
 
     end
