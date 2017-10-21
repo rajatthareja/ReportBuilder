@@ -39,6 +39,7 @@ gem install report_builder
 | include_images          | [Boolean]          | true                | true / false (If false, the size of HTML report is reduced by excluding embedded images) |
 | additional_info         | [Hash]             | {}                  | additional info for report summary                                                       |
 | additional_css          | [String]           | nil                 | additional CSS string or CSS file path or CSS file url for customizing html report       |
+| additional_js           | [String]           | nil                 | additional JS string or JS file path or JS file url for customizing html report           |
 
 ### Code Examples:
 
@@ -85,7 +86,8 @@ gem install report_builder
 | --[no-]images       |                 | Reduce HTML report size by excluding embedded images                               |
 | -T, --title         | TITLE           | Report title                                                                       |
 | -I, --info          | a:x,b:y,c:z     | List of additional info about test - key:value                                     |
-| --css               | STRING|PATH|URL | Additional CSS string or CSS file path or CSS file url for customizing html report |
+| --css               | STRING/PATH/URL | Additional CSS string or CSS file path or CSS file url for customizing html report |
+| --js                | STRING/PATH/URL | Additional JS string or JS file path or JS file url for customizing html report    |
 | -h, --help          |                 | Show available command line switches                                               |
 | -v, --version       |                 | Show gem version                                                                   |
 
