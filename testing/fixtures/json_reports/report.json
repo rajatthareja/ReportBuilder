@@ -31,7 +31,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 33000
+              "duration": 37000
             }
           }
         ],
@@ -45,7 +45,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 73000
+              "duration": 65000
             },
             "after": [
               {
@@ -54,7 +54,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 17000
+                  "duration": 15000
                 }
               }
             ]
@@ -71,7 +71,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 78000
+              "duration": 65000
             },
             "after": [
               {
@@ -80,7 +80,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 16000
                 }
               }
             ]
@@ -94,7 +94,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 52000
+              "duration": 55000
             },
             "after": [
               {
@@ -103,7 +103,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 17000
                 }
               }
             ]
@@ -116,7 +116,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 24000
+              "duration": 32000
             }
           }
         ]
@@ -141,7 +141,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 28000
+              "duration": 26000
             }
           }
         ],
@@ -155,7 +155,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 171000
+              "duration": 38000
             },
             "after": [
               {
@@ -164,7 +164,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 13000
                 }
               }
             ]
@@ -181,7 +181,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 457000
+              "duration": 60000
             },
             "after": [
               {
@@ -190,7 +190,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 15000
+                  "duration": 14000
                 }
               }
             ]
@@ -204,7 +204,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 51000
+              "duration": 42000
             },
             "after": [
               {
@@ -213,7 +213,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 38000
+                  "duration": 14000
                 }
               }
             ]
@@ -226,7 +226,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 32000
+              "duration": 23000
             }
           }
         ]
@@ -263,7 +263,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 25000
+              "duration": 43000
             }
           }
         ],
@@ -286,7 +286,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 17000
+                  "duration": 15000
                 }
               }
             ]
@@ -303,7 +303,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 63000
+              "duration": 54000
             },
             "after": [
               {
@@ -312,7 +312,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 18000
+                  "duration": 15000
                 }
               }
             ]
@@ -326,7 +326,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 43000
+              "duration": 64000
             },
             "after": [
               {
@@ -335,7 +335,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 19000
+                  "duration": 22000
                 }
               }
             ]
@@ -348,7 +348,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 25000
+              "duration": 26000
             }
           }
         ]
@@ -373,7 +373,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 27000
+              "duration": 28000
             }
           }
         ],
@@ -387,7 +387,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 41000
+              "duration": 35000
             },
             "after": [
               {
@@ -396,7 +396,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 15000
+                  "duration": 17000
                 }
               }
             ]
@@ -413,7 +413,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 57000
+              "duration": 64000
             },
             "after": [
               {
@@ -442,7 +442,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 5991663000
+              "duration": 8726289000
             },
             "after": [
               {
@@ -451,7 +451,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 20000
+                  "duration": 23000
                 }
               }
             ]
@@ -465,7 +465,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 82000
+              "duration": 78000
             },
             "after": [
               {
@@ -474,7 +474,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 12000
+                  "duration": 16000
                 }
               }
             ]
@@ -487,7 +487,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 36000
+              "duration": 40000
             }
           }
         ]
@@ -520,7 +520,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 23000
+              "duration": 35000
             }
           }
         ],
@@ -534,7 +534,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 30000
+              "duration": 46000
             },
             "after": [
               {
@@ -543,7 +543,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 18000
+                  "duration": 16000
                 }
               }
             ]
@@ -557,7 +557,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 24000
+              "duration": 32000
             },
             "after": [
               {
@@ -566,7 +566,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 9000
+                  "duration": 14000
                 }
               }
             ]
@@ -583,7 +583,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 38000
+              "duration": 66000
             },
             "after": [
               {
@@ -592,7 +592,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 17000
+                  "duration": 19000
                 }
               }
             ]
@@ -609,7 +609,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 52000
+              "duration": 95000
             },
             "after": [
               {
@@ -618,7 +618,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 12000
+                  "duration": 17000
                 }
               }
             ]
@@ -632,7 +632,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 20000
+              "duration": 36000
             },
             "after": [
               {
@@ -641,7 +641,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 9000
+                  "duration": 15000
                 }
               }
             ]
@@ -655,7 +655,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 34000
+              "duration": 45000
             },
             "after": [
               {
@@ -677,7 +677,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 26000
+              "duration": 82000
             }
           }
         ]
