@@ -55,6 +55,10 @@ opt_parser = OptionParser.new do |opts|
     end
   end
 
+  opts.on('--custom_stylesheet', 'Adds custom stylesheet to overwrite materialize styles') do |custom_stylesheet|
+    options[:custom_stylesheet] = custom_stylesheet
+  end
+
   opts.separator 'Common options:'
 
   opts.on_tail('-h', '--help', 'Show help') do
