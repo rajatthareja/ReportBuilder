@@ -31,7 +31,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 34000
+              "duration": 36000
             }
           }
         ],
@@ -45,7 +45,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 64000
+              "duration": 61000
             },
             "after": [
               {
@@ -69,7 +69,7 @@
             "result": {
               "status": "failed",
               "error_message": "I am some error (RuntimeError)\n./features/step_definitions/sample_steps.rb:26:in `/^I am when step which will fail$/'\nfeatures/feature3.feature:6:in `When I am when step which will fail'",
-              "duration": 1042000
+              "duration": 211000
             },
             "after": [
               {
@@ -117,7 +117,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 12055122000
+              "duration": 10353983000
             }
           }
         ]
@@ -142,7 +142,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 41000
+              "duration": 163000
             }
           }
         ],
@@ -156,7 +156,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 145000
+              "duration": 312000
             },
             "after": [
               {
@@ -165,7 +165,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 20000
+                  "duration": 43000
                 }
               }
             ]
@@ -182,7 +182,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 97000
+              "duration": 85000
             },
             "after": [
               {
@@ -191,7 +191,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 18000
+                  "duration": 8000
                 }
               }
             ]
@@ -225,7 +225,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 29000
+              "duration": 42000
             }
           }
         ]
@@ -250,7 +250,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 33000
+              "duration": 19000
             }
           }
         ],
@@ -264,7 +264,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 44000
+              "duration": 28000
             },
             "after": [
               {
@@ -273,7 +273,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 25000
+                  "duration": 20000
                 }
               }
             ]
@@ -290,7 +290,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 80000
+              "duration": 172000
             },
             "after": [
               {
@@ -299,7 +299,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 18000
+                  "duration": 12000
                 }
               }
             ]
@@ -314,7 +314,7 @@
             "result": {
               "status": "pending",
               "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/sample_steps.rb:22:in `/^I am then step of some pending feature$/'\nfeatures/feature3.feature:19:in `Then I am then step of some pending feature'",
-              "duration": 324000
+              "duration": 339000
             },
             "after": [
               {
@@ -335,7 +335,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 22000
+              "duration": 21000
             }
           }
         ]
@@ -360,7 +360,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 24000
+              "duration": 26000
             }
           }
         ],
@@ -374,7 +374,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 35000
+              "duration": 38000
             },
             "after": [
               {
@@ -400,7 +400,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 53000
+              "duration": 57000
             },
             "after": [
               {
@@ -409,7 +409,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 43000
+                  "duration": 17000
                 }
               }
             ]
@@ -423,7 +423,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 30000
+              "duration": 212000
             },
             "after": [
               {
@@ -432,7 +432,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 12000
+                  "duration": 10000
                 }
               }
             ]
@@ -445,7 +445,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 25000
+              "duration": 38000
             }
           }
         ]
@@ -470,7 +470,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 59000
+              "duration": 12000
             }
           }
         ],
@@ -484,7 +484,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 48000
+              "duration": 25000
             },
             "after": [
               {
@@ -493,7 +493,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 19000
+                  "duration": 8000
                 }
               }
             ]
@@ -510,7 +510,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 69000
+              "duration": 67000
             },
             "after": [
               {
@@ -519,7 +519,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 18000
+                  "duration": 7000
                 }
               }
             ]
@@ -533,7 +533,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 67000
+              "duration": 82000
             },
             "after": [
               {
@@ -542,7 +542,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 17000
+                  "duration": 7000
                 }
               }
             ]
@@ -555,7 +555,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 26000
+              "duration": 13000
             }
           }
         ]

@@ -20,7 +20,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 37000
+              "duration": 34000
             }
           }
         ],
@@ -34,7 +34,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 471000
+              "duration": 65000
             },
             "after": [
               {
@@ -43,7 +43,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 21000
+                  "duration": 17000
                 }
               }
             ]
@@ -87,7 +87,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 179000
+              "duration": 152000
             },
             "after": [
               {
@@ -110,7 +110,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 65000
+              "duration": 29000
             },
             "after": [
               {
@@ -119,7 +119,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 13000
                 }
               }
             ]
@@ -132,7 +132,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 28000
+              "duration": 26000
             }
           }
         ]
@@ -150,7 +150,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 28000
+              "duration": 30000
             }
           }
         ],
@@ -164,7 +164,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 37000
+              "duration": 40000
             },
             "after": [
               {
@@ -173,7 +173,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 13000
                 }
               }
             ]
@@ -206,7 +206,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 63000
+              "duration": 58000
             },
             "after": [
               {
@@ -215,7 +215,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 15000
                 }
               }
             ]
@@ -229,99 +229,6 @@
             },
             "result": {
               "status": "passed",
-              "duration": 33000
-            },
-            "after": [
-              {
-                "match": {
-                  "location": "features/support/hooks.rb:4"
-                },
-                "result": {
-                  "status": "passed",
-                  "duration": 14000
-                }
-              }
-            ]
-          }
-        ],
-        "after": [
-          {
-            "match": {
-              "location": "features/support/hooks.rb:7"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 46000
-            }
-          }
-        ]
-      },
-      {
-        "keyword": "Background",
-        "name": "",
-        "description": "",
-        "line": 3,
-        "type": "background",
-        "before": [
-          {
-            "match": {
-              "location": "features/support/hooks.rb:1"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 28000
-            }
-          }
-        ],
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I am give step of some feature",
-            "line": 4,
-            "match": {
-              "location": "features/step_definitions/sample_steps.rb:1"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 37000
-            },
-            "after": [
-              {
-                "match": {
-                  "location": "features/support/hooks.rb:4"
-                },
-                "result": {
-                  "status": "passed",
-                  "duration": 58000
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "this-is-a-feature-with-table-in-step;i-am-some-other-testing-scenario-of-some-functionality",
-        "keyword": "Scenario",
-        "name": "I am some other testing scenario of some functionality",
-        "description": "",
-        "line": 19,
-        "type": "scenario",
-        "tags": [
-          {
-            "name": "@low",
-            "line": 18
-          }
-        ],
-        "steps": [
-          {
-            "keyword": "And ",
-            "name": "I am give step of some other feature",
-            "line": 20,
-            "match": {
-              "location": "features/step_definitions/sample_steps.rb:11"
-            },
-            "result": {
-              "status": "passed",
               "duration": 39000
             },
             "after": [
@@ -331,56 +238,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 19000
-                }
-              }
-            ]
-          },
-          {
-            "keyword": "When ",
-            "name": "I am when step of some other feature",
-            "line": 21,
-            "output": [
-              "123"
-            ],
-            "match": {
-              "location": "features/step_definitions/sample_steps.rb:14"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 61000
-            },
-            "after": [
-              {
-                "match": {
-                  "location": "features/support/hooks.rb:4"
-                },
-                "result": {
-                  "status": "passed",
-                  "duration": 14000
-                }
-              }
-            ]
-          },
-          {
-            "keyword": "Then ",
-            "name": "I am then step of some other feature",
-            "line": 22,
-            "match": {
-              "location": "features/step_definitions/sample_steps.rb:18"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 50000
-            },
-            "after": [
-              {
-                "match": {
-                  "location": "features/support/hooks.rb:4"
-                },
-                "result": {
-                  "status": "passed",
-                  "duration": 14000
+                  "duration": 15000
                 }
               }
             ]
@@ -393,7 +251,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 23000
+              "duration": 24000
             }
           }
         ]
@@ -425,7 +283,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 36000
+              "duration": 401000
             },
             "after": [
               {
@@ -434,7 +292,149 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 12000
+                  "duration": 34000
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "this-is-a-feature-with-table-in-step;i-am-some-other-testing-scenario-of-some-functionality",
+        "keyword": "Scenario",
+        "name": "I am some other testing scenario of some functionality",
+        "description": "",
+        "line": 19,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@low",
+            "line": 18
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "And ",
+            "name": "I am give step of some other feature",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/sample_steps.rb:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 32000
+            },
+            "after": [
+              {
+                "match": {
+                  "location": "features/support/hooks.rb:4"
+                },
+                "result": {
+                  "status": "passed",
+                  "duration": 20000
+                }
+              }
+            ]
+          },
+          {
+            "keyword": "When ",
+            "name": "I am when step of some other feature",
+            "line": 21,
+            "output": [
+              "123"
+            ],
+            "match": {
+              "location": "features/step_definitions/sample_steps.rb:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 61000
+            },
+            "after": [
+              {
+                "match": {
+                  "location": "features/support/hooks.rb:4"
+                },
+                "result": {
+                  "status": "passed",
+                  "duration": 19000
+                }
+              }
+            ]
+          },
+          {
+            "keyword": "Then ",
+            "name": "I am then step of some other feature",
+            "line": 22,
+            "match": {
+              "location": "features/step_definitions/sample_steps.rb:18"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 60000
+            },
+            "after": [
+              {
+                "match": {
+                  "location": "features/support/hooks.rb:4"
+                },
+                "result": {
+                  "status": "passed",
+                  "duration": 14000
+                }
+              }
+            ]
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 25000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 3,
+        "type": "background",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 35000
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am give step of some feature",
+            "line": 4,
+            "match": {
+              "location": "features/step_definitions/sample_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 46000
+            },
+            "after": [
+              {
+                "match": {
+                  "location": "features/support/hooks.rb:4"
+                },
+                "result": {
+                  "status": "passed",
+                  "duration": 19000
                 }
               }
             ]
@@ -467,7 +467,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 50000
+              "duration": 64000
             },
             "after": [
               {
@@ -476,7 +476,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 17000
                 }
               }
             ]
@@ -491,7 +491,7 @@
             "result": {
               "status": "failed",
               "error_message": "I am some error (RuntimeError)\n./features/step_definitions/sample_steps.rb:26:in `/^I am when step which will fail$/'\nfeatures/feature.feature:27:in `And I am when step which will fail'",
-              "duration": 220000
+              "duration": 368000
             },
             "after": [
               {
@@ -533,7 +533,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 49000
+              "duration": 52000
             }
           }
         ]
@@ -568,7 +568,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 24000
+              "duration": 17000
             }
           }
         ],
@@ -582,7 +582,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 29000
+              "duration": 25000
             },
             "after": [
               {
@@ -591,7 +591,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 10000
+                  "duration": 11000
                 }
               }
             ]
@@ -608,7 +608,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 35000
+              "duration": 37000
             },
             "after": [
               {
@@ -617,7 +617,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 8000
+                  "duration": 34000
                 }
               }
             ]
@@ -631,7 +631,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 16000
+              "duration": 22000
             },
             "after": [
               {
@@ -640,7 +640,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 7000
+                  "duration": 8000
                 }
               }
             ]
@@ -653,7 +653,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 15000
+              "duration": 16000
             }
           }
         ]
@@ -678,7 +678,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 16000
+              "duration": 28000
             }
           }
         ],
@@ -692,7 +692,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 24000
+              "duration": 34000
             },
             "after": [
               {
@@ -701,7 +701,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 8000
+                  "duration": 11000
                 }
               }
             ]
@@ -718,7 +718,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 49000
+              "duration": 55000
             },
             "after": [
               {
@@ -727,7 +727,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 15000
+                  "duration": 9000
                 }
               }
             ]
@@ -741,7 +741,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 32000
+              "duration": 34000
             },
             "after": [
               {
@@ -750,7 +750,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 8000
+                  "duration": 10000
                 }
               }
             ]
@@ -763,7 +763,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 14000
+              "duration": 16000
             }
           }
         ]
@@ -792,7 +792,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 31000
+              "duration": 15000
             }
           }
         ],
@@ -806,7 +806,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 45000
+              "duration": 61000
             },
             "after": [
               {
@@ -815,7 +815,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 92000
+                  "duration": 9000
                 }
               }
             ]
@@ -832,7 +832,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 75000
+              "duration": 151000
             },
             "after": [
               {
@@ -841,7 +841,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 17000
                 }
               }
             ]
@@ -855,7 +855,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 51000
+              "duration": 38000
             },
             "after": [
               {
@@ -864,7 +864,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 17000
+                  "duration": 11000
                 }
               }
             ]
@@ -877,7 +877,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 30000
+              "duration": 27000
             }
           }
         ]
@@ -902,7 +902,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 21000
+              "duration": 42000
             }
           }
         ],
@@ -925,7 +925,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 64000
+                  "duration": 16000
                 }
               }
             ]
@@ -942,7 +942,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 33000
+              "duration": 62000
             },
             "after": [
               {
@@ -951,7 +951,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 15000
+                  "duration": 11000
                 }
               }
             ]
@@ -965,7 +965,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 24000
+              "duration": 35000
             },
             "after": [
               {
@@ -974,7 +974,7 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 39000
                 }
               }
             ]
@@ -987,7 +987,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 37000
+              "duration": 19000
             }
           }
         ]

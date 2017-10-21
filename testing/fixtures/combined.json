@@ -27,10 +27,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 24000
+              "duration": 17000
             },
             "status": "passed",
-            "duration": 24000
+            "duration": 17000
           }
         ],
         "steps": [
@@ -43,7 +43,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 29000
+              "duration": 25000
             },
             "after": [
               {
@@ -52,14 +52,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 10000
+                  "duration": 11000
                 },
                 "status": "passed",
-                "duration": 10000
+                "duration": 11000
               }
             ],
             "status": "passed",
-            "duration": 39000
+            "duration": 36000
           },
           {
             "keyword": "When ",
@@ -73,7 +73,34 @@
             },
             "result": {
               "status": "passed",
-              "duration": 35000
+              "duration": 37000
+            },
+            "after": [
+              {
+                "match": {
+                  "location": "features/support/hooks.rb:4"
+                },
+                "result": {
+                  "status": "passed",
+                  "duration": 34000
+                },
+                "status": "passed",
+                "duration": 34000
+              }
+            ],
+            "status": "passed",
+            "duration": 71000
+          },
+          {
+            "keyword": "Then ",
+            "name": "I am then step of some feature",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/sample_steps.rb:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 22000
             },
             "after": [
               {
@@ -89,34 +116,7 @@
               }
             ],
             "status": "passed",
-            "duration": 43000
-          },
-          {
-            "keyword": "Then ",
-            "name": "I am then step of some feature",
-            "line": 7,
-            "match": {
-              "location": "features/step_definitions/sample_steps.rb:8"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 16000
-            },
-            "after": [
-              {
-                "match": {
-                  "location": "features/support/hooks.rb:4"
-                },
-                "result": {
-                  "status": "passed",
-                  "duration": 7000
-                },
-                "status": "passed",
-                "duration": 7000
-              }
-            ],
-            "status": "passed",
-            "duration": 23000
+            "duration": 30000
           }
         ],
         "after": [
@@ -126,14 +126,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 15000
+              "duration": 16000
             },
             "status": "passed",
-            "duration": 15000
+            "duration": 16000
           }
         ],
         "status": "passed",
-        "duration": 144000
+        "duration": 170000
       },
       {
         "id": "i-am-some-feature-for-testing-some-functionality;i-am-some-other-testing-scenario-of-some-functionality",
@@ -155,10 +155,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 16000
+              "duration": 28000
             },
             "status": "passed",
-            "duration": 16000
+            "duration": 28000
           }
         ],
         "steps": [
@@ -171,7 +171,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 24000
+              "duration": 34000
             },
             "after": [
               {
@@ -180,14 +180,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 8000
+                  "duration": 11000
                 },
                 "status": "passed",
-                "duration": 8000
+                "duration": 11000
               }
             ],
             "status": "passed",
-            "duration": 32000
+            "duration": 45000
           },
           {
             "keyword": "When ",
@@ -201,7 +201,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 49000
+              "duration": 55000
             },
             "after": [
               {
@@ -210,10 +210,10 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 15000
+                  "duration": 9000
                 },
                 "status": "passed",
-                "duration": 15000
+                "duration": 9000
               }
             ],
             "status": "passed",
@@ -228,7 +228,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 32000
+              "duration": 34000
             },
             "after": [
               {
@@ -237,14 +237,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 8000
+                  "duration": 10000
                 },
                 "status": "passed",
-                "duration": 8000
+                "duration": 10000
               }
             ],
             "status": "passed",
-            "duration": 40000
+            "duration": 44000
           }
         ],
         "after": [
@@ -254,14 +254,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 14000
+              "duration": 16000
             },
             "status": "passed",
-            "duration": 14000
+            "duration": 16000
           }
         ],
         "status": "passed",
-        "duration": 166000
+        "duration": 197000
       },
       {
         "id": "i-am-some-feature-for-testing-some-functionality;i-am-some-testing-scenario-with-two-tags-of-some-functionality",
@@ -287,10 +287,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 31000
+              "duration": 15000
             },
             "status": "passed",
-            "duration": 31000
+            "duration": 15000
           }
         ],
         "steps": [
@@ -303,7 +303,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 45000
+              "duration": 61000
             },
             "after": [
               {
@@ -312,14 +312,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 92000
+                  "duration": 9000
                 },
                 "status": "passed",
-                "duration": 92000
+                "duration": 9000
               }
             ],
             "status": "passed",
-            "duration": 137000
+            "duration": 70000
           },
           {
             "keyword": "When ",
@@ -333,34 +333,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 75000
-            },
-            "after": [
-              {
-                "match": {
-                  "location": "features/support/hooks.rb:4"
-                },
-                "result": {
-                  "status": "passed",
-                  "duration": 16000
-                },
-                "status": "passed",
-                "duration": 16000
-              }
-            ],
-            "status": "passed",
-            "duration": 91000
-          },
-          {
-            "keyword": "Then ",
-            "name": "I am then step of some this feature",
-            "line": 19,
-            "match": {
-              "location": "features/step_definitions/sample_steps.rb:18"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 51000
+              "duration": 151000
             },
             "after": [
               {
@@ -376,7 +349,34 @@
               }
             ],
             "status": "passed",
-            "duration": 68000
+            "duration": 168000
+          },
+          {
+            "keyword": "Then ",
+            "name": "I am then step of some this feature",
+            "line": 19,
+            "match": {
+              "location": "features/step_definitions/sample_steps.rb:18"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 38000
+            },
+            "after": [
+              {
+                "match": {
+                  "location": "features/support/hooks.rb:4"
+                },
+                "result": {
+                  "status": "passed",
+                  "duration": 11000
+                },
+                "status": "passed",
+                "duration": 11000
+              }
+            ],
+            "status": "passed",
+            "duration": 49000
           }
         ],
         "after": [
@@ -386,14 +386,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 30000
+              "duration": 27000
             },
             "status": "passed",
-            "duration": 30000
+            "duration": 27000
           }
         ],
         "status": "passed",
-        "duration": 357000
+        "duration": 329000
       },
       {
         "id": "i-am-some-feature-for-testing-some-functionality;i-am-some-testing-scenario-of-other-functionality",
@@ -415,10 +415,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 21000
+              "duration": 42000
             },
             "status": "passed",
-            "duration": 21000
+            "duration": 42000
           }
         ],
         "steps": [
@@ -440,14 +440,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 64000
+                  "duration": 16000
                 },
                 "status": "passed",
-                "duration": 64000
+                "duration": 16000
               }
             ],
             "status": "passed",
-            "duration": 90000
+            "duration": 42000
           },
           {
             "keyword": "When ",
@@ -461,7 +461,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 33000
+              "duration": 62000
             },
             "after": [
               {
@@ -470,14 +470,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 15000
+                  "duration": 11000
                 },
                 "status": "passed",
-                "duration": 15000
+                "duration": 11000
               }
             ],
             "status": "passed",
-            "duration": 48000
+            "duration": 73000
           },
           {
             "keyword": "Then ",
@@ -488,7 +488,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 24000
+              "duration": 35000
             },
             "after": [
               {
@@ -497,14 +497,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 39000
                 },
                 "status": "passed",
-                "duration": 16000
+                "duration": 39000
               }
             ],
             "status": "passed",
-            "duration": 40000
+            "duration": 74000
           }
         ],
         "after": [
@@ -514,18 +514,18 @@
             },
             "result": {
               "status": "passed",
-              "duration": 37000
+              "duration": 19000
             },
             "status": "passed",
-            "duration": 37000
+            "duration": 19000
           }
         ],
         "status": "passed",
-        "duration": 236000
+        "duration": 250000
       }
     ],
     "status": "working",
-    "duration": 903000
+    "duration": 946000
   },
   {
     "uri": "features/feature3.feature",
@@ -559,10 +559,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 34000
+              "duration": 36000
             },
             "status": "passed",
-            "duration": 34000
+            "duration": 36000
           }
         ],
         "steps": [
@@ -575,7 +575,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 64000
+              "duration": 61000
             },
             "after": [
               {
@@ -591,7 +591,7 @@
               }
             ],
             "status": "passed",
-            "duration": 82000
+            "duration": 79000
           },
           {
             "keyword": "When ",
@@ -603,7 +603,7 @@
             "result": {
               "status": "failed",
               "error_message": "I am some error (RuntimeError)\n./features/step_definitions/sample_steps.rb:26:in `/^I am when step which will fail$/'\nfeatures/feature3.feature:6:in `When I am when step which will fail'",
-              "duration": 1042000
+              "duration": 211000
             },
             "after": [
               {
@@ -619,7 +619,7 @@
               }
             ],
             "status": "failed",
-            "duration": 1042000
+            "duration": 211000
           },
           {
             "keyword": "Then ",
@@ -662,14 +662,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 12055122000
+              "duration": 10353983000
             },
             "status": "passed",
-            "duration": 12055122000
+            "duration": 10353983000
           }
         ],
         "status": "failed",
-        "duration": 12056280000
+        "duration": 10354309000
       },
       {
         "id": "i-am-some-other-feature-for-testing-some-broken-functionality;i-am-some-undefined-testing-scenario-of-some-functionality",
@@ -691,10 +691,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 41000
+              "duration": 163000
             },
             "status": "passed",
-            "duration": 41000
+            "duration": 163000
           }
         ],
         "steps": [
@@ -707,7 +707,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 145000
+              "duration": 312000
             },
             "after": [
               {
@@ -716,14 +716,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 20000
+                  "duration": 43000
                 },
                 "status": "passed",
-                "duration": 20000
+                "duration": 43000
               }
             ],
             "status": "passed",
-            "duration": 165000
+            "duration": 355000
           },
           {
             "keyword": "When ",
@@ -737,7 +737,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 97000
+              "duration": 85000
             },
             "after": [
               {
@@ -746,14 +746,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 18000
+                  "duration": 8000
                 },
                 "status": "passed",
-                "duration": 18000
+                "duration": 8000
               }
             ],
             "status": "passed",
-            "duration": 115000
+            "duration": 93000
           },
           {
             "keyword": "Then ",
@@ -790,14 +790,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 29000
+              "duration": 42000
             },
             "status": "passed",
-            "duration": 29000
+            "duration": 42000
           }
         ],
         "status": "undefined",
-        "duration": 350000
+        "duration": 653000
       },
       {
         "id": "i-am-some-other-feature-for-testing-some-broken-functionality;i-am-some-pending-testing-scenario-of-some-functionality",
@@ -819,10 +819,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 33000
+              "duration": 19000
             },
             "status": "passed",
-            "duration": 33000
+            "duration": 19000
           }
         ],
         "steps": [
@@ -835,7 +835,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 44000
+              "duration": 28000
             },
             "after": [
               {
@@ -844,14 +844,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 25000
+                  "duration": 20000
                 },
                 "status": "passed",
-                "duration": 25000
+                "duration": 20000
               }
             ],
             "status": "passed",
-            "duration": 69000
+            "duration": 48000
           },
           {
             "keyword": "When ",
@@ -865,7 +865,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 80000
+              "duration": 172000
             },
             "after": [
               {
@@ -874,14 +874,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 18000
+                  "duration": 12000
                 },
                 "status": "passed",
-                "duration": 18000
+                "duration": 12000
               }
             ],
             "status": "passed",
-            "duration": 98000
+            "duration": 184000
           },
           {
             "keyword": "Then ",
@@ -893,7 +893,7 @@
             "result": {
               "status": "pending",
               "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/sample_steps.rb:22:in `/^I am then step of some pending feature$/'\nfeatures/feature3.feature:19:in `Then I am then step of some pending feature'",
-              "duration": 324000
+              "duration": 339000
             },
             "after": [
               {
@@ -909,7 +909,7 @@
               }
             ],
             "status": "pending",
-            "duration": 324000
+            "duration": 339000
           }
         ],
         "after": [
@@ -919,14 +919,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 22000
+              "duration": 21000
             },
             "status": "passed",
-            "duration": 22000
+            "duration": 21000
           }
         ],
         "status": "pending",
-        "duration": 546000
+        "duration": 611000
       },
       {
         "id": "i-am-some-other-feature-for-testing-some-broken-functionality;i-am-some-testing-scenario-of-some-functionality",
@@ -948,10 +948,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 24000
+              "duration": 26000
             },
             "status": "passed",
-            "duration": 24000
+            "duration": 26000
           }
         ],
         "steps": [
@@ -964,7 +964,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 35000
+              "duration": 38000
             },
             "after": [
               {
@@ -980,7 +980,7 @@
               }
             ],
             "status": "passed",
-            "duration": 49000
+            "duration": 52000
           },
           {
             "keyword": "When ",
@@ -994,7 +994,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 53000
+              "duration": 57000
             },
             "after": [
               {
@@ -1003,14 +1003,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 43000
+                  "duration": 17000
                 },
                 "status": "passed",
-                "duration": 43000
+                "duration": 17000
               }
             ],
             "status": "passed",
-            "duration": 96000
+            "duration": 74000
           },
           {
             "keyword": "Then ",
@@ -1021,7 +1021,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 30000
+              "duration": 212000
             },
             "after": [
               {
@@ -1030,14 +1030,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 12000
+                  "duration": 10000
                 },
                 "status": "passed",
-                "duration": 12000
+                "duration": 10000
               }
             ],
             "status": "passed",
-            "duration": 42000
+            "duration": 222000
           }
         ],
         "after": [
@@ -1047,14 +1047,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 25000
+              "duration": 38000
             },
             "status": "passed",
-            "duration": 25000
+            "duration": 38000
           }
         ],
         "status": "passed",
-        "duration": 236000
+        "duration": 412000
       },
       {
         "id": "i-am-some-other-feature-for-testing-some-broken-functionality;i-am-some-other-testing-scenario-of-some-functionality",
@@ -1076,10 +1076,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 59000
+              "duration": 12000
             },
             "status": "passed",
-            "duration": 59000
+            "duration": 12000
           }
         ],
         "steps": [
@@ -1092,7 +1092,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 48000
+              "duration": 25000
             },
             "after": [
               {
@@ -1101,14 +1101,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 19000
+                  "duration": 8000
                 },
                 "status": "passed",
-                "duration": 19000
+                "duration": 8000
               }
             ],
             "status": "passed",
-            "duration": 67000
+            "duration": 33000
           },
           {
             "keyword": "When ",
@@ -1122,7 +1122,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 69000
+              "duration": 67000
             },
             "after": [
               {
@@ -1131,14 +1131,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 18000
+                  "duration": 7000
                 },
                 "status": "passed",
-                "duration": 18000
+                "duration": 7000
               }
             ],
             "status": "passed",
-            "duration": 87000
+            "duration": 74000
           },
           {
             "keyword": "Then ",
@@ -1149,7 +1149,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 67000
+              "duration": 82000
             },
             "after": [
               {
@@ -1158,14 +1158,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 17000
+                  "duration": 7000
                 },
                 "status": "passed",
-                "duration": 17000
+                "duration": 7000
               }
             ],
             "status": "passed",
-            "duration": 84000
+            "duration": 89000
           }
         ],
         "after": [
@@ -1175,18 +1175,18 @@
             },
             "result": {
               "status": "passed",
-              "duration": 26000
+              "duration": 13000
             },
             "status": "passed",
-            "duration": 26000
+            "duration": 13000
           }
         ],
         "status": "passed",
-        "duration": 323000
+        "duration": 221000
       }
     ],
     "status": "broken",
-    "duration": 12057735000
+    "duration": 10356206000
   },
   {
     "uri": "features/feature2.feature",
@@ -1216,10 +1216,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 35000
+              "duration": 34000
             },
             "status": "passed",
-            "duration": 35000
+            "duration": 34000
           }
         ],
         "steps": [
@@ -1232,7 +1232,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 59000
+              "duration": 63000
             },
             "after": [
               {
@@ -1248,7 +1248,7 @@
               }
             ],
             "status": "passed",
-            "duration": 79000
+            "duration": 83000
           },
           {
             "keyword": "When ",
@@ -1262,7 +1262,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 67000
+              "duration": 69000
             },
             "after": [
               {
@@ -1278,7 +1278,7 @@
               }
             ],
             "status": "passed",
-            "duration": 83000
+            "duration": 85000
           },
           {
             "keyword": "Then ",
@@ -1289,7 +1289,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 29000
+              "duration": 36000
             },
             "after": [
               {
@@ -1298,14 +1298,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 19000
+                  "duration": 16000
                 },
                 "status": "passed",
-                "duration": 19000
+                "duration": 16000
               }
             ],
             "status": "passed",
-            "duration": 48000
+            "duration": 52000
           }
         ],
         "after": [
@@ -1315,14 +1315,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 29000
+              "duration": 34000
             },
             "status": "passed",
-            "duration": 29000
+            "duration": 34000
           }
         ],
         "status": "passed",
-        "duration": 274000
+        "duration": 288000
       },
       {
         "id": "i-am-some-other-feature-for-testing-some-functionality;i-am-some-testing-scenario-outline-of-other-functionality;;2",
@@ -1344,10 +1344,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 36000
+              "duration": 29000
             },
             "status": "passed",
-            "duration": 36000
+            "duration": 29000
           }
         ],
         "steps": [
@@ -1360,7 +1360,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 39000
+              "duration": 38000
             },
             "after": [
               {
@@ -1369,14 +1369,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 19000
+                  "duration": 23000
                 },
                 "status": "passed",
-                "duration": 19000
+                "duration": 23000
               }
             ],
             "status": "passed",
-            "duration": 58000
+            "duration": 61000
           },
           {
             "keyword": "When ",
@@ -1390,7 +1390,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 206000
+              "duration": 57000
             },
             "after": [
               {
@@ -1399,14 +1399,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 27000
+                  "duration": 14000
                 },
                 "status": "passed",
-                "duration": 27000
+                "duration": 14000
               }
             ],
             "status": "passed",
-            "duration": 233000
+            "duration": 71000
           },
           {
             "keyword": "Then ",
@@ -1417,7 +1417,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 56000
+              "duration": 45000
             },
             "after": [
               {
@@ -1426,14 +1426,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 18000
+                  "duration": 14000
                 },
                 "status": "passed",
-                "duration": 18000
+                "duration": 14000
               }
             ],
             "status": "passed",
-            "duration": 74000
+            "duration": 59000
           }
         ],
         "after": [
@@ -1443,14 +1443,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 31000
+              "duration": 38000
             },
             "status": "passed",
-            "duration": 31000
+            "duration": 38000
           }
         ],
         "status": "passed",
-        "duration": 432000
+        "duration": 258000
       },
       {
         "id": "i-am-some-other-feature-for-testing-some-functionality;i-am-some-testing-scenario-outline-of-other-functionality;;3",
@@ -1472,10 +1472,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 58000
+              "duration": 2069000
             },
             "status": "passed",
-            "duration": 58000
+            "duration": 2069000
           }
         ],
         "steps": [
@@ -1488,7 +1488,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 40000
+              "duration": 37000
             },
             "after": [
               {
@@ -1497,14 +1497,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 34000
+                  "duration": 16000
                 },
                 "status": "passed",
-                "duration": 34000
+                "duration": 16000
               }
             ],
             "status": "passed",
-            "duration": 74000
+            "duration": 53000
           },
           {
             "keyword": "When ",
@@ -1518,7 +1518,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 104000
+              "duration": 110000
             },
             "after": [
               {
@@ -1527,14 +1527,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 22000
+                  "duration": 13000
                 },
                 "status": "passed",
-                "duration": 22000
+                "duration": 13000
               }
             ],
             "status": "passed",
-            "duration": 126000
+            "duration": 123000
           },
           {
             "keyword": "Then ",
@@ -1545,7 +1545,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 43000
+              "duration": 39000
             },
             "after": [
               {
@@ -1554,10 +1554,10 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 9000
+                  "duration": 13000
                 },
                 "status": "passed",
-                "duration": 9000
+                "duration": 13000
               }
             ],
             "status": "passed",
@@ -1571,14 +1571,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 18000
+              "duration": 23000
             },
             "status": "passed",
-            "duration": 18000
+            "duration": 23000
           }
         ],
         "status": "passed",
-        "duration": 328000
+        "duration": 2320000
       },
       {
         "id": "i-am-some-other-feature-for-testing-some-functionality;i-am-some-testing-scenario-of-some-functionality",
@@ -1600,10 +1600,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 19000
+              "duration": 32000
             },
             "status": "passed",
-            "duration": 19000
+            "duration": 32000
           }
         ],
         "steps": [
@@ -1616,7 +1616,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 26000
+              "duration": 51000
             },
             "after": [
               {
@@ -1632,7 +1632,7 @@
               }
             ],
             "status": "passed",
-            "duration": 39000
+            "duration": 64000
           },
           {
             "keyword": "When ",
@@ -1644,7 +1644,7 @@
             "result": {
               "status": "failed",
               "error_message": "I am some error (RuntimeError)\n./features/step_definitions/sample_steps.rb:26:in `/^I am when step which will fail$/'\nfeatures/feature2.feature:22:in `When I am when step which will fail'",
-              "duration": 270000
+              "duration": 146000
             },
             "after": [
               {
@@ -1660,7 +1660,7 @@
               }
             ],
             "status": "failed",
-            "duration": 270000
+            "duration": 146000
           },
           {
             "keyword": "Then ",
@@ -1697,14 +1697,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 54000
+              "duration": 50000
             },
             "status": "passed",
-            "duration": 54000
+            "duration": 50000
           }
         ],
         "status": "failed",
-        "duration": 382000
+        "duration": 292000
       },
       {
         "id": "i-am-some-other-feature-for-testing-some-functionality;i-am-some-other-testing-scenario-of-some-functionality",
@@ -1742,7 +1742,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 28000
+              "duration": 27000
             },
             "after": [
               {
@@ -1751,10 +1751,10 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 9000
+                  "duration": 10000
                 },
                 "status": "passed",
-                "duration": 9000
+                "duration": 10000
               }
             ],
             "status": "passed",
@@ -1772,7 +1772,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 37000
+              "duration": 82000
             },
             "after": [
               {
@@ -1781,14 +1781,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 13000
+                  "duration": 14000
                 },
                 "status": "passed",
-                "duration": 13000
+                "duration": 14000
               }
             ],
             "status": "passed",
-            "duration": 50000
+            "duration": 96000
           },
           {
             "keyword": "Then ",
@@ -1799,7 +1799,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 40000
+              "duration": 43000
             },
             "after": [
               {
@@ -1808,14 +1808,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 15000
+                  "duration": 16000
                 },
                 "status": "passed",
-                "duration": 15000
+                "duration": 16000
               }
             ],
             "status": "passed",
-            "duration": 55000
+            "duration": 59000
           }
         ],
         "after": [
@@ -1825,18 +1825,18 @@
             },
             "result": {
               "status": "passed",
-              "duration": 27000
+              "duration": 33000
             },
             "status": "passed",
-            "duration": 27000
+            "duration": 33000
           }
         ],
         "status": "passed",
-        "duration": 192000
+        "duration": 248000
       }
     ],
     "status": "broken",
-    "duration": 1608000
+    "duration": 3406000
   },
   {
     "uri": "features/feature4.feature",
@@ -1870,10 +1870,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 36000
+              "duration": 37000
             },
             "status": "passed",
-            "duration": 36000
+            "duration": 37000
           }
         ],
         "steps": [
@@ -1886,7 +1886,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 107000
+              "duration": 71000
             },
             "after": [
               {
@@ -1895,14 +1895,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 19000
+                  "duration": 21000
                 },
                 "status": "passed",
-                "duration": 19000
+                "duration": 21000
               }
             ],
             "status": "passed",
-            "duration": 126000
+            "duration": 92000
           },
           {
             "keyword": "When ",
@@ -1916,7 +1916,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 77000
+              "duration": 70000
             },
             "after": [
               {
@@ -1925,14 +1925,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 14000
                 },
                 "status": "passed",
-                "duration": 16000
+                "duration": 14000
               }
             ],
             "status": "passed",
-            "duration": 93000
+            "duration": 84000
           },
           {
             "keyword": "Then ",
@@ -1943,7 +1943,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 52000
+              "duration": 53000
             },
             "after": [
               {
@@ -1952,14 +1952,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 15000
+                  "duration": 17000
                 },
                 "status": "passed",
-                "duration": 15000
+                "duration": 17000
               }
             ],
             "status": "passed",
-            "duration": 67000
+            "duration": 70000
           }
         ],
         "after": [
@@ -1976,7 +1976,7 @@
           }
         ],
         "status": "passed",
-        "duration": 348000
+        "duration": 309000
       },
       {
         "id": "i-am-some-other-feature-for-testing-tag-functionality;i-am-some-testing-scenario-with-one-tags-of-some-functionality",
@@ -1998,10 +1998,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 28000
+              "duration": 22000
             },
             "status": "passed",
-            "duration": 28000
+            "duration": 22000
           }
         ],
         "steps": [
@@ -2014,7 +2014,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 38000
+              "duration": 39000
             },
             "after": [
               {
@@ -2023,10 +2023,10 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 15000
                 },
                 "status": "passed",
-                "duration": 16000
+                "duration": 15000
               }
             ],
             "status": "passed",
@@ -2044,7 +2044,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 64000
+              "duration": 55000
             },
             "after": [
               {
@@ -2060,7 +2060,7 @@
               }
             ],
             "status": "passed",
-            "duration": 79000
+            "duration": 70000
           },
           {
             "keyword": "Then ",
@@ -2071,7 +2071,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 43000
+              "duration": 46000
             },
             "after": [
               {
@@ -2080,14 +2080,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 13000
+                  "duration": 15000
                 },
                 "status": "passed",
-                "duration": 13000
+                "duration": 15000
               }
             ],
             "status": "passed",
-            "duration": 56000
+            "duration": 61000
           }
         ],
         "after": [
@@ -2104,7 +2104,7 @@
           }
         ],
         "status": "passed",
-        "duration": 239000
+        "duration": 229000
       },
       {
         "id": "i-am-some-other-feature-for-testing-tag-functionality;i-am-some-testing-scenario-of-some-functionality",
@@ -2138,10 +2138,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 36000
+              "duration": 24000
             },
             "status": "passed",
-            "duration": 36000
+            "duration": 24000
           }
         ],
         "steps": [
@@ -2154,7 +2154,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 45000
+              "duration": 35000
             },
             "after": [
               {
@@ -2163,14 +2163,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 18000
+                  "duration": 17000
                 },
                 "status": "passed",
-                "duration": 18000
+                "duration": 17000
               }
             ],
             "status": "passed",
-            "duration": 63000
+            "duration": 52000
           },
           {
             "keyword": "When ",
@@ -2184,7 +2184,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 57000
+              "duration": 65000
             },
             "after": [
               {
@@ -2193,14 +2193,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 22000
                 },
                 "status": "passed",
-                "duration": 16000
+                "duration": 22000
               }
             ],
             "status": "passed",
-            "duration": 73000
+            "duration": 87000
           },
           {
             "keyword": "Then ",
@@ -2211,7 +2211,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 33000
+              "duration": 35000
             },
             "after": [
               {
@@ -2220,14 +2220,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 19000
+                  "duration": 14000
                 },
                 "status": "passed",
-                "duration": 19000
+                "duration": 14000
               }
             ],
             "status": "passed",
-            "duration": 52000
+            "duration": 49000
           }
         ],
         "after": [
@@ -2237,14 +2237,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 56000
+              "duration": 27000
             },
             "status": "passed",
-            "duration": 56000
+            "duration": 27000
           }
         ],
         "status": "passed",
-        "duration": 280000
+        "duration": 239000
       },
       {
         "id": "i-am-some-other-feature-for-testing-tag-functionality;i-am-some-other-testing-scenario-with-watir-screenshot",
@@ -2266,10 +2266,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 39000
+              "duration": 30000
             },
             "status": "passed",
-            "duration": 39000
+            "duration": 30000
           }
         ],
         "steps": [
@@ -2282,7 +2282,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 38000
+              "duration": 40000
             },
             "after": [
               {
@@ -2291,14 +2291,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 17000
                 },
                 "status": "passed",
-                "duration": 16000
+                "duration": 17000
               }
             ],
             "status": "passed",
-            "duration": 54000
+            "duration": 57000
           },
           {
             "keyword": "When ",
@@ -2312,7 +2312,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 55000
+              "duration": 59000
             },
             "after": [
               {
@@ -2321,14 +2321,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 17000
                 },
                 "status": "passed",
-                "duration": 14000
+                "duration": 17000
               }
             ],
             "status": "passed",
-            "duration": 69000
+            "duration": 76000
           },
           {
             "keyword": "And ",
@@ -2345,7 +2345,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 12023468000
+              "duration": 10301483000
             },
             "after": [
               {
@@ -2354,14 +2354,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 20000
+                  "duration": 227000
                 },
                 "status": "passed",
-                "duration": 20000
+                "duration": 227000
               }
             ],
             "status": "passed",
-            "duration": 12023488000
+            "duration": 10301710000
           },
           {
             "keyword": "Then ",
@@ -2372,7 +2372,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 55000
+              "duration": 445000
             },
             "after": [
               {
@@ -2388,7 +2388,7 @@
               }
             ],
             "status": "passed",
-            "duration": 62000
+            "duration": 452000
           }
         ],
         "after": [
@@ -2398,14 +2398,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 39000
+              "duration": 392000
             },
             "status": "passed",
-            "duration": 39000
+            "duration": 392000
           }
         ],
         "status": "passed",
-        "duration": 12023751000
+        "duration": 10302717000
       },
       {
         "id": "i-am-some-other-feature-for-testing-tag-functionality;i-am-scenario-with-more-steps",
@@ -2435,10 +2435,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 31000
+              "duration": 52000
             },
             "status": "passed",
-            "duration": 31000
+            "duration": 52000
           }
         ],
         "steps": [
@@ -2451,7 +2451,34 @@
             },
             "result": {
               "status": "passed",
-              "duration": 41000
+              "duration": 75000
+            },
+            "after": [
+              {
+                "match": {
+                  "location": "features/support/hooks.rb:4"
+                },
+                "result": {
+                  "status": "passed",
+                  "duration": 16000
+                },
+                "status": "passed",
+                "duration": 16000
+              }
+            ],
+            "status": "passed",
+            "duration": 91000
+          },
+          {
+            "keyword": "And ",
+            "name": "I am give step of some other feature",
+            "line": 31,
+            "match": {
+              "location": "features/step_definitions/sample_steps.rb:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 35000
             },
             "after": [
               {
@@ -2467,34 +2494,7 @@
               }
             ],
             "status": "passed",
-            "duration": 58000
-          },
-          {
-            "keyword": "And ",
-            "name": "I am give step of some other feature",
-            "line": 31,
-            "match": {
-              "location": "features/step_definitions/sample_steps.rb:11"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 36000
-            },
-            "after": [
-              {
-                "match": {
-                  "location": "features/support/hooks.rb:4"
-                },
-                "result": {
-                  "status": "passed",
-                  "duration": 14000
-                },
-                "status": "passed",
-                "duration": 14000
-              }
-            ],
-            "status": "passed",
-            "duration": 50000
+            "duration": 52000
           },
           {
             "keyword": "When ",
@@ -2508,7 +2508,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 66000
+              "duration": 144000
             },
             "after": [
               {
@@ -2517,14 +2517,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 17000
+                  "duration": 28000
                 },
                 "status": "passed",
-                "duration": 17000
+                "duration": 28000
               }
             ],
             "status": "passed",
-            "duration": 83000
+            "duration": 172000
           },
           {
             "keyword": "And ",
@@ -2538,7 +2538,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 135000
+              "duration": 89000
             },
             "after": [
               {
@@ -2547,14 +2547,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 17000
+                  "duration": 12000
                 },
                 "status": "passed",
-                "duration": 17000
+                "duration": 12000
               }
             ],
             "status": "passed",
-            "duration": 152000
+            "duration": 101000
           },
           {
             "keyword": "Then ",
@@ -2565,7 +2565,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 31000
+              "duration": 97000
             },
             "after": [
               {
@@ -2574,14 +2574,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 53000
+                  "duration": 9000
                 },
                 "status": "passed",
-                "duration": 53000
+                "duration": 9000
               }
             ],
             "status": "passed",
-            "duration": 84000
+            "duration": 106000
           },
           {
             "keyword": "Then ",
@@ -2592,7 +2592,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 48000
+              "duration": 45000
             },
             "after": [
               {
@@ -2601,14 +2601,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 10000
                 },
                 "status": "passed",
-                "duration": 14000
+                "duration": 10000
               }
             ],
             "status": "passed",
-            "duration": 62000
+            "duration": 55000
           }
         ],
         "after": [
@@ -2618,18 +2618,18 @@
             },
             "result": {
               "status": "passed",
-              "duration": 22000
+              "duration": 16000
             },
             "status": "passed",
-            "duration": 22000
+            "duration": 16000
           }
         ],
         "status": "passed",
-        "duration": 542000
+        "duration": 645000
       }
     ],
     "status": "working",
-    "duration": 12025160000
+    "duration": 10304139000
   },
   {
     "uri": "features/feature.feature",
@@ -2662,7 +2662,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 471000
+              "duration": 65000
             },
             "after": [
               {
@@ -2671,14 +2671,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 21000
+                  "duration": 17000
                 },
                 "status": "passed",
-                "duration": 21000
+                "duration": 17000
               }
             ],
             "status": "passed",
-            "duration": 492000
+            "duration": 82000
           },
           {
             "keyword": "When ",
@@ -2703,7 +2703,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 179000
+              "duration": 152000
             },
             "after": [
               {
@@ -2719,7 +2719,7 @@
               }
             ],
             "status": "passed",
-            "duration": 196000
+            "duration": 169000
           },
           {
             "keyword": "Then ",
@@ -2730,7 +2730,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 65000
+              "duration": 29000
             },
             "after": [
               {
@@ -2739,14 +2739,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 13000
                 },
                 "status": "passed",
-                "duration": 14000
+                "duration": 13000
               }
             ],
             "status": "passed",
-            "duration": 79000
+            "duration": 42000
           }
         ],
         "after": [
@@ -2756,10 +2756,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 28000
+              "duration": 26000
             },
             "status": "passed",
-            "duration": 28000
+            "duration": 26000
           }
         ],
         "before": [
@@ -2769,14 +2769,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 37000
+              "duration": 34000
             },
             "status": "passed",
-            "duration": 37000
+            "duration": 34000
           }
         ],
         "status": "passed",
-        "duration": 832000
+        "duration": 353000
       },
       {
         "id": "this-is-a-feature-with-table-in-step;i-am-some-testing-scenario-of-some-functionality",
@@ -2801,7 +2801,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 37000
+              "duration": 40000
             },
             "after": [
               {
@@ -2810,14 +2810,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 13000
                 },
                 "status": "passed",
-                "duration": 14000
+                "duration": 13000
               }
             ],
             "status": "passed",
-            "duration": 51000
+            "duration": 53000
           },
           {
             "keyword": "When ",
@@ -2831,7 +2831,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 63000
+              "duration": 58000
             },
             "after": [
               {
@@ -2840,14 +2840,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 15000
                 },
                 "status": "passed",
-                "duration": 16000
+                "duration": 15000
               }
             ],
             "status": "passed",
-            "duration": 79000
+            "duration": 73000
           },
           {
             "keyword": "Then ",
@@ -2858,7 +2858,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 33000
+              "duration": 39000
             },
             "after": [
               {
@@ -2867,14 +2867,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 15000
                 },
                 "status": "passed",
-                "duration": 14000
+                "duration": 15000
               }
             ],
             "status": "passed",
-            "duration": 47000
+            "duration": 54000
           }
         ],
         "after": [
@@ -2884,10 +2884,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 46000
+              "duration": 24000
             },
             "status": "passed",
-            "duration": 46000
+            "duration": 24000
           }
         ],
         "before": [
@@ -2897,14 +2897,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 28000
+              "duration": 30000
             },
             "status": "passed",
-            "duration": 28000
+            "duration": 30000
           }
         ],
         "status": "passed",
-        "duration": 251000
+        "duration": 234000
       },
       {
         "id": "this-is-a-feature-with-table-in-step;i-am-some-other-testing-scenario-of-some-functionality",
@@ -2929,7 +2929,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 37000
+              "duration": 401000
             },
             "after": [
               {
@@ -2938,14 +2938,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 58000
+                  "duration": 34000
                 },
                 "status": "passed",
-                "duration": 58000
+                "duration": 34000
               }
             ],
             "status": "passed",
-            "duration": 95000
+            "duration": 435000
           },
           {
             "keyword": "And ",
@@ -2956,7 +2956,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 39000
+              "duration": 32000
             },
             "after": [
               {
@@ -2965,14 +2965,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 19000
+                  "duration": 20000
                 },
                 "status": "passed",
-                "duration": 19000
+                "duration": 20000
               }
             ],
             "status": "passed",
-            "duration": 58000
+            "duration": 52000
           },
           {
             "keyword": "When ",
@@ -2995,14 +2995,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 19000
                 },
                 "status": "passed",
-                "duration": 14000
+                "duration": 19000
               }
             ],
             "status": "passed",
-            "duration": 75000
+            "duration": 80000
           },
           {
             "keyword": "Then ",
@@ -3013,7 +3013,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 50000
+              "duration": 60000
             },
             "after": [
               {
@@ -3029,7 +3029,7 @@
               }
             ],
             "status": "passed",
-            "duration": 64000
+            "duration": 74000
           }
         ],
         "after": [
@@ -3039,10 +3039,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 23000
+              "duration": 25000
             },
             "status": "passed",
-            "duration": 23000
+            "duration": 25000
           }
         ],
         "before": [
@@ -3052,14 +3052,14 @@
             },
             "result": {
               "status": "passed",
-              "duration": 28000
+              "duration": 26000
             },
             "status": "passed",
-            "duration": 28000
+            "duration": 26000
           }
         ],
         "status": "passed",
-        "duration": 343000
+        "duration": 692000
       },
       {
         "id": "this-is-a-feature-with-table-in-step;i-am-some-testing-scenario-of-other-functionality",
@@ -3084,7 +3084,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 36000
+              "duration": 46000
             },
             "after": [
               {
@@ -3093,14 +3093,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 12000
+                  "duration": 19000
                 },
                 "status": "passed",
-                "duration": 12000
+                "duration": 19000
               }
             ],
             "status": "passed",
-            "duration": 48000
+            "duration": 65000
           },
           {
             "keyword": "When ",
@@ -3114,7 +3114,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 50000
+              "duration": 64000
             },
             "after": [
               {
@@ -3123,14 +3123,14 @@
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 17000
                 },
                 "status": "passed",
-                "duration": 14000
+                "duration": 17000
               }
             ],
             "status": "passed",
-            "duration": 64000
+            "duration": 81000
           },
           {
             "keyword": "And ",
@@ -3142,7 +3142,7 @@
             "result": {
               "status": "failed",
               "error_message": "I am some error (RuntimeError)\n./features/step_definitions/sample_steps.rb:26:in `/^I am when step which will fail$/'\nfeatures/feature.feature:27:in `And I am when step which will fail'",
-              "duration": 220000
+              "duration": 368000
             },
             "after": [
               {
@@ -3158,7 +3158,7 @@
               }
             ],
             "status": "failed",
-            "duration": 220000
+            "duration": 368000
           },
           {
             "keyword": "Then ",
@@ -3195,10 +3195,10 @@
             },
             "result": {
               "status": "passed",
-              "duration": 49000
+              "duration": 52000
             },
             "status": "passed",
-            "duration": 49000
+            "duration": 52000
           }
         ],
         "before": [
@@ -3208,17 +3208,17 @@
             },
             "result": {
               "status": "passed",
-              "duration": 26000
+              "duration": 35000
             },
             "status": "passed",
-            "duration": 26000
+            "duration": 35000
           }
         ],
         "status": "failed",
-        "duration": 407000
+        "duration": 601000
       }
     ],
     "status": "broken",
-    "duration": 1833000
+    "duration": 1880000
   }
 ]
