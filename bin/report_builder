@@ -59,6 +59,10 @@ opt_parser = OptionParser.new do |opts|
     options[:additional_css] = additional_css
   end
 
+  opts.on('--js', 'Additional JS string or JS file path or JS file url for customizing html report') do |additional_js|
+    options[:additional_js] = additional_js
+  end
+
   opts.separator 'Common options:'
 
   opts.on_tail('-h', '--help', 'Show help') do

@@ -15,7 +15,6 @@ describe ReportBuilder do
     combined_report = File.read("#{output_location}.json")
     expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined.json")
 
-
     expect(JSON.parse(combined_report)).to eq(JSON.parse(expected_report))
   end
 
@@ -30,7 +29,6 @@ describe ReportBuilder do
 
     combined_report = File.read("#{output_location}.retry")
     expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined.retry")
-
 
     expect(combined_report).to eq(expected_report)
   end
@@ -101,6 +99,46 @@ describe ReportBuilder do
     expect(files_created).to match_array(["#{File.basename(generic_output_location)}.json", "#{File.basename(html_output_location)}.html", "#{File.basename(generic_output_location)}.retry"])
   end
 
+  it 'uses additional_css for report customization' do
+    output_location = Tempfile.new('new_report').path
+    options = {
+        json_path: "#{TEST_FIXTURES_DIRECTORY}/json_reports",
+        report_path: output_location,
+        report_types: ['html'],
+        report_title: 'Test Results',
+        include_images: false,
+        additional_info: {Environment: 'POC'},
+        additional_css: "#{TEST_FIXTURES_DIRECTORY}/custom.css"
+    }
+
+    ReportBuilder.build_report options
+
+    generated_report = File.read("#{output_location}.html")
+    additional_css = File.read(options[:additional_css]).gsub('  ', '').gsub("\n\n", '')
+
+    expect(generated_report).to include(additional_css)
+  end
+
+  it 'uses additional_js  for report customization' do
+    output_location = Tempfile.new('new_report').path
+    options = {
+        json_path: "#{TEST_FIXTURES_DIRECTORY}/json_reports",
+        report_path: output_location,
+        report_types: ['html'],
+        report_title: 'Test Results',
+        include_images: false,
+        additional_info: {Environment: 'POC'},
+        additional_js: "#{TEST_FIXTURES_DIRECTORY}/custom.js"
+    }
+
+    ReportBuilder.build_report options
+
+    generated_report = File.read("#{output_location}.html")
+    additional_css = File.read(options[:additional_js]).gsub('  ', '').gsub("\n\n", '')
+
+    expect(generated_report).to include(additional_css)
+  end
+
   describe 'report configuration' do
 
     it 'has a default configuration' do
@@ -138,24 +176,6 @@ describe ReportBuilder do
         files_created.delete('..')
 
         expect(files_created).to match_array(["#{File.basename(report_file_path)}.json", "#{File.basename(report_file_path)}.retry"])
-      end
-
-      it 'uses additional_css from configuration' do
-        output_location = Tempfile.new('new_report').path
-        options = {
-            json_path: "#{TEST_FIXTURES_DIRECTORY}/json_reports",
-            report_path: output_location,
-            report_types: ['html'],
-            report_title: 'Test Results',
-            include_images: false,
-            additional_info: {Environment: 'POC'},
-            additional_css: "#{TEST_FIXTURES_DIRECTORY}/custom.css"
-        }
-
-        ReportBuilder.build_report options
-        generated_report = File.read("#{output_location}.html")
-        additional_css = File.read(options[:additional_css]).gsub('  ', '').gsub("\n\n", '')
-        expect(generated_report).to include(additional_css)
       end
 
     end

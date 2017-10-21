@@ -33,6 +33,10 @@ module ReportBuilder
         options[:additional_css] = File.read(options[:additional_css])
       end
 
+      if options[:additional_js] and Pathname.new(options[:additional_js]).file?
+        options[:additional_js] = File.read(options[:additional_js])
+      end
+
       html_report_path = options[:html_report_path] || options[:report_path]
       File.open(html_report_path + '.html', 'w') do |file|
         file.write ERB.new(File.read(File.dirname(__FILE__) + '/../../template/html_report.erb')).result(binding).gsub('  ', '').gsub("\n\n", '')

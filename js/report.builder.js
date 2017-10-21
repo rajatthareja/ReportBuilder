@@ -17,11 +17,11 @@ $(document).ready(function () {
     var incomplete = $(".feature.incomplete");
     var features = $(".feature");
 
-    passed.prepend("<i class=\"material-icons white-text\">done_all</i>");
-    failed.prepend("<i class=\"material-icons white-text\">highlight_off</i>");
-    skipped.prepend("<i class=\"material-icons white-text\">error_outline</i>");
-    undefined.prepend("<i class=\"material-icons white-text\">error_outline</i>");
-    pending.prepend("<i class=\"material-icons white-text\">error_outline</i>");
+    passed.prepend("<i class=\"material-icons\">done_all</i>");
+    failed.prepend("<i class=\"material-icons\">highlight_off</i>");
+    skipped.prepend("<i class=\"material-icons\">error_outline</i>");
+    undefined.prepend("<i class=\"material-icons\">error_outline</i>");
+    pending.prepend("<i class=\"material-icons\">error_outline</i>");
 
     features.each(function () {
         var $this = $(this);

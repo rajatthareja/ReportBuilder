@@ -22,9 +22,9 @@
 <body>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
 <%errors = []%>
 <%features.each_with_index do |feature, f|%>
@@ -241,12 +241,12 @@
         </div>
       </div>
     </div>
-    <div id="features" class="col s12 brown lighten-5">
+    <div id="features" class="col s12 brown lighten-5 white-text">
       <ul class="featureList collapsible popout" data-collapsible="expandable">
         <%features.each_with_index do |feature, f|%>
             <li class="feature <%=feature['status']%>">
-              <div class="collapsible-header brown lighten-1 white-text waves-effect waves-light">
-                <i class="material-icons white-text">featured_play_list</i>
+              <div class="collapsible-header brown lighten-1 waves-effect waves-light">
+                <i class="material-icons">featured_play_list</i>
                 <b><%=feature['keyword']%></b>&nbsp;<%=feature['name']%>&nbsp;(<%=duration(feature['duration'])%>)
               </div>
               <div class="collapsible-body brown lighten-4">
@@ -310,8 +310,8 @@
                       <%feature['elements'].each_with_index do |scenario, s|%>
                           <%if scenario['error']%>
                               <%if scenario['error'] == error%>
-                                  <li class="collection-item failedScenario brown lighten-5">
-                                    <i class="material-icons red-text">highlight_off</i>&nbsp;<a class="modal-trigger red-text"href="#f<%=f%>s<%=s%>"><%=scenario['name']%></a>
+                                  <li class="collection-item failedScenario brown lighten-5 red-text">
+                                    <i class="material-icons">highlight_off</i>&nbsp;<a class="modal-trigger red-text"href="#f<%=f%>s<%=s%>"><%=scenario['name']%></a>
                                   </li>
                               <%end%>
                           <%end%>
@@ -335,13 +335,22 @@
   </div>
 </footer>
 
-<script>
+<script type="text/javascript">
 $(document).ready(function () {
   <%features.each_with_index do |feature, f|%><%(0..feature['elements'].size).each do |s|%>
     $('#f<%=f%>s<%=s%>').modal();
   <%end%><%end%>
 });
 </script>
-<script src="https://cdn.rawgit.com/rajatthareja/ReportBuilder/770f5c65792926ef8318e95238ed0ef44addbec8/js/report.builder.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/rajatthareja/ReportBuilder/770f5c65792926ef8318e95238ed0ef44addbec8/js/report.builder.min.js"></script>
+<%if options[:additional_js]%>
+    <%if options[:additional_js] =~ /^http(|s):\/\/.*\.css$/%>
+        <script src="<%=options[:additional_js]%>"></script>
+    <%else%>
+        <script type="text/javascript">
+            <%= options[:additional_js]%>
+        </script>
+    <%end%>
+<%end%>
 </body>
 </html>

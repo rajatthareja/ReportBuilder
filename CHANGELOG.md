@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Step Data Table UI
 
 ### Added
+- additional_js option
 - additional_css option
 - alias input_path for json_path 
 - Duration for Step, Scenario and Feature
