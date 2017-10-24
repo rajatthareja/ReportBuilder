@@ -18,7 +18,7 @@ module ReportBuilder
 
       options[:report_types].map!(&:to_s).map!(&:upcase)
 
-      options[:json_path] ||= options[:input_path]
+      options[:json_path] ||= options[:input_path] || Dir.pwd
       files = get_files options[:json_path]
       raise "Error:: No file(s) found at #{options[:json_path]}" if files.empty?
 
@@ -54,13 +54,18 @@ module ReportBuilder
     end
 
     def default_options
-      OpenStruct.new(
-          json_path: Dir.pwd, # [String] / [Array] Input json file, array of json files/path or json files path, (Default current directory)
-          report_path: 'test_report', # [String] Output file path with name
-          report_types: [:html], # [Array] Output file types to build, [:json, :html] or ['html', 'json']
-          report_title: 'Test Results', # [String] Report and html title
-          include_images: true, # [Boolean] Set false to reducing the size of HTML report, by excluding embedded images
-          additional_info: {} # [Hash] Additional info for report
+      OpenStruct.new(json_path: nil,
+                     input_path: nil,
+                     report_types: [:html],
+                     report_title: 'Test Results',
+                     include_images: true,
+                     additional_info: {},
+                     report_path: 'test_report',
+                     json_report_path: nil,
+                     html_report_path: nil,
+                     retry_report_path: nil,
+                     additional_css: nil,
+                     additional_js: nil
       )
     end
 

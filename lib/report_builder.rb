@@ -1,8 +1,9 @@
 require_relative 'report_builder/builder'
 
-
+##
+# ReportBuilder Main module
+##
 module ReportBuilder
-  
   ##
   # Configure ReportBuilder
   #
@@ -21,6 +22,21 @@ module ReportBuilder
     defaults = builder.default_options
     yield defaults if block_given?
     builder.options = defaults.marshal_dump
+  end
+
+  ##
+  # Set single option
+  #
+  # @param [String] option
+  # @param [Object] value
+  #
+  # Example:
+  #
+  #     ReportBuilder.set_option('include_images', false)
+  #
+  def self.set_option(option, value)
+    builder.options ||= builder.default_options.marshal_dump
+    builder.options[option] = value
   end
 
   ##
@@ -48,5 +64,4 @@ module ReportBuilder
   def self.builder
     @builder ||= Builder.new
   end
-
 end
