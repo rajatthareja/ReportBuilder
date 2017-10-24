@@ -2,7 +2,7 @@ require_relative 'report_builder/builder'
 
 ##
 # ReportBuilder Main module
-##
+#
 module ReportBuilder
   ##
   # Configure ReportBuilder

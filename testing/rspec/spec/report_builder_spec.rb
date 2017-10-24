@@ -2,7 +2,6 @@ require "#{File.dirname(__FILE__)}/spec_helper"
 require 'tempfile'
 
 describe ReportBuilder do
-
   it 'correctly combines multiple JSON reports into a single json report' do
     input_1_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/report.json"
     input_2_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/report2.json"
@@ -36,12 +35,12 @@ describe ReportBuilder do
   it 'correctly combines multiple JSON reports into a single HTML report' do
     output_location = Tempfile.new('new_report').path
     options = {
-        json_path: "#{TEST_FIXTURES_DIRECTORY}/json_reports",
-        report_path: output_location,
-        report_types: ['html'],
-        report_title: 'Test Results',
-        include_images: false,
-        additional_info: {Environment: 'POC'}
+      json_path: "#{TEST_FIXTURES_DIRECTORY}/json_reports",
+      report_path: output_location,
+      report_types: ['html'],
+      report_title: 'Test Results',
+      include_images: false,
+      additional_info: { Environment: 'POC' }
     }
 
     ReportBuilder.build_report options
@@ -102,13 +101,13 @@ describe ReportBuilder do
   it 'uses additional_css for report customization' do
     output_location = Tempfile.new('new_report').path
     options = {
-        json_path: "#{TEST_FIXTURES_DIRECTORY}/json_reports",
-        report_path: output_location,
-        report_types: ['html'],
-        report_title: 'Test Results',
-        include_images: false,
-        additional_info: {Environment: 'POC'},
-        additional_css: "#{TEST_FIXTURES_DIRECTORY}/custom.css"
+      json_path: "#{TEST_FIXTURES_DIRECTORY}/json_reports",
+      report_path: output_location,
+      report_types: ['html'],
+      report_title: 'Test Results',
+      include_images: false,
+      additional_info: { Environment: 'POC' },
+      additional_css: "#{TEST_FIXTURES_DIRECTORY}/custom.css"
     }
 
     ReportBuilder.build_report options
@@ -122,13 +121,13 @@ describe ReportBuilder do
   it 'uses additional_js  for report customization' do
     output_location = Tempfile.new('new_report').path
     options = {
-        json_path: "#{TEST_FIXTURES_DIRECTORY}/json_reports",
-        report_path: output_location,
-        report_types: ['html'],
-        report_title: 'Test Results',
-        include_images: false,
-        additional_info: {Environment: 'POC'},
-        additional_js: "#{TEST_FIXTURES_DIRECTORY}/custom.js"
+      json_path: "#{TEST_FIXTURES_DIRECTORY}/json_reports",
+      report_path: output_location,
+      report_types: ['html'],
+      report_title: 'Test Results',
+      include_images: false,
+      additional_info: { Environment: 'POC' },
+      additional_js: "#{TEST_FIXTURES_DIRECTORY}/custom.js"
     }
 
     ReportBuilder.build_report options
@@ -140,24 +139,25 @@ describe ReportBuilder do
   end
 
   describe 'report configuration' do
-
     it 'has a default configuration' do
-      expect(ReportBuilder.configure).to eq({
-                                              json_path: Dir.pwd,
-                                              report_path: 'test_report',
-                                              report_types: [:html],
-                                              report_title: 'Test Results',
-                                              include_images: true,
-                                              additional_info: {}
-                                            })
+      expect(ReportBuilder.configure).to eq(json_path: nil,
+                                            input_path: nil,
+                                            report_types: [:html],
+                                            report_title: 'Test Results',
+                                            include_images: true,
+                                            additional_info: {},
+                                            report_path: 'test_report',
+                                            json_report_path: nil,
+                                            html_report_path: nil,
+                                            retry_report_path: nil,
+                                            additional_css: nil,
+                                            additional_js: nil)
     end
 
-
     context 'with specific configuration' do
-
-      let (:source_path) { "#{TEST_FIXTURES_DIRECTORY}/json_reports/report.json" }
-      let (:report_directory) { ReportBuilder::FileHelper.create_directory }
-      let (:report_file_path) { "#{report_directory}/report" }
+      let(:source_path) { "#{TEST_FIXTURES_DIRECTORY}/json_reports/report.json" }
+      let(:report_directory) { ReportBuilder::FileHelper.create_directory }
+      let(:report_file_path) { "#{report_directory}/report" }
 
       before(:each) do
         ReportBuilder.configure do |configuration|
@@ -166,7 +166,6 @@ describe ReportBuilder do
           configuration.report_types = [:json, :retry]
         end
       end
-
 
       it 'uses the overridden configuration' do
         ReportBuilder.build_report
@@ -177,9 +176,6 @@ describe ReportBuilder do
 
         expect(files_created).to match_array(["#{File.basename(report_file_path)}.json", "#{File.basename(report_file_path)}.retry"])
       end
-
     end
-
   end
-
 end
