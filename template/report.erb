@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <%= build('head').result(binding) %>
+  <body>
+    <%= build('header').result(binding) %>
+
+    <% features = groups[0]['features'] %>
+    <% gid = 'g0' %>
+    <% errors = [] %>
+
+    <%= build('scenarios').result(binding) %>
+
+    <main class="brown lighten-5">
+      <div class="row">
+        <%= build('overview').result(binding) %>
+        <%= build('features').result(binding) %>
+        <%= build('summary').result(binding) %>
+        <%= build('errors').result(binding) %>
+      </div>
+    </main>
+
+    <%= build('footer').result(binding) %>
+  </body>
+</html>

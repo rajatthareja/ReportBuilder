@@ -1,0 +1,21 @@
+<li class="error">
+  <div class="collapsible-header red lighten-2 white-text waves-effect waves-light">
+    <i class="material-icons">bug_report</i><%= error %>
+  </div>
+
+  <div class="collapsible-body brown lighten-4">
+    <ul class="collection failedScenarioList">
+      <% features.each_with_index do |feature, f| %>
+          <% feature['elements'].each_with_index do |scenario, s| %>
+              <% if scenario['error'] %>
+                  <% if scenario['error'] == error %>
+                      <li class="collection-item failedScenario brown lighten-5 red-text">
+                        <i class="material-icons">highlight_off</i>&nbsp;<a class="modal-trigger red-text" href="#<%= "f#{f}s#{s}" %>"><%= scenario['name'] %></a>
+                      </li>
+                  <% end %>
+              <% end %>
+          <% end %>
+      <% end %>
+    </ul>
+  </div>
+</li>

@@ -1,0 +1,22 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title><%= options[:report_title] %></title>
+
+  <link rel="icon" href="http://reportbuilder.rajatthareja.com/rb.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" media="screen,projection"/>
+  <link href="https://cdn.rawgit.com/rajatthareja/ReportBuilder/v1.3/css/report.builder.min.css" rel="stylesheet">
+
+  <% if options[:additional_css] %>
+      <% if options[:additional_css] =~ /^http(|s):\/\/.*\.css$/ %>
+          <link rel="stylesheet" href="<%= options[:additional_css] %>" media="all"/>
+      <% else %>
+          <style type="text/css">
+            <%= options[:additional_css]%>
+          </style>
+      <% end %>
+  <% end %>
+</head>

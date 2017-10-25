@@ -1,0 +1,35 @@
+<div id="<%= sid %>" class="modal modal-fixed-footer">
+  <div class="modal-content">
+
+    <% if scenario['tags'] %>
+        <% scenario['tags'].each do |tag| %>
+            <div class="chip"><i class="material-icons rotate-45">label</i><%= tag['name'] %></div>
+        <% end %>
+    <% end %>
+
+    <h5><%= scenario['name'] %> (<%= duration(scenario['duration']) %>)</h5>
+    <%= feature['uri'] %>:<%= scenario['line'] %>
+
+    <% if scenario['before'] %>
+        <% scenario['before'].each do |hook| %>
+            <%= build('hook').result(binding) %>
+        <% end %>
+    <% end %>
+
+    <ul class="collection stepList">
+      <% scenario['steps'].each do |step| %>
+          <%= build('step').result(binding) %>
+      <% end %>
+    </ul>
+
+    <% if scenario['after'] %>
+        <% scenario['after'].each do |hook| %>
+            <%= build('hook').result(binding) %>
+        <% end %>
+    <% end %>
+  </div>
+
+  <div class="modal-footer">
+    <span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+  </div>
+</div>

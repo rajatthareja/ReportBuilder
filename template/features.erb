@@ -1,0 +1,8 @@
+<div id="features" class="col s12 brown lighten-5 white-text">
+  <ul class="featureList collapsible popout" data-collapsible="expandable">
+    <% features.each_with_index do |feature, f| %>
+        <% id = "f#{f}" %>
+        <%= build('feature').result(binding) %>
+    <% end %>
+  </ul>
+</div>

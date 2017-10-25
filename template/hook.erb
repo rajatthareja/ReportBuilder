@@ -1,0 +1,28 @@
+<% if hook['output'] %>
+    <% hook['output'].each do |output| %>
+        <pre><%= output %></pre>
+    <% end %>
+<% end %>
+
+<% if hook['result']['error_message'] %>
+    <% error = ERB::Util.html_escape hook['result']['error_message'] %>
+    <% scenario['error'] = error.split("\n").first %>
+    <% errors << scenario['error'] %>
+    <pre><%= error %></pre>
+<% end %>
+
+<% if hook['embeddings'] %>
+    <% hook['embeddings'].each do |embedding| %>
+        <% if embedding['mime_type'] =~ /^image\/(png|gif|jpg|jpeg)/ %>
+            <% if options[:include_images] %>
+                <img class="materialboxed" data-caption='<%= scenario['name'] %>' width="250" src="data:<%= embedding['mime_type'] %>;base64,<%= embedding['data'] %>">
+            <% end %>
+        <% elsif embedding['mime_type'] =~ /^text\/plain/ %>
+            <% if embedding['data'].include?('|||') %>
+                <% title, link = embedding['data'].split('|||') %><a href="<%= link %>"><%= title %></a>
+            <% else %>
+                <%= embedding['data'] %>
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>

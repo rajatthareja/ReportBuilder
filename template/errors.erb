@@ -1,0 +1,7 @@
+<div id="errors" class="col s12 brown lighten-5">
+  <ul class="errorList collapsible popout" data-collapsible="expandable">
+    <% errors.uniq.each do |error| %>
+        <%= build('error').result(binding) %>
+    <% end %>
+  </ul>
+</div>

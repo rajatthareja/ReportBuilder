@@ -6,27 +6,29 @@ require 'base64'
 require 'report_builder/core-ext/hash'
 
 module ReportBuilder
+  ##
+  # ReportBuilder Main class
+  #
   class Builder
 
     attr_accessor :options
 
+    ##
+    # ReportBuilder Main method
+    #
     def build_report(opts = nil)
       options = self.options || default_options.marshal_dump
       options.merge! opts if opts.is_a? Hash
 
-      raise 'Error:: Invalid report_types. Use: [:json, :html]' unless options[:report_types].is_a? Array
-
+      fail 'Error:: Invalid report_types. Use: [:json, :html]' unless options[:report_types].is_a? Array
       options[:report_types].map!(&:to_s).map!(&:upcase)
 
-      options[:json_path] ||= options[:input_path] || Dir.pwd
-      files = get_files options[:json_path]
-      raise "Error:: No file(s) found at #{options[:json_path]}" if files.empty?
-
-      features = get_features(files) rescue raise('Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)')
+      options[:input_path] ||= options[:json_path] || Dir.pwd
+      groups = get_groups options[:input_path]
 
       json_report_path = options[:json_report_path] || options[:report_path]
       File.open(json_report_path + '.json', 'w') do |file|
-        file.write JSON.pretty_generate features
+        file.write JSON.pretty_generate groups
       end if options[:report_types].include? 'JSON'
 
       if options[:additional_css] and Pathname.new(options[:additional_css]).file?
@@ -39,20 +41,32 @@ module ReportBuilder
 
       html_report_path = options[:html_report_path] || options[:report_path]
       File.open(html_report_path + '.html', 'w') do |file|
-        file.write ERB.new(File.read(File.dirname(__FILE__) + '/../../template/html_report.erb')).result(binding).gsub('  ', '').gsub("\n\n", '')
+        file.write build('report').result(binding).gsub('  ', '').gsub("\n\n", '')
       end if options[:report_types].include? 'HTML'
 
       retry_report_path = options[:retry_report_path] || options[:report_path]
       File.open(retry_report_path + '.retry', 'w') do |file|
-        features.each do |feature|
-          if feature['status'] == 'broken'
-            feature['elements'].each {|scenario| file.puts "#{feature['uri']}:#{scenario['line']}" if scenario['status'] == 'failed'}
+        groups.each do |group|
+          group['features'].each do |feature|
+            if feature['status'] == 'broken'
+              feature['elements'].each {|scenario| file.puts "#{feature['uri']}:#{scenario['line']}" if scenario['status'] == 'failed'}
+            end
           end
         end
       end if options[:report_types].include? 'RETRY'
       [json_report_path, html_report_path, retry_report_path]
     end
 
+    ##
+    # Build html from template
+    #
+    def build(template)
+      ERB.new(File.read(File.dirname(__FILE__) + '/../../template/' + template + '.erb'), nil, nil, '_' + template)
+    end
+
+    ##
+    # ReportBuilder default configuration
+    #
     def default_options
       OpenStruct.new(json_path: nil,
                      input_path: nil,
@@ -70,6 +84,23 @@ module ReportBuilder
     end
 
     private
+
+    def get_groups(input_path)
+      groups = []
+      if input_path.is_a? Hash
+        input_path.each do |group_name, group_path|
+          files = get_files group_path
+          puts "Error:: No file(s) found at #{group_path}" if files.empty?
+          groups << {'name' => group_name, 'features' => get_features(files)} rescue next
+        end
+        fail 'Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)' if groups.empty?
+      else
+        files = get_files input_path
+        fail "Error:: No file(s) found at #{input_path}" if files.empty?
+        groups << {'name' => 'ReportBuilder', 'features' => get_features(files)} rescue fail('Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)')
+      end
+      groups
+    end
 
     def get_files(path)
       if path.is_a?(String) and Pathname.new(path).exist?
