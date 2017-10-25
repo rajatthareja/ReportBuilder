@@ -2,6 +2,7 @@ require 'json'
 require 'erb'
 require 'pathname'
 require 'base64'
+require 'ostruct'
 
 require 'report_builder/core-ext/hash'
 
