@@ -15,7 +15,7 @@
             <tr class="<%= scenario['status'] %>">
               <td class="hide-on-small-only"><%= feature['name'] %></td>
               <td class="hoverable">
-                <a class="modal-trigger white-text" href="#<%= "f#{f}s#{s}" %>"><%= scenario['name'] %></a></td>
+                <a class="modal-trigger white-text" href="#<%= "#{gid}f#{f}s#{s}" %>"><%= scenario['name'] %></a></td>
               <td class="hide">
                 <% if scenario['tags'] %>
                     <% scenario['tags'].each do |tag| %>

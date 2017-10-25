@@ -10,7 +10,7 @@
               <% if scenario['error'] %>
                   <% if scenario['error'] == error %>
                       <li class="collection-item failedScenario brown lighten-5 red-text">
-                        <i class="material-icons">highlight_off</i>&nbsp;<a class="modal-trigger red-text" href="#<%= "f#{f}s#{s}" %>"><%= scenario['name'] %></a>
+                        <i class="material-icons">highlight_off</i>&nbsp;<a class="modal-trigger red-text" href="#<%= "#{gid}f#{f}s#{s}" %>"><%= scenario['name'] %></a>
                       </li>
                   <% end %>
               <% end %>
