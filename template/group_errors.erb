@@ -1,0 +1,18 @@
+<ul class="groupErrorList collapsible popout" data-collapsible="expandable">
+  <% groups.each_with_index do |group, g| %>
+
+      <% gid = "g#{g}" %>
+      <% features = group['features'] %>
+      <li class="groupError">
+
+          <div class="collapsible-header red lighten-2 white-text waves-effect waves-light">
+            <i class="material-icons">group_work</i>
+            <b><%= group['name'] %></b>
+          </div>
+
+          <div class="collapsible-body brown lighten-4">
+            <%= get('errors').result(binding) %>
+          </div>
+      </li>
+  <% end %>
+</ul>

@@ -1,0 +1,25 @@
+<table id="summaryTable" class="bordered brown lighten-1 white-text" width="100%">
+  <thead>
+  <tr>
+    <th class="hide-on-small-only">Group</th>
+    <th class="hide-on-small-only">Feature</th>
+    <th>Scenario</th>
+    <th class="hide">Tags</th>
+    <th>Status</th>
+    <th class="hide-on-small-only">Error</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% groups.each_with_index do |group, g| %>
+    <% group['features'].each_with_index do |feature, f| %>
+        <% feature['elements'].each_with_index do |scenario, s| %>
+            <% sid = "g#{g}f#{f}s#{s}" %>
+            <tr class="<%= scenario['status'] %>">
+              <td class="hide-on-small-only"><%= group['name'] %></td>
+              <%= get('summary_row').result(binding) %>
+            </tr>
+        <% end %>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>

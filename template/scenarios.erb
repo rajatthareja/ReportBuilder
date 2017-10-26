@@ -4,3 +4,11 @@
         <%= get('scenario').result(binding) %>
     <% end %>
 <% end %>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        <%features.each_with_index do |feature, f|%><%(0..feature['elements'].size).each do |s|%>
+        $('#<%="#{gid}f#{f}s#{s}"%>').modal();
+        <%end%><%end%>
+    });
+</script>

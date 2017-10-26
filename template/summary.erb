@@ -1,35 +1,21 @@
-<div id="summary" class="col s12 brown lighten-5">
-  <table id="summaryTable" class="bordered brown lighten-1 white-text" width="100%">
-    <thead>
-    <tr>
-      <th class="hide-on-small-only">Feature</th>
-      <th>Scenario</th>
-      <th class="hide">Tags</th>
-      <th>Status</th>
-      <th class="hide-on-small-only">Error</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% features.each_with_index do |feature, f| %>
-        <% feature['elements'].each_with_index do |scenario, s| %>
-            <tr class="<%= scenario['status'] %>">
-              <td class="hide-on-small-only"><%= feature['name'] %></td>
-              <td class="hoverable">
-                <a class="modal-trigger white-text" href="#<%= "#{gid}f#{f}s#{s}" %>"><%= scenario['name'] %></a></td>
-              <td class="hide">
-                <% if scenario['tags'] %>
-                    <% scenario['tags'].each do |tag| %>
-                        <%= tag['name'] + '. ' %>
-                    <% end %>
-                <% end %>
-              </td>
-              <td class="uppercase"><%= scenario['status'] %></td>
-              <td class="hide-on-small-only">
-                <% if scenario['error'] %><%= scenario['error'] %>
-                <% end %></td>
-            </tr>
-        <% end %>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+<table id="summaryTable" class="bordered brown lighten-1 white-text" width="100%">
+  <thead>
+  <tr>
+    <th class="hide-on-small-only">Feature</th>
+    <th>Scenario</th>
+    <th class="hide">Tags</th>
+    <th>Status</th>
+    <th class="hide-on-small-only">Error</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% features.each_with_index do |feature, f| %>
+      <% feature['elements'].each_with_index do |scenario, s| %>
+          <% sid = "#{gid}f#{f}s#{s}" %>
+          <tr class="<%= scenario['status'] %>">
+            <%= get('summary_row').result(binding) %>
+          </tr>
+      <% end %>
+  <% end %>
+  </tbody>
+</table>

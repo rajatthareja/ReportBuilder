@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<%= get('head').result(binding) %>
+<body>
+<%= get('header').result(binding) %>
+
+<% errors = [] %>
+
+<% groups.each_with_index do |group, g| %>
+  <% gid = "g#{g}" %>
+  <% features = group['features'] %>
+  <%= get('scenarios').result(binding) %>
+<% end %>
+
+<main class="brown lighten-5">
+  <div class="row">
+    <div id="overview" class="col s12 brown lighten-5">
+      <%= get('group_overview').result(binding) %>
+    </div>
+
+    <div id="features" class="col s12 brown lighten-5 white-text">
+      <%= get('group_features').result(binding) %>
+    </div>
+
+    <div id="summary" class="col s12 brown lighten-5">
+      <%= get('group_summary').result(binding) %>
+    </div>
+
+    <div id="errors" class="col s12 brown lighten-5">
+      <%= get('group_errors').result(binding) %>
+    </div>
+  </div>
+</main>
+
+<%= get('footer').result(binding) %>
+</body>
+</html>

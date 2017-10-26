@@ -4,18 +4,31 @@
   <body>
     <%= get('header').result(binding) %>
 
-    <% features = groups[0]['features'] %>
-    <% gid = 'g0' %>
     <% errors = [] %>
+
+    <% gid = 'g0' %>
+    <% features = groups.map{|g| g['features']}.flatten %>
 
     <%= get('scenarios').result(binding) %>
 
     <main class="brown lighten-5">
       <div class="row">
-        <%= get('overview').result(binding) %>
-        <%= get('features').result(binding) %>
-        <%= get('summary').result(binding) %>
-        <%= get('errors').result(binding) %>
+
+        <div id="overview" class="col s12 brown lighten-5">
+          <%= get('overview').result(binding) %>
+        </div>
+
+        <div id="features" class="col s12 brown lighten-5 white-text">
+          <%= get('features').result(binding) %>
+        </div>
+
+        <div id="summary" class="col s12 brown lighten-5">
+          <%= get('summary').result(binding) %>
+        </div>
+
+        <div id="errors" class="col s12 brown lighten-5">
+          <%= get('errors').result(binding) %>
+        </div>
       </div>
     </main>
 

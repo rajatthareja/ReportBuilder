@@ -8,13 +8,6 @@
   </div>
 </footer>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        <%features.each_with_index do |feature, f|%><%(0..feature['elements'].size).each do |s|%>
-        $('#<%="#{gid}f#{f}s#{s}"%>').modal();
-        <%end%><%end%>
-    });
-</script>
 <script type="text/javascript" src="https://cdn.rawgit.com/rajatthareja/ReportBuilder/v1.3/js/report.builder.min.js"></script>
 
 <% if options[:additional_js] %>

@@ -1,0 +1,25 @@
+<td class="hide-on-small-only">
+  <%= feature['name'] %>
+</td>
+
+<td class="hoverable">
+  <a class="modal-trigger white-text" href="#<%= sid %>"><%= scenario['name'] %></a>
+</td>
+
+<td class="hide">
+  <% if scenario['tags'] %>
+      <% scenario['tags'].each do |tag| %>
+          <%= tag['name'] + '. ' %>
+      <% end %>
+  <% end %>
+</td>
+
+<td class="uppercase">
+  <%= scenario['status'] %>
+</td>
+
+<td class="hide-on-small-only">
+  <% if scenario['error'] %>
+      <%= scenario['error'] %>
+  <% end %>
+</td>

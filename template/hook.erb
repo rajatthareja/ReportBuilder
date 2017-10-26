@@ -5,8 +5,7 @@
 <% end %>
 
 <% if hook['result']['error_message'] %>
-    <%# error = ERB::Util.html_escape hook['result']['error_message'] %>
-    <% error = hook['result']['error_message'] %>
+    <% error = ERB::Util.html_escape hook['result']['error_message'] %>
     <% scenario['error'] = error.split("\n").first %>
     <% errors << scenario['error'] %>
     <pre><%= error %></pre>

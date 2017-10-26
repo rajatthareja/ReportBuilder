@@ -42,7 +42,7 @@ module ReportBuilder
 
       html_report_path = options[:html_report_path] || options[:report_path]
       File.open(html_report_path + '.html', 'w') do |file|
-        file.write get('report').result(binding).gsub('  ', '').gsub("\n\n", '')
+        file.write get(groups.size > 1 ? 'group_report' : 'report').result(binding).gsub('  ', '').gsub("\n\n", '')
       end if options[:report_types].include? 'HTML'
 
       retry_report_path = options[:retry_report_path] || options[:report_path]

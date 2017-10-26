@@ -2,8 +2,15 @@
 
 rvm use 2.4.1
 cd testing/create_fixtures
+
 #bundle
-#rake clean
 #parallel_cucumber features/
-ruby run.rb
+
+#ruby create_sample_report.rb
+
+ruby create.rb
+
+rvm use 1.9.3
+ruby create_r1.rb
+
 rake clean
