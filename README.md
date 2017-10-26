@@ -7,7 +7,7 @@
 
 Ruby gem to merge Cucumber JSON reports and build mobile-friendly HTML Test Report, JSON report and retry file.
 
-**[View sample report](http://reportbuilder.rajatthareja.com)**
+**[View sample report](http://reportbuilder.rajatthareja.com/sample/report.html)**
 
 ## Installation
 

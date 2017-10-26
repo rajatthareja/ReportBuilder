@@ -7,12 +7,12 @@ Gem::Specification.new do |s|
   s.post_install_message = 'Happy reporting!'
   s.authors     = ['Rajat Thareja']
   s.email       = 'rajat.thareja.1990@gmail.com'
-  s.homepage    = 'https://github.com/rajatthareja/ReportBuilder'
+  s.homepage    = 'http://reportbuilder.rajatthareja.com'
   s.license     = 'MIT'
   s.required_ruby_version = '>= 1.9.1'
   s.requirements << 'Cucumber >= 2.1.0 test results in JSON format'
 
-  s.files       = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(docs|css|js|pkg|testing|coverage)/}) }
+  s.files       = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(sample/|css/|js/|pkg/|testing/|coverage/|CNAME|.gitignore|appveyor.yml|.travis.yml|_config.yml|Gemfile|Rakefile|rb.ico)}) }
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.test_files  = s.files.grep(%r{^(testing)/})
 
