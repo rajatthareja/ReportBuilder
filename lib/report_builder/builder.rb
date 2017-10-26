@@ -42,7 +42,7 @@ module ReportBuilder
 
       html_report_path = options[:html_report_path] || options[:report_path]
       File.open(html_report_path + '.html', 'w') do |file|
-        file.write build('report').result(binding).gsub('  ', '').gsub("\n\n", '')
+        file.write get('report').result(binding).gsub('  ', '').gsub("\n\n", '')
       end if options[:report_types].include? 'HTML'
 
       retry_report_path = options[:retry_report_path] || options[:report_path]
@@ -56,13 +56,6 @@ module ReportBuilder
         end
       end if options[:report_types].include? 'RETRY'
       [json_report_path, html_report_path, retry_report_path]
-    end
-
-    ##
-    # Build html from template
-    #
-    def build(template)
-      ERB.new(File.read(File.dirname(__FILE__) + '/../../template/' + template + '.erb'), nil, nil, '_' + template)
     end
 
     ##
@@ -85,6 +78,11 @@ module ReportBuilder
     end
 
     private
+
+    def get(template)
+      @erb ||= {}
+      @erb[template] ||= ERB.new(File.read(File.dirname(__FILE__) + '/../../template/' + template + '.erb'), nil, nil, '_' + template)
+    end
 
     def get_groups(input_path)
       groups = []

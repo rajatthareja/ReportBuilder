@@ -1,6 +1,6 @@
 <% features.each_with_index do |feature, f| %>
     <% feature['elements'].each_with_index do |scenario, s| %>
         <% sid = "#{gid}f#{f}s#{s}" %>
-        <%= build('scenario').result(binding) %>
+        <%= get('scenario').result(binding) %>
     <% end %>
 <% end %>

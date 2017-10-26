@@ -17,6 +17,7 @@
     <div class="col m4 s12">
       <table id="metaData" class="bordered">
         <tbody>
+        <tr><th>Total Time</th><td><%= duration(total_time(features)) %></td></tr>
         <% options[:additional_info].each do |key, value| %>
             <tr>
               <th><%= key %></th>

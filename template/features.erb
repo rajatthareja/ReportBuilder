@@ -2,7 +2,7 @@
   <ul class="featureList collapsible popout" data-collapsible="expandable">
     <% features.each_with_index do |feature, f| %>
         <% id = "#{gid}f#{f}" %>
-        <%= build('feature').result(binding) %>
+        <%= get('feature').result(binding) %>
     <% end %>
   </ul>
 </div>

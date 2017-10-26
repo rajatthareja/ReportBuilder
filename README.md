@@ -2,8 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/report_builder.svg)](https://badge.fury.io/rb/report_builder) 
 [![Build status](https://travis-ci.org/rajatthareja/ReportBuilder.svg?branch=master)](https://travis-ci.org/rajatthareja/ReportBuilder)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/s5jx2ji3wdg294u6/branch/master?svg=true
-)](https://ci.appveyor.com/project/rajatthareja/reportbuilder)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/s5jx2ji3wdg294u6/branch/master?svg=true)](https://ci.appveyor.com/project/rajatthareja/reportbuilder)
 [![Join the chat at https://gitter.im/rajatthareja/ReportBuilder](https://badges.gitter.im/rajatthareja/ReportBuilder.svg)](https://gitter.im/rajatthareja/ReportBuilder?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Ruby gem to merge Cucumber JSON reports and build mobile-friendly HTML Test Report, JSON report and retry file.
@@ -77,21 +76,21 @@ gem install report_builder
 
 ### CLI Options:
 
-| Option              | Values          | Explanation                                                                        |
-|---------------------|-----------------|------------------------------------------------------------------------------------|
-| -s, --source        | x,y,z           | List of input json path or files                                                   |
-| -o, --out           | [PATH]NAME      | Reports path with name without extension                                           |
-| --json_out          | [PATH]NAME      | JSON report path with name without extension                                       |
-| --html_out          | [PATH]NAME      | HTML report path with name without extension                                       |
-| --retry_out         | [PATH]NAME      | Retry report path with name without extension                                      |
-| -f, --format        | x,y,z           | List of report format - html,json,retry                                            |
-| --[no-]images       |                 | Reduce HTML report size by excluding embedded images                               |
-| -T, --title         | TITLE           | Report title                                                                       |
-| -I, --info          | a:x,b:y,c:z     | List of additional info about test - key:value                                     |
-| --css               | STRING/PATH/URL | Additional CSS string or CSS file path or CSS file url for customizing html report |
-| --js                | STRING/PATH/URL | Additional JS string or JS file path or JS file url for customizing html report    |
-| -h, --help          |                 | Show available command line switches                                               |
-| -v, --version       |                 | Show gem version                                                                   |
+| Option              | Values       | Explanation                                                                        |
+|---------------------|--------------|------------------------------------------------------------------------------------|
+| -s, --source        | x,y,z        | List of input json path or files                                                   |
+| -o, --out           | [PATH]NAME   | Reports path with name without extension                                           |
+| --json_out          | [PATH]NAME   | JSON report path with name without extension                                       |
+| --html_out          | [PATH]NAME   | HTML report path with name without extension                                       |
+| --retry_out         | [PATH]NAME   | Retry report path with name without extension                                      |
+| -f, --format        | x,y,z        | List of report format - html,json,retry                                            |
+| --[no-]images       |              | Reduce HTML report size by excluding embedded images                               |
+| -T, --title         | TITLE        | Report title                                                                       |
+| -I, --info          | a:x,b:y,c:z  | List of additional info about test - key:value                                     |
+| --css               | CSS/PATH/URL | Additional CSS string or CSS file path or CSS file url for customizing html report |
+| --js                | JS/PATH/URL  | Additional JS string or JS file path or JS file url for customizing html report    |
+| -h, --help          |              | Show available command line switches                                               |
+| -v, --version       |              | Show gem version                                                                   |
 
 ### CLI Example:
 

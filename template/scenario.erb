@@ -12,19 +12,19 @@
 
     <% if scenario['before'] %>
         <% scenario['before'].each do |hook| %>
-            <%= build('hook').result(binding) %>
+            <%= get('hook').result(binding) %>
         <% end %>
     <% end %>
 
     <ul class="collection stepList">
       <% scenario['steps'].each do |step| %>
-          <%= build('step').result(binding) %>
+          <%= get('step').result(binding) %>
       <% end %>
     </ul>
 
     <% if scenario['after'] %>
         <% scenario['after'].each do |hook| %>
-            <%= build('hook').result(binding) %>
+            <%= get('hook').result(binding) %>
         <% end %>
     <% end %>
   </div>

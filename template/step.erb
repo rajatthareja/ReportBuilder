@@ -1,7 +1,7 @@
 <li class="collection-item step <%= step['status'] %>">
   <% if step['before'] %>
       <% step['before'].each do |hook| %>
-          <%= build('hook').result(binding) %>
+          <%= get('hook').result(binding) %>
       <% end %>
   <% end %>
 
@@ -18,11 +18,11 @@
 
   <%#step part as hook%>
   <% hook = step %>
-  <%= build('hook').result(binding) %>
+  <%= get('hook').result(binding) %>
 
   <% if step['after'] %>
       <% step['after'].each do |hook| %>
-          <%= build('hook').result(binding) %>
+          <%= get('hook').result(binding) %>
       <% end %>
   <% end %>
 </li>
