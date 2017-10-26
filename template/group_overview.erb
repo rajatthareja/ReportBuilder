@@ -15,8 +15,8 @@
 
   <div class="col m4 s12">
     <table id="metaData" class="bordered">
-      <tr><th>Total Time</th><td><%= duration(total_time(groups.map{|g| g['features']}.flatten)) %></td></tr>
       <tbody>
+      <tr><th>Total Time</th><td><%= duration(total_time(groups.map{|g| g['features']}.flatten)) %></td></tr>
       <% options[:additional_info].each do |key, value| %>
           <tr>
             <th><%= key %></th>
