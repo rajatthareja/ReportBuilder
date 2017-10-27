@@ -7,7 +7,11 @@
 
 Ruby gem to merge Cucumber JSON reports and build mobile-friendly HTML Test Report, JSON report and retry file.
 
-**[View sample report](http://reportbuilder.rajatthareja.com/sample/report.html)**
+## Sample Reports
+
+**[Features Report](http://reportbuilder.rajatthareja.com/sample/report.html)**
+
+**[Grouped Features Report](http://reportbuilder.rajatthareja.com/sample/group_report.html)**
 
 ## Installation
 
@@ -83,7 +87,7 @@ ReportBuilder.configure do |config|
       'Group A' => ['path/of/json/files/dir1', 'path/of/json/files/dir2'],
       'Group B' => ['path/of/json/file1', 'path/of/json/file2'],
       'Group C' => 'path/of/json/files/dir'}
-end
+  end
 
 ReportBuilder.build_report
 
