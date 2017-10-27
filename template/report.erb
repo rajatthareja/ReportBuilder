@@ -7,7 +7,7 @@
     <% errors = [] %>
 
     <% gid = 'g0' %>
-    <% features = groups.map{|g| g['features']}.flatten %>
+    <% features = groups.first['features'] %>
 
     <%= get('scenarios').result(binding) %>
 

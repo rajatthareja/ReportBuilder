@@ -29,7 +29,7 @@ module ReportBuilder
 
       json_report_path = options[:json_report_path] || options[:report_path]
       File.open(json_report_path + '.json', 'w') do |file|
-        file.write JSON.pretty_generate groups
+        file.write JSON.pretty_generate(groups.size > 1 ? groups : groups.first['features'])
       end if options[:report_types].include? 'JSON'
 
       if options[:additional_css] and Pathname.new(options[:additional_css]).file?
@@ -96,7 +96,7 @@ module ReportBuilder
       else
         files = get_files input_path
         fail "Error:: No file(s) found at #{input_path}" if files.empty?
-        groups << {'name' => 'ReportBuilder', 'features' => get_features(files)} rescue fail('Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)')
+        groups << {'features' => get_features(files)} rescue fail('Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)')
       end
       groups
     end

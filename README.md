@@ -28,19 +28,19 @@ gem install report_builder
 
 ### Config Options:
 
-| Option                  | Type               | Default             | Values                                                                                   |
-|-------------------------|--------------------|---------------------|------------------------------------------------------------------------------------------|
-| json_path / input_path  | [String] / [Array] | (current directory) | input json files path / array of json files or path                                      |
-| report_path             | [String]           | 'test_report'       | reports output file path with file name without extension                                |
-| json_report_path        | [String]           | (report_path)       | json report output file path with file name without extension                            |
-| html_report_path        | [String]           | (report_path)       | html report output file path with file name without extension                            |
-| retry_report_path       | [String]           | (report_path)       | retry report output file path with file name without extension                           |
-| report_types            | [Array]            | [:html]             | :json, :html, :retry (output file types)                                                 |
-| report_title            | [String]           | 'Test Results'      | report and html title                                                                    |
-| include_images          | [Boolean]          | true                | true / false (If false, the size of HTML report is reduced by excluding embedded images) |
-| additional_info         | [Hash]             | {}                  | additional info for report summary                                                       |
-| additional_css          | [String]           | nil                 | additional CSS string or CSS file path or CSS file url for customizing html report       |
-| additional_js           | [String]           | nil                 | additional JS string or JS file path or JS file url for customizing html report           |
+| Option               | Type                    | Default             | Values                                                                                   |
+|----------------------|-------------------------|---------------------|------------------------------------------------------------------------------------------|
+| json_path/input_path | [String]/[Array]/[Hash] | (current directory) | input json files path / array of json files or path / hash of json files or path         |
+| report_path          | [String]                | 'test_report'       | reports output file path with file name without extension                                |
+| json_report_path     | [String]                | (report_path)       | json report output file path with file name without extension                            |
+| html_report_path     | [String]                | (report_path)       | html report output file path with file name without extension                            |
+| retry_report_path    | [String]                | (report_path)       | retry report output file path with file name without extension                           |
+| report_types         | [Array]                 | [:html]             | :json, :html, :retry (output file types)                                                 |
+| report_title         | [String]                | 'Test Results'      | report and html title                                                                    |
+| include_images       | [Boolean]               | true                | true / false (If false, the size of HTML report is reduced by excluding embedded images) |
+| additional_info      | [Hash]                  | {}                  | additional info for report summary                                                       |
+| additional_css       | [String]                | nil                 | additional CSS string or CSS file path or CSS file url for customizing html report       |
+| additional_js        | [String]                | nil                 | additional JS string or JS file path or JS file url for customizing html report          |
 
 ### Code Examples:
 
@@ -73,6 +73,22 @@ gem install report_builder
     ReportBuilder.build_report options
         
 ```
+
+### Grouped Features Report Example:
+
+```ruby
+
+ReportBuilder.configure do |config|
+  config.json_path = config.json_path = {
+      'Group A' => ['path/of/json/files/dir1', 'path/of/json/files/dir2'],
+      'Group B' => ['path/of/json/file1', 'path/of/json/file2'],
+      'Group C' => 'path/of/json/files/dir'}
+end
+
+ReportBuilder.build_report
+
+```
+
 
 ### CLI Options:
 
@@ -109,7 +125,13 @@ Add in Rakefile
 ```ruby
 
     require 'report_builder'
-    load 'report_builder.rake'
+    
+    desc 'Sample rake task to build report'
+    task :report_builder, [:json_path, :report_path] do |t, args|
+      args.with_defaults(:json_path => nil, :report_path => 'test_report')
+      options = {:json_path => args.json_path, :report_path => args.report_path}
+      ReportBuilder.build_report options
+    end
 
 ```
 

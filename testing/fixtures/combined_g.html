@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Test Results</title><link rel="icon" href="http://reportbuilder.rajatthareja.com/rb.ico">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" media="screen,projection"/>
+<link href="https://cdn.rawgit.com/rajatthareja/ReportBuilder/v1.3/css/report.builder.min.css" rel="stylesheet">
+</head><body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script><header class="brown lighten-5">
+<div class="row brown lighten-1">
+<div class="col m8 hide-on-small-only">
+<h5 class="truncate white-text tooltipped" data-tooltip="Test Results">Test Results</h5>
+</div><div class="col m4 s12 brown lighten-1">
+<ul class="tabs brown lighten-1">
+<li class="tab col s3">
+<a class="btn brown lighten-3 active blue-text waves-effect waves-light tooltipped" data-tooltip="Overview" href="#overview"><i class="material-icons">public</i></a>
+</li>
+<li class="tab col s3">
+<a class="btn brown lighten-3 white-text waves-effect waves-light tooltipped" data-tooltip="Features" href="#features"><i class="material-icons">view_headline</i></a>
+</li>
+<li class="tab col s3">
+<a class="btn brown lighten-3 white-text waves-effect waves-light tooltipped" data-tooltip="Summary" href="#summary"><i class="material-icons">view_comfy</i></a>
+</li>
+<li class="tab col s3">
+<a class="btn brown lighten-3 white-text waves-effect waves-light tooltipped" data-tooltip="Errors" href="#errors"><i class="material-icons">bug_report</i></a>
+</li>
+</ul>
+</div>
+</div>
+</header>
+<div id="g0f0s0" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@scenario</div><div class="chip"><i class="material-icons rotate-45">label</i>@screenshot</div><h5>I am some failed testing scenario of some functionality (13.171s)</h5>
+features/feature3.feature:4
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (0.000s)
+</li>
+<li class="collection-item step failed">
+<b>When </b> I am when step which will fail (0.001s)<pre>I am some error (RuntimeError)
+./features/step_definitions/sample_steps.rb:26:in `/^I am when step which will fail$/&#39;
+features/feature3.feature:6:in `When I am when step which will fail&#39;</pre></li>
+<li class="collection-item step skipped">
+<b>Then </b> I am then step of some feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g0f0s1" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@wip</div><h5>I am some undefined testing scenario of some functionality (0.002s)</h5>
+features/feature3.feature:10
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some other feature (0.001s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some other feature (0.000s)<pre>123</pre>
+</li>
+<li class="collection-item step undefined">
+<b>Then </b> I am then step of some undefined feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g0f0s2" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@scenario</div><h5>I am some pending testing scenario of some functionality (0.000s)</h5>
+features/feature3.feature:16
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some other feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some other feature (0.000s)<pre>123</pre>
+</li>
+<li class="collection-item step pending">
+<b>Then </b> I am then step of some pending feature (0.000s)<pre>TODO (Cucumber::Pending)
+./features/step_definitions/sample_steps.rb:22:in `/^I am then step of some pending feature$/&#39;
+features/feature3.feature:19:in `Then I am then step of some pending feature&#39;</pre></li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g0f0s3" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@high</div><h5>I am some testing scenario of some functionality (0.000s)</h5>
+features/feature3.feature:22
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some feature (0.000s)<pre>$ ABC % XYZ £</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g0f0s4" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@low</div><h5>I am some other testing scenario of some functionality (0.000s)</h5>
+features/feature3.feature:28
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some other feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some other feature (0.000s)<pre>123</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some other feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g0f1s0" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@high</div><div class="chip"><i class="material-icons rotate-45">label</i>@last</div><h5>I am some testing scenario with two tags of some functionality (0.000s)</h5>
+features/feature4.feature:4
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some other feature (0.000s)<pre>123</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some this feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g0f1s1" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@feature</div><h5>I am some testing scenario with one tags of some functionality (0.000s)</h5>
+features/feature4.feature:10
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some other feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some other feature (0.000s)<pre>123</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some other feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g0f1s2" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@high</div><div class="chip"><i class="material-icons rotate-45">label</i>@scenario</div><div class="chip"><i class="material-icons rotate-45">label</i>@feature</div><div class="chip"><i class="material-icons rotate-45">label</i>@more</div><h5>I am some testing scenario of some functionality (0.000s)</h5>
+features/feature4.feature:16
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some feature (0.000s)<pre>$ ABC % XYZ £</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g0f1s3" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@low</div><h5>I am some other testing scenario with watir screenshot (11.236s)</h5>
+features/feature4.feature:22
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some other feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some other feature (0.000s)<pre>123</pre>
+</li>
+<li class="collection-item step passed">
+<b>And </b> I am step with watir screenshot (11.234s)
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some other feature (0.001s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g0f1s4" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@high</div><div class="chip"><i class="material-icons rotate-45">label</i>@more</div><div class="chip"><i class="material-icons rotate-45">label</i>@long</div><h5>I am scenario with more steps (0.001s)</h5>
+features/feature4.feature:29
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>And </b> I am give step of some other feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some feature (0.000s)<pre>$ ABC % XYZ £</pre>
+</li>
+<li class="collection-item step passed">
+<b>And </b> I am when step of some other feature (0.000s)<pre>123</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some other feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function () {$('#g0f0s0').modal();$('#g0f0s1').modal();$('#g0f0s2').modal();$('#g0f0s3').modal();$('#g0f0s4').modal();$('#g0f0s5').modal();$('#g0f1s0').modal();$('#g0f1s1').modal();$('#g0f1s2').modal();$('#g0f1s3').modal();$('#g0f1s4').modal();$('#g0f1s5').modal();});
+</script><div id="g1f0s0" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@high</div><h5>I am some testing scenario of some functionality (0.000s)</h5>
+features/feature1.feature:4
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some feature (0.000s)<pre>$ ABC % XYZ £</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g1f0s1" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@low</div><h5>I am some other testing scenario of some functionality (0.001s)</h5>
+features/feature1.feature:10
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some other feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some other feature (0.001s)<pre>123</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some other feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g1f0s2" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@high</div><div class="chip"><i class="material-icons rotate-45">label</i>@last</div><h5>I am some testing scenario with two tags of some functionality (0.000s)</h5>
+features/feature1.feature:16
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some other feature (0.000s)<pre>123</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some this feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g1f0s3" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@feature</div><h5>I am some testing scenario of other functionality (0.000s)</h5>
+features/feature1.feature:22
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some feature (0.000s)<pre>$ ABC % XYZ £</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g1f1s0" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@feature</div><h5>I am some testing scenario of other functionality (0.000s)</h5>
+features/feature2.feature:4
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some feature (0.000s)<pre>$ ABC % XYZ £</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g1f1s1" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@feature</div><h5>I am some testing scenario outline of other functionality (0.000s)</h5>
+features/feature2.feature:16
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some other feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some other feature (0.000s)<pre>123</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some other feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g1f1s2" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@feature</div><h5>I am some testing scenario outline of other functionality (0.000s)</h5>
+features/feature2.feature:17
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some other feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some other feature (0.000s)<pre>123</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some this feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g1f1s3" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@high</div><h5>I am some testing scenario of some functionality (0.000s)</h5>
+features/feature2.feature:20
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (0.000s)
+</li>
+<li class="collection-item step failed">
+<b>When </b> I am when step which will fail (0.000s)<pre>I am some error (RuntimeError)
+./features/step_definitions/sample_steps.rb:26:in `/^I am when step which will fail$/&#39;
+features/feature2.feature:22:in `When I am when step which will fail&#39;</pre></li>
+<li class="collection-item step skipped">
+<b>Then </b> I am then step of some feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g1f1s4" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@low</div><h5>I am some other testing scenario of some functionality (0.000s)</h5>
+features/feature2.feature:26
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some other feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some other feature (0.000s)<pre>123</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some other feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g1f2s0" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@feature</div><h5>I have table in one of my step (0.000s)</h5>
+features/feature.feature:7
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (Background) (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am step with options: (0.000s)<br/>| option1 | value1 | 
+<br/>| option2 | value2 | </li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g1f2s1" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@high</div><h5>I am some testing scenario of some functionality (0.000s)</h5>
+features/feature.feature:14
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (Background) (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some feature (0.000s)<pre>$ ABC % XYZ £</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g1f2s2" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@low</div><h5>I am some other testing scenario of some functionality (0.001s)</h5>
+features/feature.feature:19
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (Background) (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>And </b> I am give step of some other feature (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some other feature (0.000s)<pre>123</pre>
+</li>
+<li class="collection-item step passed">
+<b>Then </b> I am then step of some other feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div><div id="g1f2s3" class="modal modal-fixed-footer">
+<div class="modal-content"><div class="chip"><i class="material-icons rotate-45">label</i>@feature</div><h5>I am some testing scenario of other functionality (0.000s)</h5>
+features/feature.feature:25
+<ul class="collection stepList"><li class="collection-item step passed">
+<b>Given </b> I am give step of some feature (Background) (0.000s)
+</li>
+<li class="collection-item step passed">
+<b>When </b> I am when step of some feature (0.000s)<pre>$ ABC % XYZ £</pre>
+</li>
+<li class="collection-item step failed">
+<b>And </b> I am when step which will fail (0.000s)<pre>I am some error (RuntimeError)
+./features/step_definitions/sample_steps.rb:26:in `/^I am when step which will fail$/&#39;
+features/feature.feature:27:in `And I am when step which will fail&#39;</pre></li>
+<li class="collection-item step skipped">
+<b>Then </b> I am then step of some feature (0.000s)
+</li>
+</ul></div><div class="modal-footer">
+<span class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></span>
+</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function () {$('#g1f0s0').modal();$('#g1f0s1').modal();$('#g1f0s2').modal();$('#g1f0s3').modal();$('#g1f0s4').modal();$('#g1f1s0').modal();$('#g1f1s1').modal();$('#g1f1s2').modal();$('#g1f1s3').modal();$('#g1f1s4').modal();$('#g1f1s5').modal();$('#g1f2s0').modal();$('#g1f2s1').modal();$('#g1f2s2').modal();$('#g1f2s3').modal();$('#g1f2s4').modal();});
+</script><main class="brown lighten-5">
+<div class="row">
+<div id="overview" class="col s12 brown lighten-5">
+<div class="row">
+<div class="col m4 s12">
+<canvas id="featuresDoughnut" width="400" height="400"></canvas>
+<table id="metaDataFeatures" class="bordered">
+<tbody></tbody>
+</table>
+</div><div class="col m4 s12">
+<canvas id="scenariosDoughnut" width="400" height="400"></canvas>
+<table id="metaDataScenarios" class="bordered">
+<tbody></tbody>
+</table>
+</div><div class="col m4 s12">
+<table id="metaData" class="bordered">
+<tbody>
+<tr><th>Total Time</th><td>24.416s</td></tr><tr>
+<th>Environment</th>
+<td>POC</td>
+</tr></tbody>
+</table>
+</div><div class="col s12">
+<canvas id="groupBarChart" width="100%"></canvas>
+</div>
+</div></div><div id="features" class="col s12 brown lighten-5 white-text">
+<ul class="groupList collapsible popout" data-collapsible="expandable">
+<li class="group"><div class="collapsible-header brown lighten-1 waves-effect waves-light">
+<i class="material-icons">group_work</i>
+<b>Group A</b>&nbsp;(24.410s)
+</div><div class="collapsible-body brown lighten-4">
+<ul class="featureList collapsible popout" data-collapsible="expandable">
+<li class="feature broken">
+<div class="collapsible-header brown lighten-1 waves-effect waves-light">
+<i class="material-icons">featured_play_list</i>
+<b>Feature</b>&nbsp;I am some other feature for testing some broken functionality&nbsp;(13.173s)
+</div><div class="collapsible-body brown lighten-4">
+<ul class="collection scenarioList"><li class="collection-item scenario failed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g0f0s0">
+<b>Scenario</b> I am some failed testing scenario of some functionality&nbsp;(13.171s)
+</a>
+</li><li class="collection-item scenario undefined">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g0f0s1">
+<b>Scenario</b> I am some undefined testing scenario of some functionality&nbsp;(0.002s)
+</a>
+</li><li class="collection-item scenario pending">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g0f0s2">
+<b>Scenario</b> I am some pending testing scenario of some functionality&nbsp;(0.000s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g0f0s3">
+<b>Scenario</b> I am some testing scenario of some functionality&nbsp;(0.000s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g0f0s4">
+<b>Scenario</b> I am some other testing scenario of some functionality&nbsp;(0.000s)
+</a>
+</li></ul>
+</div>
+</li><li class="feature working">
+<div class="collapsible-header brown lighten-1 waves-effect waves-light">
+<i class="material-icons">featured_play_list</i>
+<b>Feature</b>&nbsp;I am some other feature for testing tag functionality&nbsp;(11.237s)
+</div><div class="collapsible-body brown lighten-4">
+<ul class="collection scenarioList"><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g0f1s0">
+<b>Scenario</b> I am some testing scenario with two tags of some functionality&nbsp;(0.000s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g0f1s1">
+<b>Scenario</b> I am some testing scenario with one tags of some functionality&nbsp;(0.000s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g0f1s2">
+<b>Scenario</b> I am some testing scenario of some functionality&nbsp;(0.000s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g0f1s3">
+<b>Scenario</b> I am some other testing scenario with watir screenshot&nbsp;(11.236s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g0f1s4">
+<b>Scenario</b> I am scenario with more steps&nbsp;(0.001s)
+</a>
+</li></ul>
+</div>
+</li>
+</ul></div>
+</li>
+<li class="group"><div class="collapsible-header brown lighten-1 waves-effect waves-light">
+<i class="material-icons">group_work</i>
+<b>Group B</b>&nbsp;(0.006s)
+</div><div class="collapsible-body brown lighten-4">
+<ul class="featureList collapsible popout" data-collapsible="expandable">
+<li class="feature working">
+<div class="collapsible-header brown lighten-1 waves-effect waves-light">
+<i class="material-icons">featured_play_list</i>
+<b>Feature</b>&nbsp;I am some feature for testing some functionality&nbsp;(0.002s)
+</div><div class="collapsible-body brown lighten-4">
+<ul class="collection scenarioList"><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g1f0s0">
+<b>Scenario</b> I am some testing scenario of some functionality&nbsp;(0.000s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g1f0s1">
+<b>Scenario</b> I am some other testing scenario of some functionality&nbsp;(0.001s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g1f0s2">
+<b>Scenario</b> I am some testing scenario with two tags of some functionality&nbsp;(0.000s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g1f0s3">
+<b>Scenario</b> I am some testing scenario of other functionality&nbsp;(0.000s)
+</a>
+</li></ul>
+</div>
+</li><li class="feature broken">
+<div class="collapsible-header brown lighten-1 waves-effect waves-light">
+<i class="material-icons">featured_play_list</i>
+<b>Feature</b>&nbsp;I am some other feature for testing some functionality&nbsp;(0.002s)
+</div><div class="collapsible-body brown lighten-4">
+<ul class="collection scenarioList"><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g1f1s0">
+<b>Scenario</b> I am some testing scenario of other functionality&nbsp;(0.000s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g1f1s1">
+<b>Scenario Outline</b> I am some testing scenario outline of other functionality&nbsp;(0.000s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g1f1s2">
+<b>Scenario Outline</b> I am some testing scenario outline of other functionality&nbsp;(0.000s)
+</a>
+</li><li class="collection-item scenario failed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g1f1s3">
+<b>Scenario</b> I am some testing scenario of some functionality&nbsp;(0.000s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g1f1s4">
+<b>Scenario</b> I am some other testing scenario of some functionality&nbsp;(0.000s)
+</a>
+</li></ul>
+</div>
+</li><li class="feature broken">
+<div class="collapsible-header brown lighten-1 waves-effect waves-light">
+<i class="material-icons">featured_play_list</i>
+<b>Feature</b>&nbsp;This is a feature with table in step&nbsp;(0.002s)
+</div><div class="collapsible-body brown lighten-4">
+<ul class="collection scenarioList"><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g1f2s0">
+<b>Scenario</b> I have table in one of my step&nbsp;(0.000s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g1f2s1">
+<b>Scenario</b> I am some testing scenario of some functionality&nbsp;(0.000s)
+</a>
+</li><li class="collection-item scenario passed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g1f2s2">
+<b>Scenario</b> I am some other testing scenario of some functionality&nbsp;(0.001s)
+</a>
+</li><li class="collection-item scenario failed">
+<a class="waves-effect waves-light modal-trigger white-text" href="#g1f2s3">
+<b>Scenario</b> I am some testing scenario of other functionality&nbsp;(0.000s)
+</a>
+</li></ul>
+</div>
+</li>
+</ul></div>
+</li></ul></div><div id="summary" class="col s12 brown lighten-5">
+<table id="summaryTable" class="bordered brown lighten-1 white-text" width="100%">
+<thead>
+<tr>
+<th class="hide-on-small-only">Group</th>
+<th class="hide-on-small-only">Feature</th>
+<th>Scenario</th>
+<th class="hide">Tags</th>
+<th>Status</th>
+<th class="hide-on-small-only">Error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="failed">
+<td class="hide-on-small-only">Group A</td>
+<td class="hide-on-small-only">
+I am some other feature for testing some broken functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g0f0s0">I am some failed testing scenario of some functionality</a>
+</td><td class="hide">
+@scenario. @screenshot. 
+</td><td class="uppercase">
+failed
+</td><td class="hide-on-small-only">I am some error (RuntimeError)</td></tr>
+<tr class="undefined">
+<td class="hide-on-small-only">Group A</td>
+<td class="hide-on-small-only">
+I am some other feature for testing some broken functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g0f0s1">I am some undefined testing scenario of some functionality</a>
+</td><td class="hide">
+@wip. 
+</td><td class="uppercase">
+undefined
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="pending">
+<td class="hide-on-small-only">Group A</td>
+<td class="hide-on-small-only">
+I am some other feature for testing some broken functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g0f0s2">I am some pending testing scenario of some functionality</a>
+</td><td class="hide">
+@scenario. 
+</td><td class="uppercase">
+pending
+</td><td class="hide-on-small-only">TODO (Cucumber::Pending)</td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group A</td>
+<td class="hide-on-small-only">
+I am some other feature for testing some broken functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g0f0s3">I am some testing scenario of some functionality</a>
+</td><td class="hide">
+@high. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group A</td>
+<td class="hide-on-small-only">
+I am some other feature for testing some broken functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g0f0s4">I am some other testing scenario of some functionality</a>
+</td><td class="hide">
+@low. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group A</td>
+<td class="hide-on-small-only">
+I am some other feature for testing tag functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g0f1s0">I am some testing scenario with two tags of some functionality</a>
+</td><td class="hide">
+@high. @last. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group A</td>
+<td class="hide-on-small-only">
+I am some other feature for testing tag functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g0f1s1">I am some testing scenario with one tags of some functionality</a>
+</td><td class="hide">
+@feature. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group A</td>
+<td class="hide-on-small-only">
+I am some other feature for testing tag functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g0f1s2">I am some testing scenario of some functionality</a>
+</td><td class="hide">
+@high. @scenario. @feature. @more. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group A</td>
+<td class="hide-on-small-only">
+I am some other feature for testing tag functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g0f1s3">I am some other testing scenario with watir screenshot</a>
+</td><td class="hide">
+@low. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group A</td>
+<td class="hide-on-small-only">
+I am some other feature for testing tag functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g0f1s4">I am scenario with more steps</a>
+</td><td class="hide">
+@high. @more. @long. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group B</td>
+<td class="hide-on-small-only">
+I am some feature for testing some functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g1f0s0">I am some testing scenario of some functionality</a>
+</td><td class="hide">
+@high. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group B</td>
+<td class="hide-on-small-only">
+I am some feature for testing some functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g1f0s1">I am some other testing scenario of some functionality</a>
+</td><td class="hide">
+@low. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group B</td>
+<td class="hide-on-small-only">
+I am some feature for testing some functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g1f0s2">I am some testing scenario with two tags of some functionality</a>
+</td><td class="hide">
+@high. @last. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group B</td>
+<td class="hide-on-small-only">
+I am some feature for testing some functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g1f0s3">I am some testing scenario of other functionality</a>
+</td><td class="hide">
+@feature. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group B</td>
+<td class="hide-on-small-only">
+I am some other feature for testing some functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g1f1s0">I am some testing scenario of other functionality</a>
+</td><td class="hide">
+@feature. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group B</td>
+<td class="hide-on-small-only">
+I am some other feature for testing some functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g1f1s1">I am some testing scenario outline of other functionality</a>
+</td><td class="hide">
+@feature. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group B</td>
+<td class="hide-on-small-only">
+I am some other feature for testing some functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g1f1s2">I am some testing scenario outline of other functionality</a>
+</td><td class="hide">
+@feature. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="failed">
+<td class="hide-on-small-only">Group B</td>
+<td class="hide-on-small-only">
+I am some other feature for testing some functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g1f1s3">I am some testing scenario of some functionality</a>
+</td><td class="hide">
+@high. 
+</td><td class="uppercase">
+failed
+</td><td class="hide-on-small-only">I am some error (RuntimeError)</td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group B</td>
+<td class="hide-on-small-only">
+I am some other feature for testing some functionality
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g1f1s4">I am some other testing scenario of some functionality</a>
+</td><td class="hide">
+@low. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group B</td>
+<td class="hide-on-small-only">
+This is a feature with table in step
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g1f2s0">I have table in one of my step</a>
+</td><td class="hide">
+@feature. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group B</td>
+<td class="hide-on-small-only">
+This is a feature with table in step
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g1f2s1">I am some testing scenario of some functionality</a>
+</td><td class="hide">
+@high. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="passed">
+<td class="hide-on-small-only">Group B</td>
+<td class="hide-on-small-only">
+This is a feature with table in step
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g1f2s2">I am some other testing scenario of some functionality</a>
+</td><td class="hide">
+@low. 
+</td><td class="uppercase">
+passed
+</td><td class="hide-on-small-only"></td></tr>
+<tr class="failed">
+<td class="hide-on-small-only">Group B</td>
+<td class="hide-on-small-only">
+This is a feature with table in step
+</td><td class="hoverable">
+<a class="modal-trigger white-text" href="#g1f2s3">I am some testing scenario of other functionality</a>
+</td><td class="hide">
+@feature. 
+</td><td class="uppercase">
+failed
+</td><td class="hide-on-small-only">I am some error (RuntimeError)</td></tr></tbody>
+</table></div><div id="errors" class="col s12 brown lighten-5">
+<ul class="groupErrorList collapsible popout" data-collapsible="expandable">
+<li class="groupError"><div class="collapsible-header red lighten-2 white-text waves-effect waves-light">
+<i class="material-icons">group_work</i>
+<b>Group A</b>
+</div><div class="collapsible-body brown lighten-4">
+<ul class="errorList collapsible popout" data-collapsible="expandable"><li class="error">
+<div class="collapsible-header red lighten-2 white-text waves-effect waves-light">
+<i class="material-icons">bug_report</i>I am some error (RuntimeError)
+</div><div class="collapsible-body brown lighten-4">
+<ul class="collection failedScenarioList">
+<li class="collection-item failedScenario brown lighten-5 red-text">
+<i class="material-icons">highlight_off</i>&nbsp;<a class="modal-trigger red-text" href="#g0f0s0">I am some failed testing scenario of some functionality</a>
+</li>
+</ul>
+</div>
+</li>
+<li class="error">
+<div class="collapsible-header red lighten-2 white-text waves-effect waves-light">
+<i class="material-icons">bug_report</i>TODO (Cucumber::Pending)
+</div><div class="collapsible-body brown lighten-4">
+<ul class="collection failedScenarioList">
+<li class="collection-item failedScenario brown lighten-5 red-text">
+<i class="material-icons">highlight_off</i>&nbsp;<a class="modal-trigger red-text" href="#g0f0s2">I am some pending testing scenario of some functionality</a>
+</li>
+</ul>
+</div>
+</li>
+</ul></div>
+</li>
+<li class="groupError"><div class="collapsible-header red lighten-2 white-text waves-effect waves-light">
+<i class="material-icons">group_work</i>
+<b>Group B</b>
+</div><div class="collapsible-body brown lighten-4">
+<ul class="errorList collapsible popout" data-collapsible="expandable"><li class="error">
+<div class="collapsible-header red lighten-2 white-text waves-effect waves-light">
+<i class="material-icons">bug_report</i>I am some error (RuntimeError)
+</div><div class="collapsible-body brown lighten-4">
+<ul class="collection failedScenarioList">
+<li class="collection-item failedScenario brown lighten-5 red-text">
+<i class="material-icons">highlight_off</i>&nbsp;<a class="modal-trigger red-text" href="#g1f1s3">I am some testing scenario of some functionality</a>
+</li><li class="collection-item failedScenario brown lighten-5 red-text">
+<i class="material-icons">highlight_off</i>&nbsp;<a class="modal-trigger red-text" href="#g1f2s3">I am some testing scenario of other functionality</a>
+</li>
+</ul>
+</div>
+</li>
+<li class="error">
+<div class="collapsible-header red lighten-2 white-text waves-effect waves-light">
+<i class="material-icons">bug_report</i>TODO (Cucumber::Pending)
+</div><div class="collapsible-body brown lighten-4">
+<ul class="collection failedScenarioList"></ul>
+</div>
+</li>
+</ul></div>
+</li></ul></div>
+</div>
+</main><script type="text/javascript" src="https://cdn.rawgit.com/rajatthareja/ReportBuilder/9b8d2aae36dd4267fd9747f098fe22107b18679c/js/group.report.builder.min.js"></script><footer class="page-footer brown lighten-4">
+<div class="footer-copyright brown lighten-1">
+<div class="container">
+Happy Reporting!
+<a class="white-text text-lighten-4 right" href="http://reportbuilder.rajatthareja.com">Generated by Report Builder</a>
+</div>
+</div>
+</footer><script type="text/javascript" src="https://cdn.rawgit.com/rajatthareja/ReportBuilder/v1.3/js/report.builder.min.js"></script></body>
+</html>

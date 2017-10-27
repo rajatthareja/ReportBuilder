@@ -9,7 +9,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Document Fixed
 
 ### Added
-- Method to set single option 
+- Grouped Features Report
+- Method to set single option
+
+### Removed
+- Sample Rake Task 
 
 ## [1.3](https://github.com/rajatthareja/ReportBuilder/compare/v1.2...v1.3) - 2017-10-22
 ### Changed

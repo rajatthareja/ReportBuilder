@@ -17,6 +17,19 @@ describe ReportBuilder do
     expect(JSON.parse(combined_report)).to eq(JSON.parse(expected_report))
   end
 
+  it 'correctly combines multiple JSON reports into a single gropued json report' do
+    group_1_paths = ["#{TEST_FIXTURES_DIRECTORY}/json_reports/report.json", "#{TEST_FIXTURES_DIRECTORY}/json_reports/report2.json"]
+    group_2_paths = ["#{TEST_FIXTURES_DIRECTORY}/json_reports/report3.json", "#{TEST_FIXTURES_DIRECTORY}/json_reports/report4.json"]
+    output_location = Tempfile.new('new_report').path
+
+    ReportBuilder.build_report(report_types: [:json], json_path: { 'Group A' => group_1_paths, 'Group B' => group_2_paths }, report_path: output_location)
+
+    combined_report = File.read("#{output_location}.json")
+    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined_g.json")
+
+    expect(JSON.parse(combined_report)).to eq(JSON.parse(expected_report))
+  end
+
   it 'correctly combines multiple JSON reports into a single retry' do
     input_1_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/report.json"
     input_2_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/report2.json"
@@ -45,7 +58,26 @@ describe ReportBuilder do
 
     ReportBuilder.build_report options
     generated_report = File.read("#{output_location}.html")
-    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined#{RUBY_VERSION=='1.9.3' ? '_r1' : ''}.html")
+    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined#{RUBY_VERSION == '1.9.3' ? '_r1' : ''}.html")
+
+    expect(generated_report).to eq(expected_report)
+  end
+
+  it 'correctly combines multiple JSON reports into a single grouped HTML report' do
+    output_location = Tempfile.new('new_report').path
+    options = {
+      json_path: { 'Group A' => ["#{TEST_FIXTURES_DIRECTORY}/json_reports/report.json", "#{TEST_FIXTURES_DIRECTORY}/json_reports/report2.json"],
+                   'Group B' => ["#{TEST_FIXTURES_DIRECTORY}/json_reports/report3.json", "#{TEST_FIXTURES_DIRECTORY}/json_reports/report4.json"] },
+      report_path: output_location,
+      report_types: ['html'],
+      report_title: 'Test Results',
+      include_images: false,
+      additional_info: { Environment: 'POC' }
+    }
+
+    ReportBuilder.build_report options
+    generated_report = File.read("#{output_location}.html")
+    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined_g#{RUBY_VERSION == '1.9.3' ? '_r1' : ''}.html")
 
     expect(generated_report).to eq(expected_report)
   end
