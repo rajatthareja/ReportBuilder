@@ -21,8 +21,11 @@
             <% if embedding['data'].include?('|||') %>
                 <% title, link = embedding['data'].split('|||') %><a href="<%= link %>"><%= title %></a>
             <% else %>
-                <%= embedding['data'] %>
+                <a href="<%= embedding['data'] %>"><%= embedding['data'] %></a>
             <% end %>
+        <% elsif embedding['mime_type'] =~ /^text\/html/ %>
+            <%= embedding['data'] %>
         <% end %>
+        <br/>
     <% end %>
 <% end %>
