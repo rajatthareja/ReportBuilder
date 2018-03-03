@@ -153,6 +153,11 @@ Then run rake task report_builder
 
 ```
 
+### Voice Commands:
+Use voice commands for easy navigation and search
+* show ( overview | features | summary | errors )
+* search { Keywords }
+
 ## Contributing
 
 We're open to any contribution. It has to be tested properly though.
