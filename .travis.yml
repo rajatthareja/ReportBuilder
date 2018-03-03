@@ -8,6 +8,11 @@ rvm:
   - 2.4.0
   - jruby-9.1.7.0
 
+matrix:
+  exclude:
+    - rvm: 1.9.3
+      os: osx
+
 before_install:
   # Using a recent version of bundler in order to avoid gem installation errors
   - gem install bundler -v 1.15.4
