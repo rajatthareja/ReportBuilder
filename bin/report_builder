@@ -65,11 +65,11 @@ opt_parser = OptionParser.new do |opts|
     end
   end
 
-  opts.on('--css CSS', 'Additional CSS string or CSS file path or CSS file url for customizing html report') do |additional_css|
+  opts.on('--css CSS', String, 'Additional CSS string or CSS file path or CSS file url for customizing html report') do |additional_css|
     options[:additional_css] = additional_css
   end
 
-  opts.on('--js JS', 'Additional JS string or JS file path or JS file url for customizing html report') do |additional_js|
+  opts.on('--js JS', String, 'Additional JS string or JS file path or JS file url for customizing html report') do |additional_js|
     options[:additional_js] = additional_js
   end
 

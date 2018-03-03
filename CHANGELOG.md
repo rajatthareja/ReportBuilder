@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Voice Commands
 - Tabs name
 - Color option
+### Fixed
+- js and  css cli option
 
 ## [1.4](https://github.com/rajatthareja/ReportBuilder/compare/v1.3...v1.4) - 2017-10-29
 ### Fixed

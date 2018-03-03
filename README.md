@@ -42,9 +42,11 @@ gem install report_builder
 | report_types         | [Array]                 | [:html]             | :json, :html, :retry (output file types)                                                 |
 | report_title         | [String]                | 'Test Results'      | report and html title                                                                    |
 | include_images       | [Boolean]               | true                | true / false (If false, the size of HTML report is reduced by excluding embedded images) |
+| voice_commands       | [Boolean]               | false               | true / false (Enable voice commands for easy navigation and search)                      |
 | additional_info      | [Hash]                  | {}                  | additional info for report summary                                                       |
 | additional_css       | [String]                | nil                 | additional CSS string or CSS file path or CSS file url for customizing html report       |
 | additional_js        | [String]                | nil                 | additional JS string or JS file path or JS file url for customizing html report          |
+| color                | [String]                | brown               | report color, Ex: indigo, cyan, purple, grey, lime etc.                                  |
 
 ### Code Examples:
 
@@ -96,21 +98,23 @@ ReportBuilder.build_report
 
 ### CLI Options:
 
-| Option              | Values       | Explanation                                                                        |
-|---------------------|--------------|------------------------------------------------------------------------------------|
-| -s, --source        | x,y,z        | List of input json path or files                                                   |
-| -o, --out           | [PATH]NAME   | Reports path with name without extension                                           |
-| --json_out          | [PATH]NAME   | JSON report path with name without extension                                       |
-| --html_out          | [PATH]NAME   | HTML report path with name without extension                                       |
-| --retry_out         | [PATH]NAME   | Retry report path with name without extension                                      |
-| -f, --format        | x,y,z        | List of report format - html,json,retry                                            |
-| --[no-]images       |              | Reduce HTML report size by excluding embedded images                               |
-| -T, --title         | TITLE        | Report title                                                                       |
-| -I, --info          | a:x,b:y,c:z  | List of additional info about test - key:value                                     |
-| --css               | CSS/PATH/URL | Additional CSS string or CSS file path or CSS file url for customizing html report |
-| --js                | JS/PATH/URL  | Additional JS string or JS file path or JS file url for customizing html report    |
-| -h, --help          |              | Show available command line switches                                               |
-| -v, --version       |              | Show gem version                                                                   |
+| Option                | Values       | Explanation                                                                        |
+|-----------------------|--------------|------------------------------------------------------------------------------------|
+| -s, --source          | x,y,z        | List of input json path or files                                                   |
+| -o, --out             | [PATH]NAME   | Reports path with name without extension                                           |
+| --json_out            | [PATH]NAME   | JSON report path with name without extension                                       |
+| --html_out            | [PATH]NAME   | HTML report path with name without extension                                       |
+| --retry_out           | [PATH]NAME   | Retry report path with name without extension                                      |
+| -f, --format          | x,y,z        | List of report format - html,json,retry                                            |
+| --[no-]images         |              | Reduce HTML report size by excluding embedded images                               |
+| -T, --title           | TITLE        | Report title                                                                       |
+| -c, --color           | COLOR        | Report color                                                                       |
+| -I, --info            | a:x,b:y,c:z  | List of additional info about test - key:value                                     |
+| --css                 | CSS/PATH/URL | Additional CSS string or CSS file path or CSS file url for customizing html report |
+| --js                  | JS/PATH/URL  | Additional JS string or JS file path or JS file url for customizing html report    |
+| -vc, --voice_commands |              | Enable voice commands for easy navigation and search                               |
+| -h, --help            |              | Show available command line switches                                               |
+| -v, --version         |              | Show gem version                                                                   |
 
 ### CLI Example:
 
