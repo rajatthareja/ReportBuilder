@@ -10,7 +10,7 @@
             <b><%= group['name'] %></b>
           </div>
 
-          <div class="collapsible-body brown lighten-4">
+          <div class="collapsible-body <%= options[:color] %> lighten-4">
             <%= get('errors').result(binding) %>
           </div>
       </li>

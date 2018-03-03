@@ -12,21 +12,21 @@
   <%= get('scenarios').result(binding) %>
 <% end %>
 
-<main class="brown lighten-5">
+<main class="<%= options[:color] %> lighten-5">
   <div class="row">
-    <div id="overview" class="col s12 brown lighten-5">
+    <div id="overview" class="col s12 <%= options[:color] %> lighten-5">
       <%= get('group_overview').result(binding) %>
     </div>
 
-    <div id="features" class="col s12 brown lighten-5 white-text">
+    <div id="features" class="col s12 <%= options[:color] %> lighten-5 white-text">
       <%= get('group_features').result(binding) %>
     </div>
 
-    <div id="summary" class="col s12 brown lighten-5">
+    <div id="summary" class="col s12 <%= options[:color] %> lighten-5">
       <%= get('group_summary').result(binding) %>
     </div>
 
-    <div id="errors" class="col s12 brown lighten-5">
+    <div id="errors" class="col s12 <%= options[:color] %> lighten-5">
       <%= get('group_errors').result(binding) %>
     </div>
   </div>

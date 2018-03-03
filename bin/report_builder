@@ -9,6 +9,8 @@ options = {
     :report_types => [:html],
     :report_title => 'Test Results',
     :include_images => true,
+    :voice_commands => false,
+    :color => 'brown',
     :additional_info => {}
     }
 
@@ -16,7 +18,7 @@ opt_parser = OptionParser.new do |opts|
   opts.banner = "Usage: \n     report_builder [options]"
   opts.separator 'Configuration options:'
 
-  opts.on('-s','--source x,y,z', Array, 'List of json path or files') do |list|
+  opts.on('-s', '--source x,y,z', Array, 'List of json path or files') do |list|
     options[:json_path] = list
   end
 
@@ -36,7 +38,7 @@ opt_parser = OptionParser.new do |opts|
     options[:retry_report_path] = report_path
   end
 
-  opts.on('-f','--format x,y,z', Array, 'List of report format - html,json,retry') do |list|
+  opts.on('-f', '--format x,y,z', Array, 'List of report format - html,json,retry') do |list|
     options[:report_types] = list
   end
 
@@ -44,11 +46,19 @@ opt_parser = OptionParser.new do |opts|
     options[:include_images] = include_images
   end
 
+  opts.on('-vc', '--voice_commands', 'Enable voice commands for easy navigation and search') do |voice_commands|
+    options[:voice_commands] = voice_commands
+  end
+
+  opts.on('-c', '--color COLOR', String, 'Report color') do |color|
+    options[:color] = color
+  end
+
   opts.on('-T', '--title TITLE', String, 'Report title') do |report_title|
     options[:report_title] = report_title
   end
 
-  opts.on('-I','--info a:x,b:y,c:z', Array, 'List of additional info') do |list|
+  opts.on('-I', '--info a:x,b:y,c:z', Array, 'List of additional info') do |list|
     list.each do |i|
       key, value = i.split(':')
       options[:additional_info][key] = value
@@ -70,7 +80,7 @@ opt_parser = OptionParser.new do |opts|
     exit
   end
 
-  opts.on_tail('-v','--version', 'Show version') do
+  opts.on_tail('-v', '--version', 'Show version') do
     puts 'ReportBuilder v' + Gem.loaded_specs['report_builder'].version.to_s rescue puts "Something want wrong. \nUse 'gem list report_builder'"
     exit
   end

@@ -15,6 +15,7 @@ module ReportBuilder
   #       config.report_types = [:JSON, :HTML]
   #       config.report_title = 'My Test Results'
   #       config.include_images = true
+  #       config.voice_commands = true
   #       config.additional_info = {Browser: 'Chrome', Environment: 'Stage 5'}
   #     end
   #
@@ -52,6 +53,8 @@ module ReportBuilder
   #       report_types: ['json', 'html'],
   #       report_title: 'My Test Results',
   #       include_images: true,
+  #       voice_commands: true,
+  #       color: 'deep-purple',
   #       additional_info: {'browser' => 'Chrome', 'environment' => 'Stage 5'}
   #     }
   #

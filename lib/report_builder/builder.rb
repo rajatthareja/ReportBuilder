@@ -67,13 +67,15 @@ module ReportBuilder
                      report_types: [:html],
                      report_title: 'Test Results',
                      include_images: true,
+                     voice_commands: false,
                      additional_info: {},
                      report_path: 'test_report',
                      json_report_path: nil,
                      html_report_path: nil,
                      retry_report_path: nil,
                      additional_css: nil,
-                     additional_js: nil
+                     additional_js: nil,
+                     color: 'brown'
       )
     end
 

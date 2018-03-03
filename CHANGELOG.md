@@ -3,7 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
-## [Unreleased](https://github.com/rajatthareja/ReportBuilder/compare/v1.4...master)
+## [Unreleased](https://github.com/rajatthareja/ReportBuilder/compare/v1.5...master)
+
+## [1.5](https://github.com/rajatthareja/ReportBuilder/compare/v1.4...v1.5) - 2017-03-03
+### Added
+- Voice Commands
+- Tabs name
+- Color option
 
 ## [1.4](https://github.com/rajatthareja/ReportBuilder/compare/v1.3...v1.4) - 2017-10-29
 ### Fixed

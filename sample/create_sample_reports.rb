@@ -16,6 +16,8 @@ ReportBuilder.configure do |config|
       'Group C' => ['../testing/fixtures/json_reports/report4.json']}
   config.report_path = '../sample/group_report'
   config.report_title = 'My Test Results'
+  config.voice_commands = true
+  config.color = 'deep-purple'
   config.additional_info = {Browser: 'browser', Environment: 'environment', MoreInfo: 'more info'}
 end
 
