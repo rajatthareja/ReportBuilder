@@ -158,6 +158,9 @@ Use voice commands for easy navigation and search
 * show ( overview | features | summary | errors )
 * search { Keywords }
 
+## Report Builder for Java
+[Go to Java Report Builder](http://reportbuilderjava.rajatthareja.com)
+
 ## Contributing
 
 We're open to any contribution. It has to be tested properly though.
