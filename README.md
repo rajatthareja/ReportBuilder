@@ -1,6 +1,6 @@
 # ReportBuilder
 
-[![Gem Version](https://badge.fury.io/rb/report_builder.svg)](https://badge.fury.io/rb/report_builder) 
+[![Gem Version](https://img.shields.io/gem/v/report_builder.svg)](https://badge.fury.io/rb/report_builder) 
 [![Build status](https://travis-ci.org/rajatthareja/ReportBuilder.svg?branch=master)](https://travis-ci.org/rajatthareja/ReportBuilder)
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/s5jx2ji3wdg294u6/branch/master?svg=true)](https://ci.appveyor.com/project/rajatthareja/reportbuilder)
 [![Join the chat at https://gitter.im/rajatthareja/ReportBuilder](https://badges.gitter.im/rajatthareja/ReportBuilder.svg)](https://gitter.im/rajatthareja/ReportBuilder?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
