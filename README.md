@@ -133,9 +133,9 @@ ReportBuilder.build_report
 require 'report_builder'
     
 at_exit do
-  ReportBuilder.configure do |congig|
-    congig.json_path = 'results'
-    congig.report_path = 'results/report'
+  ReportBuilder.configure do |config|
+    config.json_path = 'results'
+    config.report_path = 'results/report'
   end
   ReportBuilder.build_report
 end
