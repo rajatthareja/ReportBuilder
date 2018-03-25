@@ -126,30 +126,19 @@ ReportBuilder.build_report
 
 ```
 
-### Rake Example:
-
-Add in Rakefile
+### Hook Example:
 
 ```ruby
 
-    require 'report_builder'
+require 'report_builder'
     
-    desc 'Sample rake task to build report'
-    task :report_builder, [:json_path, :report_path] do |t, args|
-      args.with_defaults(:json_path => nil, :report_path => 'test_report')
-      options = {:json_path => args.json_path, :report_path => args.report_path}
-      ReportBuilder.build_report options
-    end
-
-```
-
-Then run rake task report_builder
-
-```bash
-
-    rake report_builder
-    rake report_builder['path/of/json/files/dir']
-    rake report_builder['path/of/json/files/dir','report_file']
+at_exit do
+  ReportBuilder.configure do |congig|
+    congig.json_path = 'results'
+    congig.report_path = 'results/report'
+  end
+  ReportBuilder.build_report
+end
 
 ```
 
@@ -158,8 +147,8 @@ Use voice commands for easy navigation and search
 * show ( overview | features | summary | errors )
 * search { Keywords }
 
-## Report Builder for Java
-[Go to Java Report Builder](http://reportbuilderjava.rajatthareja.com)
+## Report Builder Java API
+[Report Builder Java](http://reportbuilderjava.rajatthareja.com)
 
 ## Contributing
 
