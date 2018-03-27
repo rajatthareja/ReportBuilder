@@ -1,7 +1,0 @@
-source "https://rubygems.org"
-
-gem 'cucumber'
-gem 'selenium-webdriver'
-gem 'parallel_tests'
-gem 'watir'
-gem 'report_builder'

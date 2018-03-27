@@ -28,9 +28,11 @@ module ReportBuilder
       groups = get_groups options[:input_path]
 
       json_report_path = options[:json_report_path] || options[:report_path]
-      File.open(json_report_path + '.json', 'w') do |file|
-        file.write JSON.pretty_generate(groups.size > 1 ? groups : groups.first['features'])
-      end if options[:report_types].include? 'JSON'
+      if options[:report_types].include? 'JSON'
+        File.open(json_report_path + '.json', 'w') do |file|
+          file.write JSON.pretty_generate(groups.size > 1 ? groups : groups.first['features'])
+        end
+      end
 
       if options[:additional_css] and Pathname.new(options[:additional_css]).file?
         options[:additional_css] = File.read(options[:additional_css])
@@ -41,20 +43,26 @@ module ReportBuilder
       end
 
       html_report_path = options[:html_report_path] || options[:report_path]
-      File.open(html_report_path + '.html', 'w') do |file|
-        file.write get(groups.size > 1 ? 'group_report' : 'report').result(binding).gsub('  ', '').gsub("\n\n", '')
-      end if options[:report_types].include? 'HTML'
+      if options[:report_types].include? 'HTML'
+        File.open(html_report_path + '.html', 'w') do |file|
+          file.write get(groups.size > 1 ? 'group_report' : 'report').result(binding).gsub('  ', '').gsub("\n\n", '')
+        end
+      end
 
       retry_report_path = options[:retry_report_path] || options[:report_path]
-      File.open(retry_report_path + '.retry', 'w') do |file|
-        groups.each do |group|
-          group['features'].each do |feature|
-            if feature['status'] == 'broken'
-              feature['elements'].each {|scenario| file.puts "#{feature['uri']}:#{scenario['line']}" if scenario['status'] == 'failed'}
+      if options[:report_types].include? 'RETRY'
+        File.open(retry_report_path + '.retry', 'w') do |file|
+          groups.each do |group|
+            group['features'].each do |feature|
+              if feature['status'] == 'broken'
+                feature['elements'].each do |scenario|
+                  file.puts "#{feature['uri']}:#{scenario['line']}" if scenario['status'] == 'failed'
+                end
+              end
             end
           end
         end
-      end if options[:report_types].include? 'RETRY'
+      end
       [json_report_path, html_report_path, retry_report_path]
     end
 
@@ -94,11 +102,11 @@ module ReportBuilder
           puts "Error:: No file(s) found at #{group_path}" if files.empty?
           groups << {'name' => group_name, 'features' => get_features(files)} rescue next
         end
-        fail 'Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)' if groups.empty?
+        raise 'Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)' if groups.empty?
       else
         files = get_files input_path
-        fail "Error:: No file(s) found at #{input_path}" if files.empty?
-        groups << {'features' => get_features(files)} rescue fail('Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)')
+        raise "Error:: No file(s) found at #{input_path}" if files.empty?
+        groups << {'features' => get_features(files)} rescue raise('Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)')
       end
       groups
     end
@@ -128,63 +136,91 @@ module ReportBuilder
     end
 
     def get_features(files)
-      files.each_with_object([]) {|file, features|
+      files.each_with_object([]) do |file, features|
         data = File.read(file)
         next if data.empty?
-        features << JSON.parse(data) rescue next
-      }.flatten.group_by {|feature|
-        feature['uri']+feature['id']+feature['line'].to_s
-      }.values.each_with_object([]) {|group, features|
+        begin
+          features << JSON.parse(data)
+        rescue StandardError
+          puts 'Warning:: Invalid Input File ' + file
+          next
+        end
+      end.flatten.group_by do |feature|
+        feature['uri'] + feature['id'] + feature['line'].to_s
+      end.values.each_with_object([]) do |group, features|
         features << group.first.except('elements').merge('elements' => group.map {|feature| feature['elements']}.flatten)
-      }.sort_by! {|feature| feature['name']}.each {|feature|
+      end.sort_by! do |feature|
+        feature['name']
+      end.each do |feature|
         if feature['elements'][0]['type'] == 'background'
           (0..feature['elements'].size-1).step(2) do |i|
             feature['elements'][i]['steps'] ||= []
-            feature['elements'][i]['steps'].each {|step| step['name']+=(' ('+feature['elements'][i]['keyword']+')')}
+            feature['elements'][i]['steps'].each {|step| step['name'] += (' (' + feature['elements'][i]['keyword'] + ')')}
             if feature['elements'][i+1]
               feature['elements'][i+1]['steps'] = feature['elements'][i]['steps'] + feature['elements'][i+1]['steps']
               feature['elements'][i+1]['before'] = feature['elements'][i]['before'] if feature['elements'][i]['before']
             end
           end
-          feature['elements'].reject! {|element| element['type'] == 'background'}
+          feature['elements'].reject! do |element|
+            element['type'] == 'background'
+          end
         end
-        feature['elements'].each {|scenario|
+        feature['elements'].each do |scenario|
           scenario['before'] ||= []
-          scenario['before'].each {|before|
+          scenario['before'].each do |before|
             before['result']['duration'] ||= 0
             before.merge! 'status' => before['result']['status'], 'duration' => before['result']['duration']
-          }
+          end
           scenario['steps'] ||= []
-          scenario['steps'].each {|step|
+          scenario['steps'].each do |step|
             step['result']['duration'] ||= 0
             duration = step['result']['duration']
             status = step['result']['status']
-            step['after'].each {|after|
-              after['result']['duration'] ||= 0
-              duration += after['result']['duration']
-              status = 'failed' if after['result']['status'] == 'failed'
-              after['embeddings'].map! { |embedding|
+            if step['after']
+              step['after'].each do |after|
+                after['result']['duration'] ||= 0
+                duration += after['result']['duration']
+                status = 'failed' if after['result']['status'] == 'failed'
+                if after['embeddings']
+                  after['embeddings'].map! do |embedding|
+                    decode_embedding(embedding)
+                  end
+                end
+                after.merge! 'status' => after['result']['status'], 'duration' => after['result']['duration']
+              end
+            end
+            if step['embeddings']
+              step['embeddings'].map! do |embedding|
                 decode_embedding(embedding)
-              } if after['embeddings']
-              after.merge! 'status' => after['result']['status'], 'duration' => after['result']['duration']
-            } if step['after']
-            step['embeddings'].map! { |embedding|
-              decode_embedding(embedding)
-            } if step['embeddings']
+              end
+            end
             step.merge! 'status' => status, 'duration' => duration
-          }
+          end
           scenario['after'] ||= []
-          scenario['after'].each {|after|
+          scenario['after'].each do |after|
             after['result']['duration'] ||= 0
-            after['embeddings'].map! { |embedding|
-              decode_embedding(embedding)
-            } if after['embeddings']
+            if after['embeddings']
+              after['embeddings'].map! do |embedding|
+                decode_embedding(embedding)
+              end
+            end
             after.merge! 'status' => after['result']['status'], 'duration' => after['result']['duration']
-          }
+          end
           scenario.merge! 'status' => scenario_status(scenario), 'duration' => total_time(scenario['before']) + total_time(scenario['steps']) + total_time(scenario['after'])
-        }
+        end
+        feature['elements'] = feature['elements'].group_by do |scenario|
+          scenario['id']
+        end.values.map do |scenario_group|
+          scenario = scenario_group.find do |scenario|
+            scenario['status'] == 'passed'
+          end || scenario_group.first
+          if scenario_group.size > 1
+            scenario['name'] += " (x#{scenario_group.size})"
+          end
+          scenario
+        end
         feature.merge! 'status' => feature_status(feature), 'duration' => total_time(feature['elements'])
-      }
+      end
     end
 
     def feature_status(feature)
