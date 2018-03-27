@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 ### Changed
 - Removed duplicate flaky scenarios
 
-## [1.5](https://github.com/rajatthareja/ReportBuilder/compare/v1.4...v1.5) - 2017-03-03
+## [1.5](https://github.com/rajatthareja/ReportBuilder/compare/v1.4...v1.5) - 2018-03-03
 ### Added
 - Voice Commands
 - Tabs name
