@@ -3,13 +3,14 @@ require 'tempfile'
 
 describe ReportBuilder do
   it 'correctly combines multiple JSON reports into a single json report' do
+    input_0_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/flaky.json"
     input_1_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/report.json"
     input_2_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/report2.json"
     input_3_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/report3.json"
     input_4_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/report4.json"
     output_location = Tempfile.new('new_report').path
 
-    ReportBuilder.build_report(report_types: [:json], json_path: [input_1_path, input_2_path, input_3_path, input_4_path], report_path: output_location)
+    ReportBuilder.build_report(report_types: [:json], json_path: [input_0_path, input_1_path, input_2_path, input_3_path, input_4_path], report_path: output_location)
 
     combined_report = File.read("#{output_location}.json")
     expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined.json")
