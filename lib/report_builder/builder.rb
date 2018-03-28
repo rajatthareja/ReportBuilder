@@ -7,24 +7,18 @@ require 'ostruct'
 require 'report_builder/core-ext/hash'
 
 module ReportBuilder
+
   ##
   # ReportBuilder Main class
   #
   class Builder
 
-    attr_accessor :options
-
     ##
     # ReportBuilder Main method
     #
-    def build_report(opts = nil)
-      options = self.options || default_options.marshal_dump
-      options.merge! opts if opts.is_a? Hash
+    def build_report
+      options = ReportBuilder.options
 
-      fail 'Error:: Invalid report_types. Use: [:json, :html]' unless options[:report_types].is_a? Array
-      options[:report_types].map!(&:to_s).map!(&:upcase)
-
-      options[:input_path] ||= options[:json_path] || Dir.pwd
       groups = get_groups options[:input_path]
 
       json_report_path = options[:json_report_path] || options[:report_path]
@@ -64,27 +58,6 @@ module ReportBuilder
         end
       end
       [json_report_path, html_report_path, retry_report_path]
-    end
-
-    ##
-    # ReportBuilder default configuration
-    #
-    def default_options
-      OpenStruct.new(json_path: nil,
-                     input_path: nil,
-                     report_types: [:html],
-                     report_title: 'Test Results',
-                     include_images: true,
-                     voice_commands: false,
-                     additional_info: {},
-                     report_path: 'test_report',
-                     json_report_path: nil,
-                     html_report_path: nil,
-                     retry_report_path: nil,
-                     additional_css: nil,
-                     additional_js: nil,
-                     color: 'brown'
-      )
     end
 
     private

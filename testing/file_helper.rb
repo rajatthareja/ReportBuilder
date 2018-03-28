@@ -1,3 +1,5 @@
+require 'tmpdir'
+
 module ReportBuilder
   module FileHelper
 

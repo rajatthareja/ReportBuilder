@@ -56,27 +56,48 @@ gem install report_builder
     
     # Ex 1:
     ReportBuilder.configure do |config|
-      config.json_path = 'cucumber_sample/logs'
+      config.input_path = 'results/cucumber_json'
       config.report_path = 'my_test_report'
       config.report_types = [:json, :html]
       config.report_title = 'My Test Results'
-      config.include_images = false
       config.additional_info = {browser: 'Chrome', environment: 'Stage 5'}
     end
     
     ReportBuilder.build_report
     
     # Ex 2:
+    ReportBuilder.input_path = 'results/cucumber_json'
+    ReportBuilder.report_path = 'my_test_report'
+    ReportBuilder.report_types = [:json, :html]
+    ReportBuilder.report_title = 'My Test Results'
+    ReportBuilder.additional_info = {Browser: 'Chrome', Environment: 'Stage 5'}
+    
+    ReportBuilder.build_report
+    
+    # Ex 3:
     options = {
-       json_path:    'cucumber_sample/logs',
-       report_path:  'my_test_report',
+       input_path: 'results/cucumber_json',
+       report_path: 'my_test_report',
        report_types: ['json', 'html'],
        report_title: 'My Test Results',
-       include_images: false,
-       additional_info: {'browser' => 'Chrome', 'environment' => 'Stage 5'}
+       additional_info: {'Browser' => 'Chrome', 'Environment' => 'Stage 5'}
      }
     
     ReportBuilder.build_report options
+    
+    # Ex 4:
+    ReportBuilder.input_path = 'results/cucumber_json'
+    
+    ReportBuilder.configure do |config|
+      config.report_path = 'my_test_report'
+      config.report_types = [:json, :html]
+    end
+    
+   options = {
+       report_title: 'My Test Results'
+   }
+   
+   ReportBuilder.build_report options
         
 ```
 
@@ -85,7 +106,7 @@ gem install report_builder
 ```ruby
 
 ReportBuilder.configure do |config|
-     config.json_path = {
+     config.input_path = {
       'Group A' => ['path/of/json/files/dir1', 'path/of/json/files/dir2'],
       'Group B' => ['path/of/json/file1', 'path/of/json/file2'],
       'Group C' => 'path/of/json/files/dir'}
@@ -134,7 +155,7 @@ require 'report_builder'
     
 at_exit do
   ReportBuilder.configure do |config|
-    config.json_path = 'results'
+    config.input_path = 'results/cucumber_json'
     config.report_path = 'results/report'
   end
   ReportBuilder.build_report

@@ -2,6 +2,9 @@ require "#{File.dirname(__FILE__)}/spec_helper"
 require 'tempfile'
 
 describe ReportBuilder do
+
+  before(:each) { ReportBuilder.instance_variable_set :@options, nil }
+
   it 'correctly combines multiple JSON reports into a single json report' do
     input_0_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/flaky.json"
     input_1_path = "#{TEST_FIXTURES_DIRECTORY}/json_reports/report.json"
@@ -173,20 +176,13 @@ describe ReportBuilder do
 
   describe 'report configuration' do
     it 'has a default configuration' do
-      expect(ReportBuilder.configure).to eq(json_path: nil,
-                                            input_path: nil,
-                                            report_types: [:html],
-                                            report_title: 'Test Results',
-                                            include_images: true,
-                                            voice_commands: false,
-                                            additional_info: {},
-                                            report_path: 'test_report',
-                                            json_report_path: nil,
-                                            html_report_path: nil,
-                                            retry_report_path: nil,
-                                            additional_css: nil,
-                                            additional_js: nil,
-                                            color: 'brown')
+      expect(ReportBuilder.report_types).to eq([:html])
+      expect(ReportBuilder.report_title).to eq('Test Results')
+      expect(ReportBuilder.include_images).to eq(true)
+      expect(ReportBuilder.voice_commands).to eq(false)
+      expect(ReportBuilder.additional_info).to eq({})
+      expect(ReportBuilder.color).to eq('brown')
+      expect(ReportBuilder.report_path).to eq('test_report')
     end
 
     context 'with specific configuration' do

@@ -3,23 +3,14 @@
 require 'optparse'
 require 'report_builder'
 
-options = {
-    :json_path => nil,
-    :report_path => 'test_report',
-    :report_types => [:html],
-    :report_title => 'Test Results',
-    :include_images => true,
-    :voice_commands => false,
-    :color => 'brown',
-    :additional_info => {}
-    }
+options = { }
 
 opt_parser = OptionParser.new do |opts|
   opts.banner = "Usage: \n     report_builder [options]"
   opts.separator 'Configuration options:'
 
   opts.on('-s', '--source x,y,z', Array, 'List of json path or files') do |list|
-    options[:json_path] = list
+    options[:input_path] = list
   end
 
   opts.on('-o', '--out [PATH]NAME', String, 'Report path with name without extension') do |report_path|
