@@ -58,7 +58,7 @@ gem install report_builder
     ReportBuilder.configure do |config|
       config.input_path = 'results/cucumber_json'
       config.report_path = 'my_test_report'
-      config.report_types = [:json, :html]
+      config.report_types = [:retry, :html]
       config.report_title = 'My Test Results'
       config.additional_info = {browser: 'Chrome', environment: 'Stage 5'}
     end
@@ -68,7 +68,7 @@ gem install report_builder
     # Ex 2:
     ReportBuilder.input_path = 'results/cucumber_json'
     ReportBuilder.report_path = 'my_test_report'
-    ReportBuilder.report_types = [:json, :html]
+    ReportBuilder.report_types = [:retry, :html]
     ReportBuilder.report_title = 'My Test Results'
     ReportBuilder.additional_info = {Browser: 'Chrome', Environment: 'Stage 5'}
     
@@ -78,7 +78,7 @@ gem install report_builder
     options = {
        input_path: 'results/cucumber_json',
        report_path: 'my_test_report',
-       report_types: ['json', 'html'],
+       report_types: ['retry', 'html'],
        report_title: 'My Test Results',
        additional_info: {'Browser' => 'Chrome', 'Environment' => 'Stage 5'}
      }

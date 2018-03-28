@@ -29,7 +29,7 @@ module ReportBuilder
   #     ReportBuilder.configure do |config|
   #       config.input_path = 'cucumber_sample/logs'
   #       config.report_path = 'my_test_report'
-  #       config.report_types = [:JSON, :HTML]
+  #       config.report_types = [:RETRY, :HTML]
   #       config.report_title = 'My Test Results'
   #       config.include_images = true
   #       config.voice_commands = true
@@ -53,7 +53,7 @@ module ReportBuilder
   #     options = {
   #       json_path:    'cucumber_sample/logs',
   #       report_path:  'my_test_report',
-  #       report_types: ['json', 'html'],
+  #       report_types: ['retry', 'html'],
   #       report_title: 'My Test Results',
   #       include_images: true,
   #       voice_commands: true,
