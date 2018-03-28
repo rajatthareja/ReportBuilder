@@ -382,7 +382,7 @@ module ReportBuilder
   #
   # Example:
   #
-  #     ReportBuilder.color = 'cucumber_sample/logs'
+  #     ReportBuilder.color = 'purple'
   #
   def self.color=(color)
     options
