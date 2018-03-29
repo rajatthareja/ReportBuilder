@@ -165,7 +165,7 @@ end
 
 ### Voice Commands:
 Use voice commands for easy navigation and search
-* show ( overview | features | summary | errors )
+* show ( overview, features, summary, errors )
 * search { Keywords }
 
 ## Report Builder Java API
