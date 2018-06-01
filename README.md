@@ -9,9 +9,9 @@ Ruby gem to merge Cucumber JSON reports and build mobile-friendly HTML Test Repo
 
 ## Sample Reports
 
-**[Features Report](http://reportbuilder.rajatthareja.com/sample/report.html)**
+**[Features Report](https://reportbuilder.rajatthareja.com/sample/report.html)**
 
-**[Grouped Features Report](http://reportbuilder.rajatthareja.com/sample/group_report.html)**
+**[Grouped Features Report](https://reportbuilder.rajatthareja.com/sample/group_report.html)**
 
 ## Installation
 
@@ -24,7 +24,7 @@ gem install report_builder
 ## Information
 
 * RDoc documentation [available on RubyDoc.info](http://www.rubydoc.info/gems/report_builder)
-* Source code [available on GitHub](http://github.com/rajatthareja/ReportBuilder)
+* Source code [available on GitHub](https://github.com/rajatthareja/ReportBuilder)
 
 ## Usage
 
@@ -169,7 +169,7 @@ Use voice commands for easy navigation and search
 * search { Keywords }
 
 ## Report Builder Java API
-[Report Builder Java](http://reportbuilderjava.rajatthareja.com)
+[Report Builder Java](https://reportbuilderjava.rajatthareja.com)
 
 ## Contributing
 

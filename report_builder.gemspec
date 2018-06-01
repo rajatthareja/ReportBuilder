@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.post_install_message = 'Happy reporting!'
   s.authors     = ['Rajat Thareja']
   s.email       = 'rajat.thareja.1990@gmail.com'
-  s.homepage    = 'http://reportbuilder.rajatthareja.com'
+  s.homepage    = 'https://reportbuilder.rajatthareja.com'
   s.license     = 'MIT'
   s.required_ruby_version = '>= 1.9.1'
   s.requirements << 'Cucumber >= 2.1.0 test results in JSON format'
