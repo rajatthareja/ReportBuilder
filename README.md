@@ -177,7 +177,7 @@ We're open to any contribution. It has to be tested properly though.
 
 ## Collaborators
 
-* [Rajat Thareja](http://rajatthareja.com)
+* [Rajat Thareja](https://rajatthareja.com)
 * [Justin Commu](https://github.com/tk8817)
 * [Eric Kessler](https://github.com/enkessler)
 * [Jeff Morgan](https://github.com/cheezy)
