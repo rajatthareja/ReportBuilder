@@ -79,7 +79,7 @@ module ReportBuilder
       else
         files = get_files input_path
         raise "Error:: No file(s) found at #{input_path}" if files.empty?
-        groups << {'features' => get_features(files)} rescue raise('Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)')
+        groups << {'features' => get_features(files)} # rescue raise('Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)')
       end
       groups
     end
@@ -218,10 +218,10 @@ module ReportBuilder
     end
 
     def decode_image(data)
-      base64 = /^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{4}|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)$/
+      base64 = %r{^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{4}|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)$}
       if data =~ base64
-        data_base64 = Base64.decode64(data).gsub(/^data:image\/(png|gif|jpg|jpeg)\;base64,/, '')
-        if data_base64 =~ base64 && data_base64.encoding.eql?('UTF-8')
+        data_base64 = Base64.urlsafe_decode64(data).gsub(%r{^data:image\/(png|gif|jpg|jpeg)\;base64,}, '') rescue data
+        if data_base64 =~ base64
           data_base64
         else
           data
@@ -232,7 +232,7 @@ module ReportBuilder
     end
 
     def decode_text(data)
-      Base64.decode64 data
+      Base64.urlsafe_decode64 data rescue ''
     end
 
     def decode_embedding(embedding)
