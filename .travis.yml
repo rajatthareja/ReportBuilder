@@ -6,6 +6,7 @@ language: ruby
 rvm:
   - 1.9.3
   - 2.4.0
+  - 2.5.1
   - jruby-9.1.7.0
 
 matrix:
