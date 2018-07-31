@@ -79,7 +79,7 @@ module ReportBuilder
       else
         files = get_files input_path
         raise "Error:: No file(s) found at #{input_path}" if files.empty?
-        groups << {'features' => get_features(files)} rescue raise('Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)')
+        groups << {'features' => get_features(files)} #rescue raise('Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)')
       end
       groups
     end
@@ -125,6 +125,7 @@ module ReportBuilder
       end.sort_by! do |feature|
         feature['name']
       end.each do |feature|
+        feature['name'] = ERB::Util.html_escape feature['name']
         if feature['elements'][0]['type'] == 'background'
           (0..feature['elements'].size-1).step(2) do |i|
             feature['elements'][i]['steps'] ||= []
@@ -139,6 +140,7 @@ module ReportBuilder
           end
         end
         feature['elements'].each do |scenario|
+          scenario['name'] = ERB::Util.html_escape scenario['name']
           scenario['before'] ||= []
           scenario['before'].each do |before|
             before['result']['duration'] ||= 0
@@ -146,6 +148,7 @@ module ReportBuilder
           end
           scenario['steps'] ||= []
           scenario['steps'].each do |step|
+            step['name'] = ERB::Util.html_escape step['name']
             step['result']['duration'] ||= 0
             duration = step['result']['duration']
             status = step['result']['status']
@@ -218,7 +221,7 @@ module ReportBuilder
       base64 = /^([A-Za-z0-9+\/]{4})*([A-Za-z0-9+\/]{4}|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}==)$/
       if data =~ base64
         data_base64 = Base64.decode64(data).gsub(/^data:image\/(png|gif|jpg|jpeg)\;base64,/, '')
-        if data_base64 =~ base64
+        if data_base64 =~ base64 && data_base64.encoding.eql?('UTF-8')
           data_base64
         else
           data

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = 'rajat.thareja.1990@gmail.com'
   s.homepage    = 'https://reportbuilder.rajatthareja.com'
   s.license     = 'MIT'
-  s.required_ruby_version = '>= 1.9.1'
+  s.required_ruby_version = '>= 1.9.3'
   s.requirements << 'Cucumber >= 2.1.0 test results in JSON format'
 
   s.files       = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(sample/|css/|js/|pkg/|testing/|coverage/|CNAME|.gitignore|appveyor.yml|.travis.yml|_config.yml|Gemfile|Rakefile|rb.ico)}) }
