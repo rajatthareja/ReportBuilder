@@ -79,7 +79,7 @@ module ReportBuilder
       else
         files = get_files input_path
         raise "Error:: No file(s) found at #{input_path}" if files.empty?
-        groups << {'features' => get_features(files)} #rescue raise('Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)')
+        groups << {'features' => get_features(files)} rescue raise('Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)')
       end
       groups
     end
