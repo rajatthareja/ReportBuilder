@@ -7,6 +7,10 @@
 
   <b><%= step['keyword'] %></b> <%= step['name'] %> (<%= duration(step['duration']) %>)
 
+  <% if step['doc_string'] %>
+     <%= '<br/><pre>' + ERB::Util.html_escape(step['doc_string']['value']) + '</pre>' %>
+  <% end %>
+
   <% if step['rows'] %>
       <% step['rows'].each do |row| %>
           <%= '<br/>| ' %>

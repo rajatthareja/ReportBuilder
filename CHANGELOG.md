@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - Required Ruby Version from (>= 1.9.1) to (>= 1.9.3)
 ### Fixed
 - Image - ERB Encoding Compatibility Error
+### Added
+- Support for step doc string
 
 ## [1.6](https://github.com/rajatthareja/ReportBuilder/compare/v1.5...v1.6) - 2018-03-29
 ### Changed
