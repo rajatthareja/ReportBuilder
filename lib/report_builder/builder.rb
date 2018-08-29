@@ -185,7 +185,7 @@ module ReportBuilder
           scenario.merge! 'status' => scenario_status(scenario), 'duration' => total_time(scenario['before']) + total_time(scenario['steps']) + total_time(scenario['after'])
         end
         feature['elements'] = feature['elements'].group_by do |scenario|
-          scenario['id']
+          scenario['line']
         end.values.map do |scenario_group|
           scenario = scenario_group.find do |scenario|
             scenario['status'] == 'passed'
@@ -239,6 +239,8 @@ module ReportBuilder
       if embedding['mime_type'] =~ /^image\/(png|gif|jpg|jpeg)/
         embedding['data'] = decode_image(embedding['data'])
       elsif embedding['mime_type'] =~ /^text\/plain/
+        embedding['data'] = decode_text(embedding['data'])
+      elsif embedding['mime_type'] =~ /^text\/html/
         embedding['data'] = decode_text(embedding['data'])
       end
       embedding
