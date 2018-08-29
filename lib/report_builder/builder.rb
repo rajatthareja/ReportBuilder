@@ -240,6 +240,8 @@ module ReportBuilder
         embedding['data'] = decode_image(embedding['data'])
       elsif embedding['mime_type'] =~ /^text\/plain/
         embedding['data'] = decode_text(embedding['data'])
+      elsif embedding['mime_type'] =~ /^text\/html/
+        embedding['data'] = decode_text(embedding['data'])
       end
       embedding
     end
