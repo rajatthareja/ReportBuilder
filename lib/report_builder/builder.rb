@@ -185,15 +185,15 @@ module ReportBuilder
           scenario.merge! 'status' => scenario_status(scenario), 'duration' => total_time(scenario['before']) + total_time(scenario['steps']) + total_time(scenario['after'])
         end
         feature['elements'] = feature['elements'].group_by do |scenario|
-          scenario['line']
+          scenario['id'] + scenario['line'].to_s
         end.values.map do |scenario_group|
-          scenario = scenario_group.find do |scenario|
+          the_scenario = scenario_group.find do |scenario|
             scenario['status'] == 'passed'
           end || scenario_group.first
           if scenario_group.size > 1
-            scenario['name'] += " (x#{scenario_group.size})"
+            the_scenario['name'] += " (x#{scenario_group.size})"
           end
-          scenario
+          the_scenario
         end
         feature.merge! 'status' => feature_status(feature), 'duration' => total_time(feature['elements'])
       end
@@ -238,9 +238,7 @@ module ReportBuilder
     def decode_embedding(embedding)
       if embedding['mime_type'] =~ /^image\/(png|gif|jpg|jpeg)/
         embedding['data'] = decode_image(embedding['data'])
-      elsif embedding['mime_type'] =~ /^text\/plain/
-        embedding['data'] = decode_text(embedding['data'])
-      elsif embedding['mime_type'] =~ /^text\/html/
+      elsif embedding['mime_type'] =~ /^text\/(plain|html)/
         embedding['data'] = decode_text(embedding['data'])
       end
       embedding
