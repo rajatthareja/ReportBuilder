@@ -144,6 +144,11 @@ module ReportBuilder
           scenario['before'] ||= []
           scenario['before'].each do |before|
             before['result']['duration'] ||= 0
+            if before['embeddings']
+              before['embeddings'].map! do |embedding|
+                decode_embedding(embedding)
+              end
+            end
             before.merge! 'status' => before['result']['status'], 'duration' => before['result']['duration']
           end
           scenario['steps'] ||= []
