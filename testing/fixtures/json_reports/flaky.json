@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 30000
+              "duration": 29000
             }
           }
         ],
@@ -37,17 +37,17 @@
             "name": "I will pass some day",
             "line": 5,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:41"
+              "location": "features/step_definitions/sample_steps.rb:43"
             },
             "result": {
               "status": "failed",
-              "error_message": "I will pass some day (RuntimeError)\n./features/step_definitions/sample_steps.rb:43:in `/^I will pass some day$/'\nfeatures/flaky.feature:5:in `Given I will pass some day'",
-              "duration": 193000
+              "error_message": "I will pass some day (RuntimeError)\n./features/step_definitions/sample_steps.rb:45:in `/^I will pass some day$/'\nfeatures/flaky.feature:5:in `Given I will pass some day'",
+              "duration": 159000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "skipped"
@@ -59,11 +59,11 @@
         "after": [
           {
             "match": {
-              "location": "features/support/hooks.rb:7"
+              "location": "features/support/hooks.rb:16"
             },
             "result": {
               "status": "passed",
-              "duration": 49000
+              "duration": 26000
             }
           }
         ]
@@ -88,7 +88,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 18000
+              "duration": 17000
             }
           }
         ],
@@ -98,17 +98,17 @@
             "name": "I will pass some day",
             "line": 5,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:41"
+              "location": "features/step_definitions/sample_steps.rb:43"
             },
             "result": {
               "status": "failed",
-              "error_message": "I will pass some day (RuntimeError)\n./features/step_definitions/sample_steps.rb:43:in `/^I will pass some day$/'\nfeatures/flaky.feature:5:in `Given I will pass some day'",
-              "duration": 149000
+              "error_message": "I will pass some day (RuntimeError)\n./features/step_definitions/sample_steps.rb:45:in `/^I will pass some day$/'\nfeatures/flaky.feature:5:in `Given I will pass some day'",
+              "duration": 142000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "skipped"
@@ -120,59 +120,59 @@
         "after": [
           {
             "match": {
-              "location": "features/support/hooks.rb:7"
+              "location": "features/support/hooks.rb:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 16000
+            }
+          }
+        ]
+      },
+      {
+        "id": "flaky-scenario-feature;i-will-pass-some-day",
+        "keyword": "Scenario",
+        "name": "I will pass some day",
+        "description": "",
+        "line": 4,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@flaky",
+            "line": 3
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14000
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I will pass some day",
+            "line": 5,
+            "match": {
+              "location": "features/step_definitions/sample_steps.rb:43"
             },
             "result": {
               "status": "passed",
               "duration": 21000
-            }
-          }
-        ]
-      },
-      {
-        "id": "flaky-scenario-feature;i-will-pass-some-day",
-        "keyword": "Scenario",
-        "name": "I will pass some day",
-        "description": "",
-        "line": 4,
-        "type": "scenario",
-        "tags": [
-          {
-            "name": "@flaky",
-            "line": 3
-          }
-        ],
-        "before": [
-          {
-            "match": {
-              "location": "features/support/hooks.rb:1"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 18000
-            }
-          }
-        ],
-        "steps": [
-          {
-            "keyword": "Given ",
-            "name": "I will pass some day",
-            "line": 5,
-            "match": {
-              "location": "features/step_definitions/sample_steps.rb:41"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 27000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 11000
+                  "duration": 503992000
                 }
               }
             ]
@@ -181,11 +181,11 @@
         "after": [
           {
             "match": {
-              "location": "features/support/hooks.rb:7"
+              "location": "features/support/hooks.rb:16"
             },
             "result": {
               "status": "passed",
-              "duration": 18000
+              "duration": 39000
             }
           }
         ]

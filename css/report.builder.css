@@ -19,3 +19,6 @@ i {
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
+pre {
+    margin: 0;
+}

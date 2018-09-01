@@ -4,7 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased](https://github.com/rajatthareja/ReportBuilder/compare/v1.7...master)
-
+### Fixed
+- Before hook embedding
+- Scenario example with tags
+- HTML embedding
 
 ## [1.7](https://github.com/rajatthareja/ReportBuilder/compare/v1.6...v1.7) - 2018-08-07
 ### Changed

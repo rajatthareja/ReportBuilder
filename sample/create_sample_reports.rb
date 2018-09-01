@@ -4,6 +4,7 @@ ReportBuilder.configure do |config|
   config.json_path = '../testing/fixtures/json_reports'
   config.report_path = '../sample/report'
   config.report_title = 'My Test Results'
+  config.color = 'blue'
   config.additional_info = {Browser: 'browser', Environment: 'environment', MoreInfo: 'more info'}
 end
 

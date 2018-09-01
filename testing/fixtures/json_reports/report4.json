@@ -20,7 +20,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 37000
+              "duration": 53000
             }
           }
         ],
@@ -34,16 +34,16 @@
             },
             "result": {
               "status": "passed",
-              "duration": 70000
+              "duration": 75000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 19000
+                  "duration": 504249000
                 }
               }
             ]
@@ -83,20 +83,26 @@
               }
             ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:29"
+              "location": "features/step_definitions/sample_steps.rb:31"
             },
             "result": {
               "status": "passed",
-              "duration": 145000
+              "duration": 153000
             },
             "after": [
               {
+                "embeddings": [
+                  {
+                    "mime_type": "text/html",
+                    "data": "PGk+RW1iZWQgSFRNTDwvaT4="
+                  }
+                ],
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 15000
+                  "duration": 501428000
                 }
               }
             ]
@@ -105,21 +111,27 @@
             "keyword": "Then ",
             "name": "I am then step of some feature",
             "line": 11,
+            "embeddings": [
+              {
+                "mime_type": "text/plain",
+                "data": "RW1iZWQgTGlua3x8fGh0dHA6Ly9yZXBvcnRidWlsZGVyLnJhamF0dGhhcmVqYS5jb20="
+              }
+            ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:8"
+              "location": "features/step_definitions/sample_steps.rb:9"
             },
             "result": {
               "status": "passed",
-              "duration": 42000
+              "duration": 101000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 17000
+                  "duration": 501089000
                 }
               }
             ]
@@ -128,11 +140,11 @@
         "after": [
           {
             "match": {
-              "location": "features/support/hooks.rb:7"
+              "location": "features/support/hooks.rb:16"
             },
             "result": {
               "status": "passed",
-              "duration": 30000
+              "duration": 33000
             }
           }
         ]
@@ -150,7 +162,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 8552000
+              "duration": 33000
             }
           }
         ],
@@ -164,16 +176,16 @@
             },
             "result": {
               "status": "passed",
-              "duration": 42000
+              "duration": 35000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 504865000
                 }
               }
             ]
@@ -202,20 +214,20 @@
               "$ ABC % XYZ £"
             ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:4"
+              "location": "features/step_definitions/sample_steps.rb:5"
             },
             "result": {
               "status": "passed",
-              "duration": 60000
+              "duration": 169000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 18000
+                  "duration": 503838000
                 }
               }
             ]
@@ -224,21 +236,27 @@
             "keyword": "Then ",
             "name": "I am then step of some feature",
             "line": 16,
+            "embeddings": [
+              {
+                "mime_type": "text/plain",
+                "data": "RW1iZWQgTGlua3x8fGh0dHA6Ly9yZXBvcnRidWlsZGVyLnJhamF0dGhhcmVqYS5jb20="
+              }
+            ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:8"
+              "location": "features/step_definitions/sample_steps.rb:9"
             },
             "result": {
               "status": "passed",
-              "duration": 32000
+              "duration": 116000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 80000
+                  "duration": 510838000
                 }
               }
             ]
@@ -247,11 +265,11 @@
         "after": [
           {
             "match": {
-              "location": "features/support/hooks.rb:7"
+              "location": "features/support/hooks.rb:16"
             },
             "result": {
               "status": "passed",
-              "duration": 30000
+              "duration": 31000
             }
           }
         ]
@@ -269,7 +287,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 25000
+              "duration": 81000
             }
           }
         ],
@@ -283,16 +301,22 @@
             },
             "result": {
               "status": "passed",
-              "duration": 42000
+              "duration": 41000
             },
             "after": [
               {
+                "embeddings": [
+                  {
+                    "mime_type": "text/html",
+                    "data": "PGk+RW1iZWQgSFRNTDwvaT4="
+                  }
+                ],
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 20000
+                  "duration": 500375000
                 }
               }
             ]
@@ -318,7 +342,7 @@
             "name": "I am give step of some other feature",
             "line": 20,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:11"
+              "location": "features/step_definitions/sample_steps.rb:13"
             },
             "result": {
               "status": "passed",
@@ -326,12 +350,18 @@
             },
             "after": [
               {
+                "embeddings": [
+                  {
+                    "mime_type": "text/html",
+                    "data": "PGk+RW1iZWQgSFRNTDwvaT4="
+                  }
+                ],
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 500875000
                 }
               }
             ]
@@ -344,20 +374,26 @@
               "123"
             ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:14"
+              "location": "features/step_definitions/sample_steps.rb:16"
             },
             "result": {
               "status": "passed",
-              "duration": 69000
+              "duration": 39000
             },
             "after": [
               {
+                "embeddings": [
+                  {
+                    "mime_type": "text/html",
+                    "data": "PGk+RW1iZWQgSFRNTDwvaT4="
+                  }
+                ],
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 18000
+                  "duration": 503393000
                 }
               }
             ]
@@ -367,20 +403,26 @@
             "name": "I am then step of some other feature",
             "line": 22,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:18"
+              "location": "features/step_definitions/sample_steps.rb:20"
             },
             "result": {
               "status": "passed",
-              "duration": 119000
+              "duration": 60000
             },
             "after": [
               {
+                "embeddings": [
+                  {
+                    "mime_type": "text/html",
+                    "data": "PGk+RW1iZWQgSFRNTDwvaT4="
+                  }
+                ],
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 500512000
                 }
               }
             ]
@@ -389,11 +431,11 @@
         "after": [
           {
             "match": {
-              "location": "features/support/hooks.rb:7"
+              "location": "features/support/hooks.rb:16"
             },
             "result": {
               "status": "passed",
-              "duration": 32000
+              "duration": 27000
             }
           }
         ]
@@ -411,7 +453,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 27000
+              "duration": 252000
             }
           }
         ],
@@ -425,16 +467,16 @@
             },
             "result": {
               "status": "passed",
-              "duration": 37000
+              "duration": 40000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 14000
+                  "duration": 502158000
                 }
               }
             ]
@@ -463,20 +505,20 @@
               "$ ABC % XYZ £"
             ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:4"
+              "location": "features/step_definitions/sample_steps.rb:5"
             },
             "result": {
               "status": "passed",
-              "duration": 52000
+              "duration": 46000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 12000
+                  "duration": 504067000
                 }
               }
             ]
@@ -486,17 +528,17 @@
             "name": "I am when step which will fail",
             "line": 27,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:25"
+              "location": "features/step_definitions/sample_steps.rb:27"
             },
             "result": {
               "status": "failed",
-              "error_message": "I am some error (RuntimeError)\n./features/step_definitions/sample_steps.rb:26:in `/^I am when step which will fail$/'\nfeatures/feature.feature:27:in `And I am when step which will fail'",
-              "duration": 138000
+              "error_message": "I am some error (RuntimeError)\n./features/step_definitions/sample_steps.rb:28:in `/^I am when step which will fail$/'\nfeatures/feature.feature:27:in `And I am when step which will fail'",
+              "duration": 188000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "skipped"
@@ -509,7 +551,7 @@
             "name": "I am then step of some feature",
             "line": 28,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:8"
+              "location": "features/step_definitions/sample_steps.rb:9"
             },
             "result": {
               "status": "skipped"
@@ -517,7 +559,7 @@
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "skipped"
@@ -529,11 +571,11 @@
         "after": [
           {
             "match": {
-              "location": "features/support/hooks.rb:7"
+              "location": "features/support/hooks.rb:16"
             },
             "result": {
               "status": "passed",
-              "duration": 34000
+              "duration": 31000
             }
           }
         ]
@@ -568,7 +610,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 30000
+              "duration": 45000
             }
           }
         ],
@@ -582,16 +624,16 @@
             },
             "result": {
               "status": "passed",
-              "duration": 41000
+              "duration": 38000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 12000
+                  "duration": 501347000
                 }
               }
             ]
@@ -604,20 +646,26 @@
               "$ ABC % XYZ £"
             ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:4"
+              "location": "features/step_definitions/sample_steps.rb:5"
             },
             "result": {
               "status": "passed",
-              "duration": 43000
+              "duration": 69000
             },
             "after": [
               {
+                "embeddings": [
+                  {
+                    "mime_type": "text/html",
+                    "data": "PGk+RW1iZWQgSFRNTDwvaT4="
+                  }
+                ],
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 31000
+                  "duration": 504054000
                 }
               }
             ]
@@ -626,21 +674,27 @@
             "keyword": "Then ",
             "name": "I am then step of some feature",
             "line": 7,
+            "embeddings": [
+              {
+                "mime_type": "text/plain",
+                "data": "RW1iZWQgTGlua3x8fGh0dHA6Ly9yZXBvcnRidWlsZGVyLnJhamF0dGhhcmVqYS5jb20="
+              }
+            ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:8"
+              "location": "features/step_definitions/sample_steps.rb:9"
             },
             "result": {
               "status": "passed",
-              "duration": 36000
+              "duration": 178000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 502481000
                 }
               }
             ]
@@ -649,11 +703,11 @@
         "after": [
           {
             "match": {
-              "location": "features/support/hooks.rb:7"
+              "location": "features/support/hooks.rb:16"
             },
             "result": {
               "status": "passed",
-              "duration": 24000
+              "duration": 28000
             }
           }
         ]
@@ -678,7 +732,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 29000
+              "duration": 113000
             }
           }
         ],
@@ -688,46 +742,48 @@
             "name": "I am give step of some other feature",
             "line": 11,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:11"
+              "location": "features/step_definitions/sample_steps.rb:13"
             },
             "result": {
               "status": "passed",
-              "duration": 79000
+              "duration": 44000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 17000
+                  "duration": 504538000
                 }
               }
             ]
           },
           {
             "keyword": "When ",
-            "name": "I am when step of some other feature",
+            "name": "I am when step with doc",
             "line": 12,
-            "output": [
-              "123"
-            ],
+            "doc_string": {
+              "value": "Testing doc\nstring",
+              "content_type": "",
+              "line": 13
+            },
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:14"
+              "location": "features/step_definitions/sample_steps.rb:49"
             },
             "result": {
               "status": "passed",
-              "duration": 128000
+              "duration": 47000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 11000
+                  "duration": 503236000
                 }
               }
             ]
@@ -735,9 +791,9 @@
           {
             "keyword": "Then ",
             "name": "I am then step of some other feature",
-            "line": 13,
+            "line": 17,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:18"
+              "location": "features/step_definitions/sample_steps.rb:20"
             },
             "result": {
               "status": "passed",
@@ -745,12 +801,18 @@
             },
             "after": [
               {
+                "embeddings": [
+                  {
+                    "mime_type": "text/html",
+                    "data": "PGk+RW1iZWQgSFRNTDwvaT4="
+                  }
+                ],
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 9000
+                  "duration": 502997000
                 }
               }
             ]
@@ -759,11 +821,11 @@
         "after": [
           {
             "match": {
-              "location": "features/support/hooks.rb:7"
+              "location": "features/support/hooks.rb:16"
             },
             "result": {
               "status": "passed",
-              "duration": 18000
+              "duration": 33000
             }
           }
         ]
@@ -773,16 +835,16 @@
         "keyword": "Scenario",
         "name": "I am some testing scenario with two tags of some functionality",
         "description": "",
-        "line": 16,
+        "line": 20,
         "type": "scenario",
         "tags": [
           {
             "name": "@high",
-            "line": 15
+            "line": 19
           },
           {
             "name": "@last",
-            "line": 15
+            "line": 19
           }
         ],
         "before": [
@@ -792,7 +854,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 20000
+              "duration": 48000
             }
           }
         ],
@@ -800,22 +862,28 @@
           {
             "keyword": "Given ",
             "name": "I am give step of some feature",
-            "line": 17,
+            "line": 21,
+            "embeddings": [
+              {
+                "mime_type": "text/html",
+                "data": "PGk+U3RlcCBFbWJlZCBIVE1MPC9pPg=="
+              }
+            ],
             "match": {
               "location": "features/step_definitions/sample_steps.rb:1"
             },
             "result": {
               "status": "passed",
-              "duration": 37000
+              "duration": 112000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 12000
+                  "duration": 501676000
                 }
               }
             ]
@@ -823,25 +891,25 @@
           {
             "keyword": "When ",
             "name": "I am when step of some other feature",
-            "line": 18,
+            "line": 22,
             "output": [
               "123"
             ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:14"
+              "location": "features/step_definitions/sample_steps.rb:16"
             },
             "result": {
               "status": "passed",
-              "duration": 65000
+              "duration": 46000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 501795000
                 }
               }
             ]
@@ -849,22 +917,22 @@
           {
             "keyword": "Then ",
             "name": "I am then step of some this feature",
-            "line": 19,
+            "line": 23,
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:18"
+              "location": "features/step_definitions/sample_steps.rb:20"
             },
             "result": {
               "status": "passed",
-              "duration": 50000
+              "duration": 38000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 23000
+                  "duration": 500898000
                 }
               }
             ]
@@ -873,11 +941,11 @@
         "after": [
           {
             "match": {
-              "location": "features/support/hooks.rb:7"
+              "location": "features/support/hooks.rb:16"
             },
             "result": {
               "status": "passed",
-              "duration": 922000
+              "duration": 22000
             }
           }
         ]
@@ -887,12 +955,12 @@
         "keyword": "Scenario",
         "name": "I am some testing scenario of other functionality",
         "description": "",
-        "line": 22,
+        "line": 26,
         "type": "scenario",
         "tags": [
           {
             "name": "@feature",
-            "line": 21
+            "line": 25
           }
         ],
         "before": [
@@ -902,7 +970,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 30000
+              "duration": 84000
             }
           }
         ],
@@ -910,22 +978,34 @@
           {
             "keyword": "Given ",
             "name": "I am give step of some feature",
-            "line": 23,
+            "line": 27,
+            "embeddings": [
+              {
+                "mime_type": "text/html",
+                "data": "PGk+U3RlcCBFbWJlZCBIVE1MPC9pPg=="
+              }
+            ],
             "match": {
               "location": "features/step_definitions/sample_steps.rb:1"
             },
             "result": {
               "status": "passed",
-              "duration": 43000
+              "duration": 176000
             },
             "after": [
               {
+                "embeddings": [
+                  {
+                    "mime_type": "text/html",
+                    "data": "PGk+RW1iZWQgSFRNTDwvaT4="
+                  }
+                ],
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 16000
+                  "duration": 504811000
                 }
               }
             ]
@@ -933,25 +1013,25 @@
           {
             "keyword": "When ",
             "name": "I am when step of some feature",
-            "line": 24,
+            "line": 28,
             "output": [
               "$ ABC % XYZ £"
             ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:4"
+              "location": "features/step_definitions/sample_steps.rb:5"
             },
             "result": {
               "status": "passed",
-              "duration": 63000
+              "duration": 40000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 50000
+                  "duration": 502231000
                 }
               }
             ]
@@ -959,22 +1039,28 @@
           {
             "keyword": "Then ",
             "name": "I am then step of some feature",
-            "line": 25,
+            "line": 29,
+            "embeddings": [
+              {
+                "mime_type": "text/plain",
+                "data": "RW1iZWQgTGlua3x8fGh0dHA6Ly9yZXBvcnRidWlsZGVyLnJhamF0dGhhcmVqYS5jb20="
+              }
+            ],
             "match": {
-              "location": "features/step_definitions/sample_steps.rb:8"
+              "location": "features/step_definitions/sample_steps.rb:9"
             },
             "result": {
               "status": "passed",
-              "duration": 42000
+              "duration": 107000
             },
             "after": [
               {
                 "match": {
-                  "location": "features/support/hooks.rb:4"
+                  "location": "features/support/hooks.rb:11"
                 },
                 "result": {
                   "status": "passed",
-                  "duration": 17000
+                  "duration": 501041000
                 }
               }
             ]
@@ -983,11 +1069,11 @@
         "after": [
           {
             "match": {
-              "location": "features/support/hooks.rb:7"
+              "location": "features/support/hooks.rb:16"
             },
             "result": {
               "status": "passed",
-              "duration": 29000
+              "duration": 21000
             }
           }
         ]
