@@ -73,13 +73,12 @@ module ReportBuilder
         input_path.each do |group_name, group_path|
           files = get_files group_path
           puts "Error:: No file(s) found at #{group_path}" if files.empty?
-          groups << {'name' => group_name, 'features' => get_features(files)} rescue next
+          groups << {'name' => group_name, 'features' => get_features(files)}
         end
-        raise 'Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)' if groups.empty?
       else
         files = get_files input_path
         raise "Error:: No file(s) found at #{input_path}" if files.empty?
-        groups << {'features' => get_features(files)} # rescue raise('Error:: Invalid Input File(s). Please provide valid cucumber JSON output file(s)')
+        groups << {'features' => get_features(files)}
       end
       groups
     end
