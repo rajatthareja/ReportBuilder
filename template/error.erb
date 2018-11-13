@@ -4,18 +4,18 @@
   </div>
 
   <div class="collapsible-body <%= options[:color] %> lighten-4">
-    <ul class="collection failedScenarioList">
+    <div class="collection failedScenarioList">
       <% features.each_with_index do |feature, f| %>
           <% feature['elements'].each_with_index do |scenario, s| %>
               <% if scenario['error'] %>
                   <% if scenario['error'] == error %>
-                      <li class="collection-item failedScenario <%= options[:color] %> lighten-5 red-text">
-                        <i class="material-icons">highlight_off</i>&nbsp;<a class="modal-trigger red-text" href="#<%= "#{gid}f#{f}s#{s}" %>"><%= scenario['name'] %></a>
-                      </li>
+                      <a class="collection-item failedScenario <%= options[:color] %> lighten-5 red-text modal-trigger waves-effect waves-light" href="#<%= "#{gid}f#{f}s#{s}" %>">
+                        <i class="material-icons">highlight_off</i>&nbsp;<%= scenario['name'] %>
+                      </a>
                   <% end %>
               <% end %>
           <% end %>
       <% end %>
-    </ul>
+    </div>
   </div>
 </li>
