@@ -5,14 +5,12 @@
   </div>
 
   <div class="collapsible-body <%= options[:color] %> lighten-4">
-    <ul class="collection scenarioList">
+    <div class="collection scenarioList <%= options[:color] %>">
       <% feature['elements'].each_with_index do |scenario, s| %>
-          <li class="collection-item scenario <%= scenario['status'] %>">
-            <a class="waves-effect waves-light modal-trigger white-text" href="#<%= "#{fid}s#{s}" %>">
-              <b><%= scenario['keyword'] %></b> <%= scenario['name'] %>&nbsp;(<%= duration(scenario['duration']) %>)
-            </a>
-          </li>
+        <a class="collection-item scenario modal-trigger waves-effect waves-light white-text <%= scenario['status'] %>" href="#<%= "#{fid}s#{s}" %>">
+          <b><%= scenario['keyword'] %></b> <%= scenario['name'] %>&nbsp;(<%= duration(scenario['duration']) %>)
+        </a>
       <% end %>
-    </ul>
+    </div>
   </div>
 </li>
