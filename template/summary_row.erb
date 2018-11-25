@@ -18,6 +18,16 @@
   <%= scenario['status'] %>
 </td>
 
+<% if options[:tag_filter] %>
+    <td class="hide-on-small-only">
+      <% scenario['tags'].each do |tag| %>
+          <% if tag['name'].match(/#{options[:tag_filter]}/) %>
+              <%= tag['name'] %>
+          <% end %>
+      <% end %>
+    </td>
+<% end %>
+
 <td class="hide-on-small-only">
   <% if scenario['error'] %>
       <%= scenario['error'] %>
