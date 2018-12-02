@@ -62,7 +62,7 @@ describe ReportBuilder do
 
     ReportBuilder.build_report options
     generated_report = File.read("#{output_location}.html")
-    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined#{RUBY_VERSION == '1.9.3' ? '_r1' : ''}.html")
+    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined.html")
 
     expect(generated_report).to eq(expected_report)
   end
@@ -81,7 +81,7 @@ describe ReportBuilder do
 
     ReportBuilder.build_report options
     generated_report = File.read("#{output_location}.html")
-    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined_g#{RUBY_VERSION == '1.9.3' ? '_r1' : ''}.html")
+    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined_g.html")
 
     expect(generated_report).to eq(expected_report)
   end
