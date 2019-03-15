@@ -50,8 +50,9 @@ opt_parser = OptionParser.new do |opts|
   end
 
   opts.on('-I', '--info a:x,b:y,c:z', Array, 'List of additional info') do |list|
+    options[:additional_info] = { }
     list.each do |i|
-      key, value = i.split(':')
+      key, value = i.split(':', 2)
       options[:additional_info][key] = value
     end
   end
