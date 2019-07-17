@@ -80,6 +80,11 @@ module ReportBuilder
         raise "Error:: No file(s) found at #{input_path}" if files.empty?
         groups << {'features' => get_features(files)}
       end
+      groups.each do |this_group|
+        this_group['features'].each do |feature|
+          feature['elements'] = feature['elements'].sort_by { |v| v['line']}
+        end
+      end
       groups
     end
 
