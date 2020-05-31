@@ -189,7 +189,7 @@ module ReportBuilder
           scenario.merge! 'status' => scenario_status(scenario), 'duration' => total_time(scenario['before']) + total_time(scenario['steps']) + total_time(scenario['after'])
         end
         feature['elements'] = feature['elements'].group_by do |scenario|
-          scenario['id'] + scenario['line'].to_s
+          scenario['id'] + ':' + scenario['line'].to_s
         end.values.map do |scenario_group|
           the_scenario = scenario_group.find do |scenario|
             scenario['status'] == 'passed'
