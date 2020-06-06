@@ -175,13 +175,6 @@ Use voice commands for easy navigation and search
 
 We're open to any contribution. It has to be tested properly though.
 
-## Collaborators
-
-* [Rajat Thareja](https://rajatthareja.com)
-* [Justin Commu](https://github.com/tk8817)
-* [Eric Kessler](https://github.com/enkessler)
-* [Jeff Morgan](https://github.com/cheezy)
-
 ## License
 
 Copyright (c) 2017 [MIT LICENSE](LICENSE)
