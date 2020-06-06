@@ -4,10 +4,9 @@ os:
 
 language: ruby
 rvm:
-  - 2.0.0
-  - 2.4.0
-  - 2.5.1
-  - jruby-9.1.7.0
+  - 2.4
+  - 2.7
+  - jruby
 
 before_install:
   # Using a recent version of bundler in order to avoid gem installation errors
