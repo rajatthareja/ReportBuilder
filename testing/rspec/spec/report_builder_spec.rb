@@ -149,7 +149,7 @@ describe ReportBuilder do
     ReportBuilder.build_report options
 
     generated_report = File.read("#{output_location}.html")
-    additional_css = File.read(options[:additional_css]).gsub('  ', '').gsub("\n\n", '')
+    additional_css = File.read(options[:additional_css])
 
     expect(generated_report).to include(additional_css)
   end
