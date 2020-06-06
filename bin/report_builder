@@ -37,7 +37,7 @@ opt_parser = OptionParser.new do |opts|
     options[:include_images] = include_images
   end
 
-  opts.on('-vc', '--voice_commands', 'Enable voice commands for easy navigation and search') do |voice_commands|
+  opts.on('--voice_commands', 'Enable voice commands for easy navigation and search') do |voice_commands|
     options[:voice_commands] = voice_commands
   end
 
