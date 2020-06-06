@@ -198,7 +198,7 @@ module ReportBuilder
         end.values.map do |scenario_group|
           the_scenario = scenario_group.find do |scenario|
             scenario['status'] == 'passed'
-          end || scenario_group.first
+          end || scenario_group.last
           if scenario_group.size > 1
             the_scenario['name'] += " (x#{scenario_group.size})"
           end
