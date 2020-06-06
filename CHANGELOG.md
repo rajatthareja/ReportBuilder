@@ -3,8 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
-## [Unreleased](https://github.com/rajatthareja/ReportBuilder/compare/v1.8...master)
+## [Unreleased](https://github.com/rajatthareja/ReportBuilder/compare/v1.9...master)
 
+## [1.9](https://github.com/rajatthareja/ReportBuilder/compare/v1.8...v1.9) - 2020-06-06
+### Changed
+- Json 1.8.1 to 2.3.0
+- Include last fail run instead of first
+- [Few other small changes](https://github.com/rajatthareja/ReportBuilder/compare/v1.8...v1.9)
 
 ## [1.8](https://github.com/rajatthareja/ReportBuilder/compare/v1.7...v1.8) - 2018-09-02
 ### Fixed
