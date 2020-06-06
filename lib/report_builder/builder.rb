@@ -120,6 +120,7 @@ module ReportBuilder
           features << JSON.parse(data)
         rescue StandardError
           puts 'Warning:: Invalid Input File ' + file
+          puts 'JSON Error:: ' + $!.to_s
           next
         end
       end.flatten.group_by do |feature|
