@@ -174,6 +174,39 @@ describe ReportBuilder do
     expect(generated_report).to include(additional_css)
   end
 
+  it 'can be configured to use JSON input string' do
+    input_string = File.read("#{TEST_FIXTURES_DIRECTORY}/json_reports/report.json")
+    output_directory = ReportBuilder::FileHelper.create_directory
+
+    generic_output_location = "#{output_directory}/report"
+
+    ReportBuilder.build_report(report_types: [:json, :html, :retry], input_string: input_string, report_path: generic_output_location)
+
+    files_created = Dir.entries(output_directory)
+    files_created.delete('.')
+    files_created.delete('..')
+
+    expect(files_created).to match_array(["#{File.basename(generic_output_location)}.json", "#{File.basename(generic_output_location)}.html", "#{File.basename(generic_output_location)}.retry"])
+  end
+
+  it 'can be configured to output report to a StringIO instance' do
+    string_io = StringIO.new
+    options = {
+      json_path: "#{TEST_FIXTURES_DIRECTORY}/json_reports",
+      html_report_file: string_io,
+      report_types: ['html'],
+      report_title: 'Test Results',
+      include_images: false,
+      additional_info: { Environment: 'POC' }
+    }
+
+    ReportBuilder.build_report options
+    string_io.rewind
+
+    expected_report = File.read("#{TEST_FIXTURES_DIRECTORY}/combined.html")
+    expect(string_io.read).to eql File.read("#{TEST_FIXTURES_DIRECTORY}/combined.html")
+  end
+
   describe 'report configuration' do
     it 'has a default configuration' do
       expect(ReportBuilder.report_types).to eq([:html])
