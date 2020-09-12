@@ -35,10 +35,11 @@ gem install report_builder
 | Option               | Type                    | Default             | Values                                                                                   |
 |----------------------|-------------------------|---------------------|------------------------------------------------------------------------------------------|
 | json_path/input_path | [String]/[Array]/[Hash] | (current directory) | input json files path / array of json files or path / hash of json files or path         |
+| json_string          | [String]                | nil                 | input json string containing report data (e.g. if report is loaded from a database)      |
 | report_path          | [String]                | 'test_report'       | reports output file path with file name without extension                                |
 | json_report_path     | [String]                | (report_path)       | json report output file path with file name without extension                            |
 | html_report_path     | [String]                | (report_path)       | html report output file path with file name without extension                            |
-| html_report_file     | [StringIO]/[IO]/[File]  | nil                 | html report output file object (can be used to bypass filesystem with StringIO           |
+| html_report_file     | [StringIO]/[IO]/[File]  | nil                 | html report output file object (can be used to bypass filesystem with StringIO)          |
 | retry_report_path    | [String]                | (report_path)       | retry report output file path with file name without extension                           |
 | report_types         | [Array]                 | [:html]             | :json, :html, :retry (output file types)                                                 |
 | report_title         | [String]                | 'Test Results'      | report and html title                                                                    |

@@ -19,7 +19,7 @@ module ReportBuilder
     def build_report
       options = ReportBuilder.options
 
-      groups = get_groups options[:input_path]
+      groups = get_groups options[:input_path], options[:input_string]
 
       json_report_path = options[:json_report_path] || options[:report_path]
       if options[:report_types].include? 'JSON'
@@ -71,15 +71,16 @@ module ReportBuilder
       @erb[template] ||= ERB.new(File.read(File.dirname(__FILE__) + '/../../template/' + template + '.erb'), nil, nil, '_' + template)
     end
 
-    def get_groups(input_path)
+    def get_groups(input_path, input_string)
       groups = []
-      if input_path.is_a? Hash
+      groups << {'features' => get_features(nil, input_string)} unless input_string.nil?
+      if input_string.nil? && input_path.is_a?(Hash)
         input_path.each do |group_name, group_path|
           files = get_files group_path
           puts "Error:: No file(s) found at #{group_path}" if files.empty?
           groups << {'name' => group_name, 'features' => get_features(files)}
         end
-      else
+      elsif input_string.nil?
         files = get_files input_path
         raise "Error:: No file(s) found at #{input_path}" if files.empty?
         groups << {'features' => get_features(files)}
@@ -116,9 +117,9 @@ module ReportBuilder
       end.uniq
     end
 
-    def get_features(files)
-      files.each_with_object([]) do |file, features|
-        data = File.read(file)
+    def get_features(files, input_string = nil)
+      (input_string.nil? ? files : [input_string]).each_with_object([]) do |file, features|
+        data = input_string.nil? ? File.read(file) : file
         next if data.empty?
         begin
           features << JSON.parse(data)
