@@ -37,9 +37,13 @@ module ReportBuilder
       end
 
       html_report_path = options[:html_report_path] || options[:report_path]
+      html_report_file = options[:html_report_file]
       if options[:report_types].include? 'HTML'
-        File.open(html_report_path + '.html', 'w') do |file|
-          file.write get(groups.size > 1 ? 'group_report' : 'report').result(binding)
+        html_content = get(groups.size > 1 ? 'group_report' : 'report').result(binding)
+        if html_report_file.nil?
+          File.open(html_report_path + '.html', 'w') { |file| file.write html_content }
+        else
+          html_report_file.write html_content
         end
       end
 
