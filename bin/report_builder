@@ -13,6 +13,14 @@ opt_parser = OptionParser.new do |opts|
     options[:input_path] = list
   end
 
+  opts.on('-g', '--groups a:x,b:y,c:z', Array, 'List of grouped feature mappings') do |list|
+    options[:json_path] = { }
+    list.each do |i|
+      key, value = i.split(':', 2)
+      options[:json_path][key] = value
+    end
+  end
+
   opts.on('-o', '--out [PATH]NAME', String, 'Report path with name without extension') do |report_path|
     options[:report_path] = report_path
   end
