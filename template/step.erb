@@ -12,12 +12,15 @@
   <% end %>
 
   <% if step['rows'] %>
+    <table cellpadding="0" cellspacing="0" style="table-layout: fixed; width: 90%;">
       <% step['rows'].each do |row| %>
-          <%= '<br/>| ' %>
+          <tr style="border-bottom: 1px solid black;">
           <% row['cells'].each do |cell| %>
-              <%= cell + ' | ' %>
+              <%= '<td>' + cell + ' </td> ' %>
           <% end %>
+          </tr> 
       <% end %>
+     </table>
   <% end %>
 
   <%#step part as hook%>

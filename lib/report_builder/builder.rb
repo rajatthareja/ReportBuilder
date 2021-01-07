@@ -4,7 +4,7 @@ require 'pathname'
 require 'base64'
 require 'ostruct'
 
-require 'report_builder/core-ext/hash'
+require_relative 'core-ext/hash'
 
 module ReportBuilder
 
