@@ -1,0 +1,25 @@
+name: build and deploy a snapshot
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  deploy:
+    env:
+      JFROG_URL: ${{ secrets.JFROG_URL }}
+      JFROG_TOKEN: ${{ secrets.JFROG_TOKEN }}
+      SNAPSHOTS_REPO: ${{ secrets.SNAPSHOTS_REPO }}
+      CI: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: jfrog/setup-jfrog-cli@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.5.1
+      - run: |
+          bundle install
+          rake build
+          cd pkg && jfrog rt u --url $JFROG_URL --access-token $JFROG_TOKEN ./ $SNAPSHOTS_REPO/gems/
