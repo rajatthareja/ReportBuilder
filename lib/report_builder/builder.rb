@@ -64,7 +64,7 @@ module ReportBuilder
 
     def get(template)
       @erb ||= {}
-      @erb[template] ||= ERB.new(File.read(File.dirname(__FILE__) + '/../../template/' + template + '.erb'), nil, nil, '_' + template)
+      @erb[template] ||= ERB.new(File.read(File.dirname(__FILE__) + '/../../template/' + template + '.erb'), eoutvar: '_' + template)
     end
 
     def get_groups(input_path)
