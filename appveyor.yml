@@ -2,9 +2,9 @@ version: '1.0.{build}'
 
 environment:
   matrix:
-    - RUBY_VERSION: 23
-    - RUBY_VERSION: 23-x64
-    - RUBY_VERSION: 25
+    - RUBY_VERSION: 27
+    - RUBY_VERSION: 27-x64
+    - RUBY_VERSION: 31
 
 install:
   - set PATH=C:\Ruby%RUBY_VERSION%\bin;%PATH%
