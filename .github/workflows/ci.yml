@@ -26,6 +26,9 @@ jobs:
           # JRuby having random JRuby problems.
           - os: windows-latest
             ruby-version: 'jruby-9.1.17.0'
+          - os: windows-latest
+            ruby-version: 'jruby-9.3.4.0'
+
 
     runs-on: ${{ matrix.os }}
     steps:
