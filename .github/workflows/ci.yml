@@ -23,6 +23,10 @@ jobs:
           - os: windows-latest
             ruby-version: '2.0'
 
+          # JRuby having random JRuby problems.
+          - os: windows-latest
+            ruby-version: 'jruby-9.1.17.0'
+
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
