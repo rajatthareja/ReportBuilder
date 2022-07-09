@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.0.0'
   s.requirements << 'Cucumber >= 2.1.0 test results in JSON format'
 
-  s.files       = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(sample/|css/|js/|pkg/|testing/|coverage/|CNAME|.gitignore|appveyor.yml|.travis.yml|_config.yml|Gemfile|Rakefile|rb.ico)}) }
+  s.files       = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(sample/|css/|js/|pkg/|testing/|coverage/|CNAME|.gitignore|.github|_config.yml|Gemfile|Rakefile|rb.ico)}) }
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.test_files  = s.files.grep(%r{^(testing)/})
 

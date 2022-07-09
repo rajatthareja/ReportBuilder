@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 1 * *'  # Monthly
+
+jobs:
+
+  run_tests:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        ruby-version: [ '2.0', '2.3', '2.5', '2.7', '3.0',
+                        'jruby-9.1.17.0', 'jruby-9.3.4.0']
+        exclude:
+          # Now worth it right now to try and get these working and no additional and meaningful proof is
+          # provided by these combinations, given the other combinations that are being tested.
+
+          # Some problem install the `json` gem
+          - os: windows-latest
+            ruby-version: '2.0'
+
+          # JRuby having random JRuby problems.
+          - os: windows-latest
+            ruby-version: 'jruby-9.1.17.0'
+          - os: windows-latest
+            ruby-version: 'jruby-9.3.4.0'
+
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - name: Run CI Rake task
+        run: bundle exec rake report_builder:test_everything
