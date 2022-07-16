@@ -64,7 +64,15 @@ module ReportBuilder
 
     def get(template)
       @erb ||= {}
-      @erb[template] ||= ERB.new(File.read(File.dirname(__FILE__) + '/../../template/' + template + '.erb'), nil, nil, '_' + template)
+      template_text = File.read(File.dirname(__FILE__) + '/../../template/' + template + '.erb')
+
+      # TODO: Remove once older Rubies are not longer supported
+      # Only use the deprecated method parameters for older versions of Ruby
+      if RUBY_VERSION =~ /^2\.[012345]/
+        @erb[template] ||= ERB.new(template_text, nil, nil, '_' + template)
+      else
+        @erb[template] ||= ERB.new(template_text, eoutvar: '_' + template)
+      end
     end
 
     def get_groups(input_path)
