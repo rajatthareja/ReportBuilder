@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased](https://github.com/rajatthareja/ReportBuilder/compare/v1.9...master)
 
+### Fixed
+  - Fixed an ERB deprecation warning for newer versions of Ruby
+
 ## [1.9](https://github.com/rajatthareja/ReportBuilder/compare/v1.8...v1.9) - 2020-06-06
 ### Changed
 - Json 1.8.1 to 2.3.0
